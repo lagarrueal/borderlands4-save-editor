@@ -964,14 +964,37 @@ mod tests {
 
 // ====================================================================== helpers used by the GUI
 
-/// Complete the main story the way the game's own "skip story" does:
-/// every main set completed, the story globals set, UVH 1 missions done.
+/// Mission records the game itself wrote for its "skip story" option
+/// (extracted by tools/make_story_template.py).
+static STORY_TEMPLATE: &str = include_str!("../../../data/story_template.yaml");
+
+/// Complete the main story the way the game's own story skip does: every main
+/// mission set the character has not finished is replaced by the record the
+/// game writes for a skipped story, and the story globals are set. Sets the
+/// template lacks are completed generically.
 pub fn complete_story(doc: &mut Node, set_missions: &std::collections::HashMap<String, Vec<String>>) {
-    for set in MAIN_STORY {
-        let ms = set_missions.get(*set).cloned().unwrap_or_default();
-        complete_set(doc, set, &ms);
+    let tpl = yaml::parse(STORY_TEMPLATE).ok();
+    for set in MAIN_STORY.iter().copied().chain(std::iter::once("missionset_main_postgame")) {
+        let path = format!("missions.local_sets.{set}");
+        let done = doc.get(&format!("{path}.status")).and_then(|s| s.as_str()) == Some("completed");
+        if done {
+            continue;
+        }
+        match tpl.as_ref().and_then(|t| t.get(&path)).cloned() {
+            Some(node) => *doc.ensure(&path) = node,
+            None => {
+                let ms = set_missions.get(set).cloned().unwrap_or_default();
+                complete_set(doc, set, &ms);
+            }
+        }
     }
-    for g in STORY_GLOBALS {
+    let globals: Vec<String> = tpl
+        .as_ref()
+        .and_then(|t| t.get("globals"))
+        .and_then(|g| g.as_map())
+        .map(|m| m.keys().map(|k| k.to_string()).collect())
+        .unwrap_or_else(|| STORY_GLOBALS.iter().map(|s| s.to_string()).collect());
+    for g in globals {
         doc.set_scalar(&format!("globals.{g}"), "TRUE");
     }
     // tracked missions would point at finished missions
