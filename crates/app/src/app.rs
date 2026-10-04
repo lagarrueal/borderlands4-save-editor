@@ -372,6 +372,20 @@ impl App {
             self.error("Not saved: Borderlands 4 is running. Quit the game completely, then save again. (The game keeps the character in memory and would overwrite the file.)");
             return;
         }
+        // structural self-check: never write something the game would not write
+        if let Some(s) = self.sess.as_ref() {
+            let mut problems = vec![];
+            if let (true, Some(c)) = (s.char_dirty, s.character.as_ref()) {
+                problems.extend(save::check_invariants(&c.doc, SaveKind::Character));
+            }
+            if let (true, Some(p)) = (s.prof_dirty, s.profile.as_ref()) {
+                problems.extend(save::check_invariants(&p.doc, SaveKind::Profile));
+            }
+            if !problems.is_empty() {
+                self.error(format!("Not saved - the edit broke the save structure: {}. Use Undo.", problems.join("; ")));
+                return;
+            }
+        }
         let Some(s) = self.sess.as_mut() else { return };
         let mut msgs = vec![];
         if s.char_dirty {
@@ -409,7 +423,7 @@ impl App {
         ui.horizontal(|ui| {
             ui.heading(RichText::new("BL4 Save Editor").color(Color32::from_rgb(255, 170, 40)));
             ui.separator();
-            if ui.button("📂 Open save…").clicked() {
+            if ui.button("Open save…").clicked() {
                 let mut dlg = rfd::FileDialog::new().add_filter("Borderlands 4 save", &["sav"]);
                 if let Some(d) = &self.folder {
                     dlg = dlg.set_directory(d);
@@ -418,25 +432,25 @@ impl App {
                     self.request_open(&p);
                 }
             }
-            if ui.button("📁 Save folder…").clicked() {
+            if ui.button("Save folder…").clicked() {
                 if let Some(d) = rfd::FileDialog::new().pick_folder() {
                     self.set_folder(&d);
                 }
             }
             let can_save = self.sess.is_some() && !self.game_running;
-            let save_btn = ui.add_enabled(can_save, egui::Button::new(if self.any_dirty() { "💾 Save*" } else { "💾 Save" }));
+            let save_btn = ui.add_enabled(can_save, egui::Button::new(if self.any_dirty() { "Save *" } else { "Save" }));
             if save_btn.clicked() || (can_save && ui.input(|i| i.modifiers.ctrl && i.key_pressed(egui::Key::S))) {
                 self.save_all();
             }
             let has_undo = self.sess.as_ref().map(|s| !s.undo.is_empty()).unwrap_or(false);
             let has_redo = self.sess.as_ref().map(|s| !s.redo.is_empty()).unwrap_or(false);
-            if ui.add_enabled(has_undo, egui::Button::new("↶ Undo")).clicked()
+            if ui.add_enabled(has_undo, egui::Button::new("Undo")).clicked()
                 || (has_undo && ui.input(|i| i.modifiers.ctrl && i.key_pressed(egui::Key::Z)))
             {
                 self.undo();
                 self.items.invalidate();
             }
-            if ui.add_enabled(has_redo, egui::Button::new("↷ Redo")).clicked()
+            if ui.add_enabled(has_redo, egui::Button::new("Redo")).clicked()
                 || (has_redo && ui.input(|i| i.modifiers.ctrl && i.key_pressed(egui::Key::Y)))
             {
                 self.redo();
@@ -448,7 +462,7 @@ impl App {
             if self.game_running {
                 ui.separator();
                 ui.label(
-                    RichText::new("⛔ Borderlands 4 is running - saving disabled")
+                    RichText::new(" Borderlands 4 is running - saving disabled ")
                         .color(Color32::WHITE)
                         .background_color(Color32::from_rgb(170, 30, 30)),
                 );

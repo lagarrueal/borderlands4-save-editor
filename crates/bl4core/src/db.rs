@@ -352,12 +352,28 @@ pub fn kind_label(k: &str) -> &'static str {
     }
 }
 
+/// Slots a kind takes from a shared pool (measured on game-generated items).
+pub fn pool_slots(kind: &str, pool: u32) -> Option<&'static [&'static str]> {
+    Some(match (kind, pool) {
+        ("weapon", 1) | ("heavy", 1) => &["body_ele", "secondary_ele", "pearl_elem", "pearl_stat"],
+        (_, 234) => &["stat_group1", "stat_group2", "stat_group3", "firmware", "special_passive"],
+        (_, 243) | (_, 245) | (_, 246) | (_, 237) | (_, 248) | (_, 247) | (_, 244) => return None,
+        _ => return None,
+    })
+}
+
+/// Slots that hold several parts on a normal item; every other slot holds one.
+pub fn multi_slot(kind: &str, slot: &str) -> bool {
+    matches!(slot, "barrel_acc" | "body_acc" | "scope_acc" | "passive_points" | "core_augment" | "stat_augment")
+        || (kind == "classmod" && slot == "stat_group1")
+}
+
 /// Shared part pools an item kind may reference with `{cat:n}` tokens.
 pub fn allowed_pools(kind: &str) -> &'static [u32] {
     match kind {
         "weapon" => &[1],
         "heavy" => &[244, 245, 1],
-        "grenade" => &[245, 1],
+        "grenade" => &[245],
         "shield" => &[246, 237, 248],
         "repkit" => &[243],
         "enhancement" => &[247],

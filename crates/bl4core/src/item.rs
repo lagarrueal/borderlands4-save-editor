@@ -1,7 +1,7 @@
 //! Item analysis: what a serial is (name, type, rarity, element, parts) and
 //! whether the game would accept it.
 
-use crate::db::{allowed_pools, Category, Db, Part};
+use crate::db::{allowed_pools, multi_slot, pool_slots, Category, Db, Part};
 use crate::serial::{PartRef, Serial};
 use std::collections::{BTreeMap, HashSet};
 
@@ -217,6 +217,20 @@ pub fn analyze(db: &Db, s: &Serial) -> ItemInfo {
                         part: Some(n),
                     });
                 }
+                if r.cat != cat_id && pools.contains(&r.cat) {
+                    if let Some(slots) = pool_slots(&kind, r.cat) {
+                        if !slots.contains(&p.s.as_str()) {
+                            issues.push(Issue {
+                                sev: Severity::Warning,
+                                msg: format!("{} ({}) is not a slot this item type takes from the shared pool", p.k, p.s),
+                                part: Some(n),
+                            });
+                        }
+                    }
+                    if p.s == "inv_comp" {
+                        issues.push(Issue { sev: Severity::Warning, msg: format!("{} is a rarity component of another pool", p.k), part: Some(n) });
+                    }
+                }
                 if p.st != "Active" && !p.st.is_empty() {
                     issues.push(Issue {
                         sev: Severity::Warning,
@@ -302,6 +316,24 @@ pub fn analyze(db: &Db, s: &Serial) -> ItemInfo {
         check_composition(db, c, comp_part, &resolved, &mut issues);
     }
     check_tags(&resolved, &mut issues);
+    // one part per slot, except accessory-type slots
+    let mut per_slot: BTreeMap<&str, Vec<usize>> = BTreeMap::new();
+    for (n, p) in resolved.iter().enumerate() {
+        if let Some(p) = p {
+            if p.s != "inv_comp" {
+                per_slot.entry(p.s.as_str()).or_default().push(n);
+            }
+        }
+    }
+    for (slot, idxs) in per_slot {
+        if idxs.len() > 1 && !multi_slot(&kind, slot) {
+            issues.push(Issue {
+                sev: Severity::Warning,
+                msg: format!("{} {slot} parts (normal items have one)", idxs.len()),
+                part: Some(idxs[1]),
+            });
+        }
+    }
 
     // naming
     let type_name = cat.and_then(|c| c.name.clone()).unwrap_or_else(|| format!("Category {cat_id}"));

@@ -37,7 +37,8 @@ fn main() -> eframe::Result<()> {
         viewport: eframe::egui::ViewportBuilder::default()
             .with_inner_size([1400.0, 860.0])
             .with_min_inner_size([900.0, 600.0])
-            .with_title("BL4 Save Editor"),
+            .with_title("BL4 Save Editor")
+            .with_icon(load_icon()),
         ..Default::default()
     };
     eframe::run_native(
@@ -48,4 +49,12 @@ fn main() -> eframe::Result<()> {
             Ok(Box::new(app::App::new(&cc.egui_ctx, opts)))
         }),
     )
+}
+
+fn load_icon() -> eframe::egui::IconData {
+    let img = image::load_from_memory(include_bytes!("../assets/icon.png")).map(|i| i.to_rgba8());
+    match img {
+        Ok(i) => eframe::egui::IconData { width: i.width(), height: i.height(), rgba: i.into_raw() },
+        Err(_) => eframe::egui::IconData::default(),
+    }
 }

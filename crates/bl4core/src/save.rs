@@ -107,8 +107,13 @@ pub fn backup_file(path: &Path) -> Result<PathBuf, SaveError> {
     Ok(dst)
 }
 
-/// Local-time-free UTC timestamp `YYYYMMDD-HHMMSS`.
+/// Local timestamp `YYYYMMDD-HHMMSS` for backup names.
 pub fn timestamp() -> String {
+    chrono::Local::now().format("%Y%m%d-%H%M%S").to_string()
+}
+
+/// UTC timestamp (fallback, also used by tests).
+pub fn timestamp_utc() -> String {
     let secs = std::time::SystemTime::now()
         .duration_since(std::time::UNIX_EPOCH)
         .map(|d| d.as_secs())
@@ -963,4 +968,52 @@ pub fn cosmetic_slot(part: &str) -> Option<(&'static str, String)> {
     };
     let group = if owner.eq_ignore_ascii_case("echo4") { "echo4" } else { "character" };
     Some((group, format!("Cosmetics_{owner}_{kind}")))
+}
+
+/// Structural rules every game-written save follows. Run before writing;
+/// a non-empty result means an edit produced something the game never writes.
+pub fn check_invariants(doc: &Node, kind: SaveKind) -> Vec<String> {
+    let mut out = vec![];
+    let items = list_items(doc);
+    // contiguous slot numbers
+    for (c, base) in [(Container::Backpack, BACKPACK), (Container::Bank, BANK)] {
+        let mut slots: Vec<usize> = items.iter().filter(|i| i.container == c).map(|i| i.slot).collect();
+        slots.sort();
+        if slots.iter().enumerate().any(|(i, s)| i != *s) {
+            out.push(format!("{} slots are not contiguous ({base})", c.label()));
+        }
+    }
+    // equipped items have a backpack twin with the same state flags
+    for e in items.iter().filter(|i| i.container == Container::Equipped) {
+        match items.iter().find(|b| b.container == Container::Backpack && b.serial == e.serial) {
+            None => out.push(format!("Equipped item in slot {} has no backpack copy", e.slot)),
+            Some(b) => {
+                if b.flags != Some(1) {
+                    out.push(format!("Backpack copy of equipped item (slot {}) is not marked equipped", e.slot));
+                }
+                if b.state_flags != e.state_flags {
+                    out.push(format!("Equipped item in slot {} and its backpack copy have different flags", e.slot));
+                }
+            }
+        }
+    }
+    // every serial decodes
+    for i in &items {
+        if crate::serial::Serial::decode(&i.serial).is_err() {
+            out.push(format!("{} item {} has an undecodable serial", i.container.label(), i.slot));
+        }
+    }
+    if kind == SaveKind::Character {
+        if let Some(e) = doc.get("state.experience").and_then(|n| n.as_seq()) {
+            for x in &e.items {
+                let ty = x.get("type").and_then(|t| t.as_str()).unwrap_or("");
+                let lvl = x.get("level").and_then(|l| l.as_i64()).unwrap_or(0);
+                let max = if ty == "Character" { MAX_CHAR_LEVEL } else { MAX_SPEC_LEVEL } as i64;
+                if lvl < 1 || lvl > max {
+                    out.push(format!("{ty} level {lvl} is outside 1..{max}"));
+                }
+            }
+        }
+    }
+    out
 }
