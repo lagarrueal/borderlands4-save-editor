@@ -1,0 +1,5 @@
+/target
+/testdata
+/research/ncs_extract
+*.sav
+*.bak

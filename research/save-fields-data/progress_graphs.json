@@ -1,0 +1,7011 @@
+{
+ "ProgressGraph_Specializations": {
+  "file": "progress_graph0.json",
+  "pointpool": "progress_point_pool'specializationtokenpool'",
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "Adventurer",
+    "100"
+   ],
+   [
+    null,
+    "Wanderer",
+    "100"
+   ],
+   [
+    null,
+    "Artificer",
+    "100"
+   ],
+   [
+    null,
+    "Slayer",
+    "100"
+   ],
+   [
+    null,
+    "Survivor",
+    "100"
+   ],
+   [
+    null,
+    "Enforcer",
+    "100"
+   ],
+   [
+    null,
+    "Hunter",
+    "100"
+   ]
+  ]
+ },
+ "ProgressGraph_Specializations_Skills": {
+  "file": "progress_graph0.json",
+  "pointpool": "progress_point_pool'SpecializationTokenPool'",
+  "graphtype": "GroupNodeActivation",
+  "nodes": [
+   [
+    null,
+    "ST_7_Skill_1",
+    null
+   ],
+   [
+    null,
+    "ST_6_Skill_2",
+    null
+   ],
+   [
+    "ST_4_Skill_1",
+    "ST_4_Skill_1",
+    null
+   ],
+   [
+    "ST_3_Skill_2",
+    "ST_3_Skill_2",
+    null
+   ],
+   [
+    "ST_3_Skill_1",
+    "ST_3_Skill_1",
+    null
+   ],
+   [
+    "ST_1_Skill_3",
+    "ST_1_Skill_3",
+    null
+   ],
+   [
+    "ST_2_Skill_2",
+    "ST_2_Skill_2",
+    null
+   ],
+   [
+    null,
+    "ST_5_Skill_2",
+    null
+   ],
+   [
+    null,
+    "ST_5_Skill_3",
+    null
+   ],
+   [
+    null,
+    "ST_5_Skill_1",
+    null
+   ],
+   [
+    null,
+    "ST_6_Skill_1",
+    null
+   ],
+   [
+    "ST_2_Skill_1",
+    "ST_2_Skill_1",
+    null
+   ],
+   [
+    null,
+    "ST_6_Skill_3",
+    null
+   ],
+   [
+    "ST_1_Skill_1",
+    "ST_1_Skill_1",
+    null
+   ],
+   [
+    "ST_2_Skill_3",
+    "ST_2_Skill_3",
+    null
+   ],
+   [
+    "ST_1_Skill_2",
+    "ST_1_Skill_2",
+    null
+   ],
+   [
+    null,
+    "ST_4_Skill_2",
+    null
+   ],
+   [
+    null,
+    "ST_7_Skill_2",
+    null
+   ],
+   [
+    null,
+    "ST_7_Skill_3",
+    null
+   ],
+   [
+    null,
+    "ST_4_Skill_3",
+    null
+   ],
+   [
+    "ST_3_Skill_3",
+    "ST_3_Skill_3",
+    null
+   ]
+  ]
+ },
+ "Progress_Corpohacker_ActionSkill_Modifiers": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair3259457782",
+    null
+   ],
+   [
+    null,
+    "pair2945127574",
+    null
+   ],
+   [
+    null,
+    "pair1068101680",
+    null
+   ],
+   [
+    null,
+    "pair4044920886",
+    null
+   ],
+   [
+    null,
+    "pair1631222928",
+    null
+   ],
+   [
+    null,
+    "pair217450736",
+    null
+   ],
+   [
+    null,
+    "pair3092265133",
+    null
+   ],
+   [
+    null,
+    "pair455943371",
+    null
+   ]
+  ]
+ },
+ "Progress_Corpohacker_ActionSkill_Modifiers_Contagion": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair3259457782",
+    null
+   ],
+   [
+    "Recursion",
+    "pair1068101680",
+    null
+   ],
+   [
+    null,
+    "pair2945127574",
+    null
+   ],
+   [
+    null,
+    "pair4044920886",
+    null
+   ],
+   [
+    null,
+    "pair455943371",
+    null
+   ],
+   [
+    null,
+    "pair1631222928",
+    null
+   ],
+   [
+    null,
+    "pair217450736",
+    null
+   ],
+   [
+    null,
+    "pair3092265133",
+    null
+   ]
+  ]
+ },
+ "Progress_Corpohacker_ActionSkill_Modifiers_Manifestation": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair2945127574",
+    null
+   ],
+   [
+    "Recursion",
+    "pair1068101680",
+    null
+   ],
+   [
+    null,
+    "pair3092265133",
+    null
+   ],
+   [
+    null,
+    "pair217450736",
+    null
+   ],
+   [
+    null,
+    "pair3259457782",
+    null
+   ],
+   [
+    null,
+    "pair1631222928",
+    null
+   ],
+   [
+    null,
+    "pair455943371",
+    null
+   ],
+   [
+    null,
+    "pair4044920886",
+    null
+   ]
+  ]
+ },
+ "Progress_Corpohacker_ActionSkill_Modifiers_VPN": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair3259457782",
+    null
+   ],
+   [
+    null,
+    "pair2945127574",
+    null
+   ],
+   [
+    null,
+    "pair4044920886",
+    null
+   ],
+   [
+    null,
+    "pair455943371",
+    null
+   ],
+   [
+    null,
+    "pair1068101680",
+    null
+   ],
+   [
+    null,
+    "pair1631222928",
+    null
+   ],
+   [
+    null,
+    "pair217450736",
+    null
+   ],
+   [
+    null,
+    "pair3092265133",
+    null
+   ]
+  ]
+ },
+ "Progress_Corpohacker_ActionSkills": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Manifestation",
+    "pair256377300",
+    null
+   ],
+   [
+    "VPN",
+    "pair1008204052",
+    null
+   ],
+   [
+    "Contagion",
+    "pair2674582898",
+    null
+   ],
+   [
+    "Corpohacker Trait",
+    "pair2442309920",
+    null
+   ]
+  ]
+ },
+ "Progress_Corpohacker_Branch_HackAndSlash_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Retribution",
+    "pair1579053925",
+    null
+   ],
+   [
+    "Infinite Murder Hack",
+    "pair4251152131",
+    null
+   ],
+   [
+    "Marathon",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Methodical",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Killing Machine",
+    "pair2665652686",
+    "3"
+   ],
+   [
+    "Refactored Damage Formula",
+    "pair247481704",
+    "1"
+   ]
+  ]
+ },
+ "Progress_Corpohacker_Branch_HackAndSlash_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Overclocked",
+    "pair2665652686",
+    "3"
+   ],
+   [
+    "The Sweet Science",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Third Party",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Chip Surplus",
+    "pair1833012133",
+    null
+   ],
+   [
+    "The Gang's All Here",
+    "pair1579053925",
+    "3"
+   ]
+  ]
+ },
+ "Progress_Corpohacker_Branch_HackAndSlash_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Upload",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "Violent Outburst",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Watch Your Step",
+    "pair1833012133",
+    null
+   ],
+   [
+    "Flow State",
+    "pair4271287588",
+    "3"
+   ],
+   [
+    "Assault Vest",
+    "pair4251152131",
+    null
+   ]
+  ]
+ },
+ "Progress_Corpohacker_Branch_Virology": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ]
+  ]
+ },
+ "Progress_Corpohacker_Branch_Virology_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Overflow",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "Turbo Button",
+    "pair1579053925",
+    null
+   ],
+   [
+    "Genetic Immunity",
+    "pair4271287588",
+    "3"
+   ],
+   [
+    "Irrational Irradiation",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Circular Logic",
+    "pair4251152131",
+    "3"
+   ],
+   [
+    "Conservation of Life",
+    "pair1833012133",
+    "3"
+   ]
+  ]
+ },
+ "Progress_Corpohacker_Branch_Virology_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Wide Net",
+    "pair1857309058",
+    null
+   ],
+   [
+    null,
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "Compounding Detonation",
+    "pair247481704",
+    "3"
+   ],
+   [
+    "Dirty Bomb",
+    "pair1833012133",
+    null
+   ],
+   [
+    "System Restore",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Conservation of Volatility",
+    "pair4251152131",
+    "3"
+   ],
+   [
+    "Data Leakage",
+    "pair1579053925",
+    null
+   ]
+  ]
+ },
+ "Progress_Corpohacker_Branch_Virology_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Dead Horse",
+    "pair247481704",
+    "1"
+   ],
+   [
+    "Data Thief",
+    "pair1579053925",
+    "3"
+   ],
+   [
+    "It Pours",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "Status Critical",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Conservation of Malice",
+    "pair1857309058",
+    null
+   ],
+   [
+    "When it Rains",
+    "pair1833012133",
+    "3"
+   ]
+  ]
+ },
+ "Progress_Corpohacker_Trunk": {
+  "file": "progress_graph0.json",
+  "pointpool": "progress_point_pool'CharacterProgressPoints'",
+  "graphtype": null,
+  "nodes": []
+ },
+ "Progress_Corpohacker_Trunk_Assimilation": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Overclocking",
+    "pair949974351",
+    null
+   ],
+   [
+    "Hiding the Pain",
+    "pair2830995945",
+    null
+   ],
+   [
+    "Sharing the Pain",
+    "pair1528740738",
+    "3"
+   ],
+   [
+    "Pure Fusion",
+    "pair1749107522",
+    null
+   ],
+   [
+    "Critically Acclaimed",
+    "pair2140827513",
+    null
+   ],
+   [
+    "Irradiated",
+    "pair2873643982",
+    null
+   ],
+   [
+    "PeakPerformance",
+    "pair2352563474",
+    null
+   ],
+   [
+    "Antivirus",
+    "pair535716755",
+    null
+   ],
+   [
+    "Sharing Tactics",
+    "pair996849512",
+    null
+   ],
+   [
+    "Optimization",
+    "pair3706155807",
+    null
+   ]
+  ]
+ },
+ "Progress_Corpohacker_Trunk_HackAndSlash": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Initialilze",
+    "pair1749107522",
+    null
+   ],
+   [
+    "Footwork",
+    "pair3706155807",
+    null
+   ],
+   [
+    "Target Practice",
+    "pair2140827513",
+    "1"
+   ],
+   [
+    "Going Ghost",
+    "pair2352563474",
+    null
+   ],
+   [
+    "Ratio Technique",
+    "pair535716755",
+    null
+   ],
+   [
+    "Odium",
+    "pair2830995945",
+    "3"
+   ],
+   [
+    "Neutral Special",
+    "pair3409731364",
+    "1"
+   ],
+   [
+    "Death Begets Death",
+    "pair949974351",
+    null
+   ],
+   [
+    "Plugged In",
+    "pair3163783157",
+    null
+   ],
+   [
+    "Gotta Go Fast SCRAPPED",
+    "pair137711528",
+    null
+   ],
+   [
+    "Contempt",
+    "pair996849512",
+    null
+   ],
+   [
+    "Flurry",
+    "pair2873643982",
+    null
+   ]
+  ]
+ },
+ "Progress_Corpohacker_Trunk_Virology": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Category 5",
+    "pair1528740738",
+    null
+   ],
+   [
+    "Established Gameplay Loop",
+    "pair137711528",
+    null
+   ],
+   [
+    "Contaminant",
+    "pair949974351",
+    null
+   ],
+   [
+    "Potential Transference",
+    "pair1749107522",
+    null
+   ],
+   [
+    "Kaleidoscontaminant",
+    "pair3409731364",
+    "3"
+   ],
+   [
+    "Toxic Mentality",
+    "pair535716755",
+    null
+   ],
+   [
+    "Misery Loves Company",
+    "pair3163783157",
+    "3"
+   ],
+   [
+    "Communicable Combustibles",
+    "pair3706155807",
+    null
+   ],
+   [
+    "Capacitor",
+    "pair996849512",
+    null
+   ],
+   [
+    "Luckless",
+    "pair2352563474",
+    null
+   ],
+   [
+    "Loveless' Secret Stuff",
+    "pair2830995945",
+    null
+   ]
+  ]
+ },
+ "Progress_Corpohacker_branch": {
+  "file": "progress_graph0.json",
+  "pointpool": "progress_point_pool'CharacterProgressPoints'",
+  "graphtype": null,
+  "nodes": []
+ },
+ "Progress_DS_Branch": {
+  "file": "progress_graph0.json",
+  "pointpool": "progress_point_pool'CharacterProgressPoints'",
+  "graphtype": null,
+  "nodes": []
+ },
+ "Progress_DS_Branch_Death": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": []
+ },
+ "Progress_DS_Branch_Death_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    "Radioactive Resonance",
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    "Vorpal Spirits",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    "Refreshing Waters",
+    "Branch - Row 2 - 2",
+    "3"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    "Radiating Influence",
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    "Radiating Attunement",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    "Spirit Cooling",
+    "Branch - Row 2 - 3",
+    "5"
+   ]
+  ]
+ },
+ "Progress_DS_Branch_Death_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    "Grave Elements",
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    "Spirited Away",
+    "Branch - Row 3 - 3",
+    "1"
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    "Vorpal Mind",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    "Wombo Combo",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    "Phase Pocket",
+    "Branch - Row 2 - 1",
+    "3"
+   ],
+   [
+    "Extra",
+    "Branch - Row 2 - 2",
+    "5"
+   ]
+  ]
+ },
+ "Progress_DS_Branch_Death_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Bloodshot",
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    "Draining Essence",
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    "Grave Vitality",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    "Blood Is Power",
+    "Branch - Row 3 - 3",
+    "3"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    "Enlightenment",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    "Grave Extension",
+    "Branch - Row 2 - 1",
+    "3"
+   ]
+  ]
+ },
+ "Progress_DS_Branch_Domination_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Explosive Fiends",
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    "Cryonic Attunement",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    "Primed and Ready",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    "Overspirited",
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    "Cryonic Influence",
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    "Hardened Spirit",
+    "Branch - Row 2 - 3",
+    "3"
+   ]
+  ]
+ },
+ "Progress_DS_Branch_Domination_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Tail Whip",
+    "Branch - Row 3 - 1",
+    "1"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    "Elemental Essence",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    "Keen Fiends",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    "Grave Sacrifice",
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    "The Reaping",
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    "Keen Preservation",
+    "Branch - Row 2 - 3",
+    "5"
+   ]
+  ]
+ },
+ "Progress_DS_Branch_Domination_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Undead Wire",
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    "Runic Mediicine",
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    "Grave Shock",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    "Gravy Drain",
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    "Shocking Influence",
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    "Shocking Attunement",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ]
+  ]
+ },
+ "Progress_DS_Branch_Duplicate": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": []
+ },
+ "Progress_DS_Branch_Duplicate_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Corroding Attunement",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    "Hot Swap",
+    "Branch - Row 2 - 3",
+    "3"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    "Critical Suffering",
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    "Assassin",
+    "Branch - Row 2 - 2",
+    "3"
+   ],
+   [
+    "Corroding Influence",
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    "Prismatic Poisons",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ]
+  ]
+ },
+ "Progress_DS_Branch_Duplicate_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    "Volley",
+    "Branch - Row 3 - 3",
+    "1"
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    "Tameshigiri",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    "Fiery Influence",
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    "Deathstraction",
+    "Branch - Row 2 - 2",
+    "3"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    "Reverberations",
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    "Fiery Attunement",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    "Phase Dagger",
+    "Branch - Row 2 - 3",
+    "5"
+   ]
+  ]
+ },
+ "Progress_DS_Branch_Duplicate_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    "Commanding Attunement",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    "Spirit Bomb",
+    "Branch - Row 2 - 1",
+    "3"
+   ],
+   [
+    "Ancient Rites",
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    "Resounding Echos",
+    "Branch - Row 3 - 1",
+    "1"
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    "Deathstraction",
+    "Branch - Row 2 - 3",
+    "3"
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    "Corroding Armaments",
+    "Branch - Row 1 - 1",
+    "5"
+   ]
+  ]
+ },
+ "Progress_DS_Branch_domination": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": []
+ },
+ "Progress_DS_Trunk": {
+  "file": "progress_graph0.json",
+  "pointpool": "progress_point_pool'CharacterProgressPoints'",
+  "graphtype": null,
+  "nodes": []
+ },
+ "Progress_DS_Trunk_Death": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "VolatileEssence",
+    "pair137711528",
+    null
+   ],
+   [
+    "Kinetic Influence",
+    "pair3409731364",
+    null
+   ],
+   [
+    "Infused Bullets",
+    "pair2352563474",
+    null
+   ],
+   [
+    "Phase Sync",
+    "pair1749107522",
+    null
+   ],
+   [
+    "Bleed",
+    "pair949974351",
+    null
+   ],
+   [
+    "Target Prescience",
+    "pair2140827513",
+    null
+   ],
+   [
+    "Draining Attunement",
+    "pair2873643982",
+    null
+   ],
+   [
+    "Grave Power",
+    "pair3706155807",
+    "3"
+   ],
+   [
+    "Stimpack",
+    "pair2830995945",
+    null
+   ],
+   [
+    "Guns and Needles",
+    "pair996849512",
+    "3"
+   ],
+   [
+    null,
+    "pair3163783157",
+    null
+   ],
+   [
+    "Grave Sights",
+    "pair535716755",
+    null
+   ]
+  ]
+ },
+ "Progress_DS_Trunk_Domination": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Phase Plating",
+    "pair535716755",
+    "3"
+   ],
+   [
+    "Grave Command",
+    "pair2830995945",
+    "3"
+   ],
+   [
+    "Phase Bullets",
+    "pair137711528",
+    null
+   ],
+   [
+    "Vorpal Fiends",
+    "pair2140827513",
+    null
+   ],
+   [
+    "Grave Sustain",
+    "pair996849512",
+    null
+   ],
+   [
+    "Overseer",
+    "pair3409731364",
+    "3"
+   ],
+   [
+    "Overprotective",
+    "pair949974351",
+    null
+   ],
+   [
+    "Phase Harvest",
+    "pair1528740738",
+    null
+   ],
+   [
+    "Claw and Bang",
+    "pair1749107522",
+    null
+   ],
+   [
+    "Overpowered",
+    "pair2873643982",
+    null
+   ],
+   [
+    "Summoner",
+    "pair2352563474",
+    null
+   ]
+  ]
+ },
+ "Progress_DS_Trunk_Duplicate": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Extra Cursed",
+    "pair2140827513",
+    "1"
+   ],
+   [
+    "Grave Fiends",
+    "pair1749107522",
+    null
+   ],
+   [
+    "Spectral Weapons",
+    "pair2873643982",
+    null
+   ],
+   [
+    null,
+    "pair3163783157",
+    null
+   ],
+   [
+    "Demonic Inscriptions",
+    "pair535716755",
+    null
+   ],
+   [
+    "Grim Suffering",
+    "pair949974351",
+    null
+   ],
+   [
+    "Cursed Blade",
+    "pair2352563474",
+    null
+   ],
+   [
+    "Sanguine Brood",
+    "pair996849512",
+    null
+   ],
+   [
+    "Undead Hands",
+    "pair137711528",
+    "3"
+   ],
+   [
+    "Baneful Weaponry",
+    "pair2830995945",
+    null
+   ],
+   [
+    "Grave Quickening",
+    "pair3706155807",
+    null
+   ],
+   [
+    "Blood Sacrifice",
+    "pair1528740738",
+    "1"
+   ]
+  ]
+ },
+ "Progress_DarkSiren_ActionSkill_Modifiers_PhaseAvatar": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Vibe Check",
+    "pair3259457782",
+    null
+   ],
+   [
+    "Heartpiercer",
+    "pair1631222928",
+    null
+   ],
+   [
+    "Witchy Trigger Finger",
+    "pair1068101680",
+    null
+   ],
+   [
+    "Phase Reap",
+    "pair3092265133",
+    null
+   ],
+   [
+    "Energy Vampire",
+    "pair455943371",
+    null
+   ],
+   [
+    "Iron Maiden",
+    "pair2945127574",
+    null
+   ],
+   [
+    "Geistwave",
+    "pair217450736",
+    null
+   ],
+   [
+    "Desecration",
+    "pair4044920886",
+    null
+   ]
+  ]
+ },
+ "Progress_DarkSiren_ActionSkill_Modifiers_PhaseFamiliar": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Beast Mode",
+    "pair455943371",
+    null
+   ],
+   [
+    "Double Trouble",
+    "pair3259457782",
+    null
+   ],
+   [
+    "Charge Mode",
+    "pair2945127574",
+    null
+   ],
+   [
+    "Armored Beast",
+    "pair4044920886",
+    null
+   ],
+   [
+    "Apex Beast",
+    "pair1631222928",
+    null
+   ],
+   [
+    "Critical Mode",
+    "pair3092265133",
+    null
+   ],
+   [
+    "Outburst",
+    "pair1068101680",
+    null
+   ],
+   [
+    "Blinkstrike",
+    "pair217450736",
+    null
+   ]
+  ]
+ },
+ "Progress_DarkSiren_ActionSkill_Modifiers_PhaseShard": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Hellish Harvest",
+    "pair3092265133",
+    null
+   ],
+   [
+    "Wither",
+    "pair2945127574",
+    null
+   ],
+   [
+    "Banshee Wail",
+    "pair455943371",
+    null
+   ],
+   [
+    "Wake the Dead",
+    "pair1631222928",
+    null
+   ],
+   [
+    "Ghastblaster",
+    "pair1068101680",
+    null
+   ],
+   [
+    "Heirloom",
+    "pair4044920886",
+    null
+   ],
+   [
+    "Grim Reaper",
+    "pair3259457782",
+    null
+   ],
+   [
+    "Medium Armor",
+    "pair217450736",
+    null
+   ]
+  ]
+ },
+ "Progress_DarkSiren_ActionSkills": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Phase Echo",
+    "pair256377300",
+    null
+   ],
+   [
+    "Phase Covenant",
+    "pair2442309920",
+    null
+   ],
+   [
+    "Phase Familiar",
+    "pair2674582898",
+    null
+   ],
+   [
+    "Phase Avatar",
+    "pair1008204052",
+    null
+   ]
+  ]
+ },
+ "Progress_DarkSiren_ActionSkills_Modifiers": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair4044920886",
+    null
+   ],
+   [
+    null,
+    "pair1068101680",
+    null
+   ],
+   [
+    null,
+    "pair2945127574",
+    null
+   ],
+   [
+    null,
+    "pair3092265133",
+    null
+   ],
+   [
+    null,
+    "pair217450736",
+    null
+   ],
+   [
+    null,
+    "pair455943371",
+    null
+   ],
+   [
+    null,
+    "pair1631222928",
+    null
+   ],
+   [
+    null,
+    "pair3259457782",
+    null
+   ]
+  ]
+ },
+ "Progress_EXO_Branch_Gimmick_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "El Paraguas",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Liquidation",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "Shock Market",
+    "pair4251152131",
+    null
+   ],
+   [
+    "Blowout",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Protector Pulse",
+    "pair1579053925",
+    null
+   ]
+  ]
+ },
+ "Progress_EXO_Branch_Gimmick_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "El Diabilito",
+    "pair247481704",
+    null
+   ],
+   [
+    "Artilleria",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Sinergia",
+    "pair4251152131",
+    "3"
+   ],
+   [
+    "Collabrate Ignition",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Hemolitions",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "Booming Business",
+    "pair1833012133",
+    null
+   ],
+   [
+    null,
+    "pair1579053925",
+    "3"
+   ]
+  ]
+ },
+ "Progress_EXO_Branch_Gimmick_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Empuje",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Sustainable Energy",
+    "pair1833012133",
+    null
+   ],
+   [
+    "Cruel Accrual",
+    "pair247481704",
+    null
+   ],
+   [
+    "El Borracho",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Motivar",
+    "pair1579053925",
+    null
+   ]
+  ]
+ },
+ "Progress_EXO_Branch_PeoplePerson_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Brain Dump",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Conductivo",
+    "pair1857309058",
+    null
+   ],
+   [
+    "El Catrin",
+    "pair1579053925",
+    null
+   ],
+   [
+    "Awe",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "Fiesta",
+    "pair247481704",
+    null
+   ]
+  ]
+ },
+ "Progress_EXO_Branch_PeoplePerson_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "The Right Tools",
+    "pair1579053925",
+    null
+   ],
+   [
+    "Debtonation",
+    "pair4251152131",
+    null
+   ],
+   [
+    "El Soldado",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Drone Assault",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "Drone Defense",
+    "pair4271287588",
+    null
+   ]
+  ]
+ },
+ "Progress_EXO_Branch_PeoplePerson_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "MAte",
+    "pair1833012133",
+    null
+   ],
+   [
+    "Deadline",
+    "pair4251152131",
+    null
+   ],
+   [
+    "La Garza",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Jaque",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Per My Last",
+    "pair247481704",
+    null
+   ]
+  ]
+ },
+ "Progress_EXO_Branch_RemoteAgent_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Assymetric Warfare",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Errant Spark",
+    "pair1833012133",
+    null
+   ],
+   [
+    "Rolling Stone",
+    "pair4251152131",
+    null
+   ],
+   [
+    "Propietary Incendiary",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "Lateral Plinking",
+    "pair247481704",
+    "1"
+   ],
+   [
+    "Hostile Acquisition",
+    "pair1579053925",
+    null
+   ]
+  ]
+ },
+ "Progress_EXO_Branch_RemoteAgent_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair1579053925",
+    "1"
+   ],
+   [
+    "El Alacrin",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "Lightning Rod",
+    "pair4251152131",
+    null
+   ],
+   [
+    "Inspirado",
+    "pair247481704",
+    "3"
+   ],
+   [
+    "Vitriol",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Confeti",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Pain Reaction",
+    "pair1833012133",
+    null
+   ]
+  ]
+ },
+ "Progress_EXO_Branch_RemoteAgent_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Everdrive",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Devil May Care",
+    "pair1833012133",
+    null
+   ],
+   [
+    "Temerario",
+    "pair4251152131",
+    null
+   ],
+   [
+    "Barrage",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Soltado",
+    "pair2665652686",
+    "1"
+   ]
+  ]
+ },
+ "Progress_EXO_Trunk_Gimmick": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Midnight Oil",
+    "pair2873643982",
+    null
+   ],
+   [
+    "Expedite",
+    "pair535716755",
+    null
+   ],
+   [
+    "Dial In",
+    "pair2830995945",
+    null
+   ],
+   [
+    "El Corazon",
+    "pair949974351",
+    null
+   ],
+   [
+    "Saldar",
+    "pair1528740738",
+    null
+   ],
+   [
+    "In the Zone",
+    "pair1749107522",
+    "3"
+   ],
+   [
+    "To the Last",
+    "pair3409731364",
+    null
+   ],
+   [
+    "Diamond Hands",
+    "pair2352563474",
+    null
+   ],
+   [
+    "Hard Sell",
+    "pair3706155807",
+    null
+   ],
+   [
+    "Handshake Deal",
+    "pair996849512",
+    null
+   ]
+  ]
+ },
+ "Progress_EXO_Trunk_PeoplePerson": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair3409731364",
+    "1"
+   ],
+   [
+    "Rinse",
+    "pair996849512",
+    null
+   ],
+   [
+    "Las Jaras",
+    "pair2873643982",
+    null
+   ],
+   [
+    "The Thrill",
+    "pair535716755",
+    null
+   ],
+   [
+    "Metal Management",
+    "pair3706155807",
+    "1"
+   ],
+   [
+    "Pa Dentro",
+    "pair949974351",
+    null
+   ],
+   [
+    "Al Centro",
+    "pair1749107522",
+    null
+   ],
+   [
+    "Arriba",
+    "pair2352563474",
+    null
+   ],
+   [
+    "Abajo",
+    "pair2140827513",
+    null
+   ],
+   [
+    "Preparado",
+    "pair2830995945",
+    null
+   ],
+   [
+    "First Impression",
+    "pair1528740738",
+    null
+   ]
+  ]
+ },
+ "Progress_EXO_Trunk_RemoteAgent": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Sitiar",
+    "pair996849512",
+    null
+   ],
+   [
+    "Juerga",
+    "pair2830995945",
+    null
+   ],
+   [
+    "Resiliencia",
+    "pair1528740738",
+    null
+   ],
+   [
+    "El Valiente",
+    "pair2140827513",
+    "3"
+   ],
+   [
+    "Shield Barriest",
+    "pair535716755",
+    null
+   ],
+   [
+    "Deft Hands",
+    "pair2873643982",
+    null
+   ],
+   [
+    "Venganza",
+    "pair3409731364",
+    "1"
+   ],
+   [
+    "Field Repairs",
+    "pair949974351",
+    "3"
+   ],
+   [
+    "CYA",
+    "pair2352563474",
+    null
+   ],
+   [
+    "Maestro",
+    "pair1749107522",
+    "3"
+   ]
+  ]
+ },
+ "Progress_ExoSoldier_Branch": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ]
+  ]
+ },
+ "Progress_ExoSoldier_Trunk": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "Trunk - Row 3 - 4",
+    "5"
+   ],
+   [
+    null,
+    "pair3193738870",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 5",
+    "5"
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 4",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 5",
+    "5"
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair780038864",
+    null
+   ],
+   [
+    null,
+    "pair2365812406",
+    null
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair3488105346",
+    null
+   ],
+   [
+    null,
+    "pair1126369170",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 2",
+    "5"
+   ],
+   [
+    null,
+    "pair3764263924",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 2 - 5",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 2",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 3",
+    "5"
+   ]
+  ]
+ },
+ "Progress_Grav_Branch": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 1 - 1",
+    "5"
+   ]
+  ]
+ },
+ "Progress_Grav_Branch_ExodusShard_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Carry the One",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Power Cycle",
+    "pair2665652686",
+    "3"
+   ],
+   [
+    "Break the Ice",
+    "pair1579053925",
+    "1"
+   ],
+   [
+    "Sample Collection",
+    "pair1833012133",
+    null
+   ],
+   [
+    "Cold Welding",
+    "pair247481704",
+    "3"
+   ],
+   [
+    "Applied Theory",
+    "pair4271287588",
+    null
+   ]
+  ]
+ },
+ "Progress_Grav_Branch_ExodusShard_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Unraveled",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "Dirty Bomb",
+    "pair247481704",
+    "1"
+   ],
+   [
+    "Proven Results",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Fissile Launcher",
+    "pair1833012133",
+    "3"
+   ],
+   [
+    "Chain Reactor",
+    "pair4251152131",
+    "3"
+   ],
+   [
+    "Glow Up",
+    "pair1857309058",
+    null
+   ]
+  ]
+ },
+ "Progress_Grav_Branch_ExodusShard_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "QED",
+    "pair247481704",
+    "1"
+   ],
+   [
+    "Relative Ease",
+    "pair2665652686",
+    null
+   ],
+   [
+    "Arithmatic Progression",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Eureka",
+    "pair1579053925",
+    "1"
+   ],
+   [
+    "Reclamation",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Rounding Down",
+    "pair4251152131",
+    null
+   ]
+  ]
+ },
+ "Progress_Grav_Branch_StasisShard_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Freeze Frame",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "Speed Trap",
+    "pair4251152131",
+    null
+   ],
+   [
+    "Snapshot",
+    "pair247481704",
+    "1"
+   ],
+   [
+    "Control Group",
+    "pair1833012133",
+    null
+   ],
+   [
+    "Concurrence",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Observer Effect",
+    "pair1857309058",
+    null
+   ]
+  ]
+ },
+ "Progress_Grav_Branch_StasisShard_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Cryogenics",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Flash Freeze",
+    "pair1579053925",
+    "1"
+   ],
+   [
+    "Heat Sink",
+    "pair4251152131",
+    null
+   ],
+   [
+    "Triple Point",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "Absolute Zero",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Endothermic Reaction",
+    "pair1833012133",
+    null
+   ]
+  ]
+ },
+ "Progress_Grav_Branch_StasisShard_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Gordian Knot",
+    "pair247481704",
+    null
+   ],
+   [
+    "Reproduce Findings",
+    "pair1833012133",
+    "3"
+   ],
+   [
+    "Experimentation",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Controlled Chaos",
+    "pair1579053925",
+    "3"
+   ],
+   [
+    "Indiscrete Mathematics",
+    "pair4271287588",
+    null
+   ]
+  ]
+ },
+ "Progress_Grav_Branch_TerminalShard_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Chaos Theory",
+    "pair247481704",
+    "1"
+   ],
+   [
+    "Showing Potential",
+    "pair1833012133",
+    null
+   ],
+   [
+    "Decoherence",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Cluster",
+    "pair1579053925",
+    null
+   ],
+   [
+    "Blueshift",
+    "pair4271287588",
+    null
+   ]
+  ]
+ },
+ "Progress_Grav_Branch_TerminalShard_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Meltdown",
+    "pair247481704",
+    null
+   ],
+   [
+    "Exposed Core",
+    "pair2665652686",
+    null
+   ],
+   [
+    "Gamma Ray Burst",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Certainty Principle",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Superposition",
+    "pair1579053925",
+    "1"
+   ],
+   [
+    "Amplifier at Will",
+    "pair4251152131",
+    null
+   ]
+  ]
+ },
+ "Progress_Grav_Branch_TerminalShard_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Supercooled Barrels",
+    "pair2665652686",
+    "3"
+   ],
+   [
+    "Annihilation",
+    "pair247481704",
+    "1"
+   ],
+   [
+    "Absorption",
+    "pair1833012133",
+    null
+   ],
+   [
+    "Epicenter",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Grav Wave",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Distribution Function",
+    "pair4251152131",
+    null
+   ]
+  ]
+ },
+ "Progress_Grav_Trunk": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair780038864",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 5",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 5",
+    "5"
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair3764263924",
+    null
+   ],
+   [
+    null,
+    "pair3193738870",
+    null
+   ],
+   [
+    null,
+    "pair2365812406",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 4",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair1126369170",
+    null
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 2",
+    "5"
+   ],
+   [
+    null,
+    "pair3488105346",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 2 - 5",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 2",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 4",
+    "5"
+   ]
+  ]
+ },
+ "Progress_Grav_Trunk_ExodusShard": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Mad Rads",
+    "pair2140827513",
+    "3"
+   ],
+   [
+    "Velocity",
+    "pair996849512",
+    null
+   ],
+   [
+    "Test Subjects",
+    "pair1528740738",
+    null
+   ],
+   [
+    "Elementary",
+    "pair2352563474",
+    null
+   ],
+   [
+    "Fracture",
+    "pair3409731364",
+    "1"
+   ],
+   [
+    "Bleeding Edge",
+    "pair535716755",
+    null
+   ],
+   [
+    "PPE",
+    "pair137711528",
+    null
+   ],
+   [
+    "Fuzzy Math",
+    "pair3163783157",
+    null
+   ],
+   [
+    "Modulo 0",
+    "pair2830995945",
+    null
+   ],
+   [
+    "Propulsion",
+    "pair1749107522",
+    null
+   ],
+   [
+    "Everstorm",
+    "pair3706155807",
+    "3"
+   ]
+  ]
+ },
+ "Progress_Grav_Trunk_StasisShard": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Pulse Drive",
+    "pair2830995945",
+    null
+   ],
+   [
+    "Cryodynamics",
+    "pair2140827513",
+    "3"
+   ],
+   [
+    "Relativity",
+    "pair3163783157",
+    null
+   ],
+   [
+    "Precision Engineering",
+    "pair3409731364",
+    "3"
+   ],
+   [
+    "Field Research",
+    "pair535716755",
+    null
+   ],
+   [
+    "Quantum Immortality",
+    "pair996849512",
+    null
+   ],
+   [
+    "Ignition",
+    "pair2352563474",
+    null
+   ],
+   [
+    "Butterfly Effect",
+    "pair1528740738",
+    "1"
+   ],
+   [
+    "Negentropy",
+    "pair949974351",
+    null
+   ],
+   [
+    "Eager",
+    "pair2873643982",
+    null
+   ],
+   [
+    "Supercooldown",
+    "pair3706155807",
+    null
+   ]
+  ]
+ },
+ "Progress_Grav_Trunk_TerminalShard": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Zero Point",
+    "pair2140827513",
+    null
+   ],
+   [
+    "Extragalactic",
+    "pair996849512",
+    null
+   ],
+   [
+    "Momentum",
+    "pair535716755",
+    null
+   ],
+   [
+    "Feedback Loop",
+    "pair3409731364",
+    "3"
+   ],
+   [
+    "Heat Death",
+    "pair2352563474",
+    null
+   ],
+   [
+    "Flux",
+    "pair3706155807",
+    "3"
+   ],
+   [
+    "Personal Observation",
+    "pair137711528",
+    null
+   ],
+   [
+    "Blast Chill",
+    "pair1528740738",
+    "3"
+   ],
+   [
+    "Mass  Function",
+    "pair2830995945",
+    null
+   ],
+   [
+    "Neutron Decay",
+    "pair949974351",
+    null
+   ],
+   [
+    "Accretion",
+    "pair2873643982",
+    null
+   ]
+  ]
+ },
+ "Progress_PLD_Branch": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": []
+ },
+ "Progress_PLD_Branch_Calamity_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    "Berserk",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    "Bloodlust",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    "Titan",
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    "Ancestral Strikes",
+    "Branch - Row 3 - 1",
+    "3"
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    "Seeing Red",
+    "Branch - Row 2 - 1",
+    "3"
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    "Emergency Refresh",
+    "Branch - Row 2 - 2",
+    "3"
+   ]
+  ]
+ },
+ "Progress_PLD_Branch_Calamity_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    "Harbinger",
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 1",
+    "3"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    "Into the Fray",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    "Rearm",
+    "Branch - Row 2 - 2",
+    "3"
+   ],
+   [
+    "Weakening Blows",
+    "Branch - Row 2 - 3",
+    "3"
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    "Flare Up",
+    "Branch - Row 3 - 3",
+    "3"
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    "Spartan",
+    "Branch - Row 1 - 3",
+    "5"
+   ]
+  ]
+ },
+ "Progress_PLD_Branch_Calamity_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Stopping Power",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    "Thunderclap",
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    "Shield Matrix",
+    "Branch - Row 2 - 3",
+    "3"
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    "Judgement",
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    "Electical Fire",
+    "Branch - Row 3 - 1",
+    "1"
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    "Cataclsym",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ]
+  ]
+ },
+ "Progress_PLD_Branch_Cybernetics_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    "Ordained Hammer",
+    "Branch - Row 3 - 1",
+    "1"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    "Empowered Weapons",
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    "Tempered Ice",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    "Engineering",
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    "Annihilation",
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    "Detonation Station",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ]
+  ]
+ },
+ "Progress_PLD_Branch_Cybernetics_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    "Escalation",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    "Tempered Lightning",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    "Lightning Rod",
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    "Quickened Weapons",
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    "Iron Dome",
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    "Sharpened Weapons",
+    "Branch - Row 3 - 3",
+    "3"
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ]
+  ]
+ },
+ "Progress_PLD_Branch_Cybernetics_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    "Cryogenic Impulse",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    "Raging Inferno",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    "Brightburn",
+    "Branch - Row 2 - 1",
+    "3"
+   ],
+   [
+    "Elemental Font",
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    "Heat Exchange",
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    "Pull of the Elements",
+    "Branch - Row 3 - 1",
+    "1"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ]
+  ]
+ },
+ "Progress_PLD_Branch_Vengeance_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Flame Affinity",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    "Ballistic Shielding",
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    "Disco Inferno",
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    "Worldbreaker",
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    "Attenuation",
+    "Branch - Row 3 - 3",
+    "1"
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    "Wildfire",
+    "Branch - Row 1 - 1",
+    "5"
+   ]
+  ]
+ },
+ "Progress_PLD_Branch_Vengeance_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    "Cryo Affinity",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    "Brittle Hollow Points",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    "Elemental Echoes",
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    "Age of Ice",
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    "Split Echoes",
+    "Branch - Row 3 - 1",
+    "3"
+   ],
+   [
+    "Elemental Surge",
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ]
+  ]
+ },
+ "Progress_PLD_Branch_Vengeance_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "High Voltage",
+    "Branch - Row 3 - 3",
+    "1"
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    "Forecast",
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    "Tactician",
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    "Flashbang",
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    "Shock Affinity",
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    "Elemental Bolt",
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ]
+  ]
+ },
+ "Progress_PLD_Trunk": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": []
+ },
+ "Progress_PLD_Trunk_Calamity": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Doom Fist",
+    "pair2352563474",
+    null
+   ],
+   [
+    "Momentum",
+    "pair3706155807",
+    null
+   ],
+   [
+    "Brass Knuckles",
+    "pair3163783157",
+    null
+   ],
+   [
+    "Weakening Blast",
+    "pair949974351",
+    "3"
+   ],
+   [
+    "Fiery Spirit",
+    "pair2873643982",
+    null
+   ],
+   [
+    "Bullet Storm",
+    "pair1749107522",
+    null
+   ],
+   [
+    "The Best Defense",
+    "pair2140827513",
+    null
+   ],
+   [
+    "Armored Plating",
+    "pair535716755",
+    null
+   ],
+   [
+    "Wield The Storm",
+    "pair2830995945",
+    null
+   ],
+   [
+    "Adaptive Charge",
+    "pair996849512",
+    "3"
+   ],
+   [
+    "Forged In Steel",
+    "pair1528740738",
+    "1"
+   ],
+   [
+    null,
+    "pair3409731364",
+    null
+   ]
+  ]
+ },
+ "Progress_PLD_Trunk_Cybernetics": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair3488105346",
+    null
+   ],
+   [
+    "Cast Iron",
+    "Trunk - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair780038864",
+    null
+   ],
+   [
+    "Tempered Flame",
+    "Trunk - Row 2 - 3",
+    "5"
+   ],
+   [
+    "Bolt Action",
+    "Trunk - Row 2 - 5",
+    "5"
+   ],
+   [
+    "Excitable",
+    "Trunk - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair1126369170",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "pair2365812406",
+    null
+   ],
+   [
+    "Building Storm",
+    "Trunk - Row 1 - 2",
+    "5"
+   ],
+   [
+    "Weapon Master",
+    "Trunk - Row 1 - 4",
+    "5"
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair3193738870",
+    null
+   ],
+   [
+    "Rapid Reload",
+    "Trunk - Row 1 - 5",
+    "5"
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    "Destruction Engine",
+    "Trunk - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair3764263924",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 2",
+    "5"
+   ],
+   [
+    "Locked In",
+    "Trunk - Row 3 - 4",
+    "5"
+   ],
+   [
+    "Storms Herald",
+    "Trunk - Row 3 - 5",
+    "5"
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    "Twinned Armaments",
+    "Trunk - Row 3 - 3",
+    "1"
+   ]
+  ]
+ },
+ "Progress_PLD_Trunk_Vengeance": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Wrath Of Nature",
+    "pair996849512",
+    null
+   ],
+   [
+    "Battleborn",
+    "pair535716755",
+    null
+   ],
+   [
+    "Perpetual",
+    "pair2830995945",
+    null
+   ],
+   [
+    "Frost Bite",
+    "pair949974351",
+    null
+   ],
+   [
+    "Resolute",
+    "pair3163783157",
+    "3"
+   ],
+   [
+    "Bullet Hail",
+    "pair1528740738",
+    null
+   ],
+   [
+    "Ancient Ways",
+    "pair3409731364",
+    null
+   ],
+   [
+    "Machinist",
+    "pair1749107522",
+    "3"
+   ],
+   [
+    "Vigor",
+    "pair2352563474",
+    null
+   ],
+   [
+    "Feedback Loop",
+    "pair2140827513",
+    null
+   ],
+   [
+    "Demolitiionist",
+    "pair2873643982",
+    null
+   ]
+  ]
+ },
+ "Progress_Paladin_ActionSkill_Modifiers_Scourge": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair3259457782",
+    null
+   ],
+   [
+    null,
+    "pair3092265133",
+    null
+   ],
+   [
+    null,
+    "pair4044920886",
+    null
+   ],
+   [
+    null,
+    "pair217450736",
+    null
+   ],
+   [
+    null,
+    "pair1068101680",
+    null
+   ],
+   [
+    null,
+    "pair1631222928",
+    null
+   ],
+   [
+    null,
+    "pair2945127574",
+    null
+   ],
+   [
+    null,
+    "pair455943371",
+    null
+   ]
+  ]
+ },
+ "Progress_Paladin_ActionSkill_Modifiers_Warforge": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair3092265133",
+    null
+   ],
+   [
+    null,
+    "pair1631222928",
+    null
+   ],
+   [
+    null,
+    "pair3259457782",
+    null
+   ],
+   [
+    null,
+    "pair1068101680",
+    null
+   ],
+   [
+    null,
+    "pair2945127574",
+    null
+   ],
+   [
+    null,
+    "pair455943371",
+    null
+   ],
+   [
+    null,
+    "pair217450736",
+    null
+   ],
+   [
+    null,
+    "pair4044920886",
+    null
+   ]
+  ]
+ },
+ "Progress_Paladin_ActionSkill_Modifiers_WeaponMaster": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair4044920886",
+    null
+   ],
+   [
+    null,
+    "pair3259457782",
+    null
+   ],
+   [
+    null,
+    "pair1068101680",
+    null
+   ],
+   [
+    null,
+    "pair217450736",
+    null
+   ],
+   [
+    null,
+    "pair2945127574",
+    null
+   ],
+   [
+    null,
+    "pair1631222928",
+    null
+   ],
+   [
+    null,
+    "pair3092265133",
+    null
+   ],
+   [
+    null,
+    "pair455943371",
+    null
+   ]
+  ]
+ },
+ "Progress_Paladin_ActionSkills": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "WeaponMaster",
+    "pair256377300",
+    null
+   ],
+   [
+    "Forgefist",
+    "pair2442309920",
+    null
+   ],
+   [
+    "Scourge",
+    "pair2674582898",
+    null
+   ],
+   [
+    "Warforge",
+    "pair1008204052",
+    null
+   ]
+  ]
+ },
+ "Progress_Paladin_ActionSkills_Modifiers": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair2945127574",
+    null
+   ],
+   [
+    null,
+    "pair1068101680",
+    null
+   ],
+   [
+    null,
+    "pair3092265133",
+    null
+   ],
+   [
+    null,
+    "pair217450736",
+    null
+   ],
+   [
+    null,
+    "pair3259457782",
+    null
+   ],
+   [
+    null,
+    "pair4044920886",
+    null
+   ],
+   [
+    null,
+    "pair1631222928",
+    null
+   ],
+   [
+    null,
+    "pair455943371",
+    null
+   ]
+  ]
+ },
+ "Progress_robo_branch": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ]
+  ]
+ },
+ "Progress_robo_branch_cleromancy_1": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "73 - Wild",
+    "pair247481704",
+    null
+   ],
+   [
+    null,
+    "pair1579053925",
+    null
+   ],
+   [
+    "70 - High Stakes",
+    "pair1833012133",
+    null
+   ],
+   [
+    "71 - Fortune's Favor",
+    "pair4251152131",
+    "3"
+   ],
+   [
+    "69 - Turn of Fate",
+    "pair1857309058",
+    null
+   ],
+   [
+    "72 - Let it Ride",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "68 - Can't Stop Winning",
+    "pair4271287588",
+    null
+   ]
+  ]
+ },
+ "Progress_robo_branch_cleromancy_2": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "74 - Potent Posse",
+    "pair4271287588",
+    null
+   ],
+   [
+    "66 - Restless Remains",
+    "pair1857309058",
+    null
+   ],
+   [
+    "77 - Tooth and Nail",
+    "pair1579053925",
+    "1"
+   ],
+   [
+    "78 - Serendipity",
+    "pair4251152131",
+    "3"
+   ],
+   [
+    "80 - Dead Friend Redemption",
+    "pair247481704",
+    "3"
+   ],
+   [
+    "79 - Sidekick's Revenge",
+    "pair2665652686",
+    null
+   ],
+   [
+    "76 - Sorcerer",
+    "pair1833012133",
+    "3"
+   ]
+  ]
+ },
+ "Progress_robo_branch_cleromancy_3": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "81 - Accursed Bones",
+    "pair4271287588",
+    null
+   ],
+   [
+    "82 - Tormented",
+    "pair1857309058",
+    null
+   ],
+   [
+    "84 - Snake Eyes",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "83 - Graveyard Shift",
+    "pair1579053925",
+    null
+   ],
+   [
+    "85 - The Call",
+    "pair247481704",
+    "1"
+   ]
+  ]
+ },
+ "Progress_robo_branch_crossFire_1": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "43 - Fast C4SH",
+    "pair1857309058",
+    null
+   ],
+   [
+    "44 - Firestorm",
+    "pair1833012133",
+    null
+   ],
+   [
+    "46 - High Noon",
+    "pair4251152131",
+    null
+   ],
+   [
+    "42 - Brimstone",
+    "pair4271287588",
+    null
+   ],
+   [
+    "45 - Burn the House Down",
+    "pair1579053925",
+    "3"
+   ],
+   [
+    "47 - Bloodstained Moon",
+    "pair2665652686",
+    "1"
+   ]
+  ]
+ },
+ "Progress_robo_branch_crossFire_2": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "51 - Pale Rider",
+    "pair4251152131",
+    "3"
+   ],
+   [
+    "49 - Truck Full of Nitro",
+    "pair1857309058",
+    null
+   ],
+   [
+    "50 - War Wagon",
+    "pair1579053925",
+    "3"
+   ],
+   [
+    "48 - Lawless",
+    "pair4271287588",
+    null
+   ],
+   [
+    "52 - Nothing Beats Lead",
+    "pair2665652686",
+    null
+   ]
+  ]
+ },
+ "Progress_robo_branch_crossFire_3": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "57 - Bleed the Bad",
+    "pair247481704",
+    "1"
+   ],
+   [
+    "54 - Unshaken",
+    "pair1857309058",
+    null
+   ],
+   [
+    "56 - Dusty Trail",
+    "pair4251152131",
+    null
+   ],
+   [
+    "53 - Mr Pocket",
+    "pair4271287588",
+    null
+   ],
+   [
+    "55 - From Gloam to Glow",
+    "pair1833012133",
+    null
+   ]
+  ]
+ },
+ "Progress_robo_branch_sleightOfHand_1": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "13 - High Roller",
+    "pair4271287588",
+    null
+   ],
+   [
+    "16 - Legerdemain",
+    "pair1579053925",
+    "3"
+   ],
+   [
+    "14 - Take the Pot",
+    "pair1857309058",
+    null
+   ],
+   [
+    "17 - Vigorish",
+    "pair4251152131",
+    null
+   ],
+   [
+    "15 - Stack the Deck",
+    "pair1833012133",
+    null
+   ],
+   [
+    "18 - Dealer's Bluff",
+    "pair2665652686",
+    "3"
+   ]
+  ]
+ },
+ "Progress_robo_branch_sleightOfHand_2": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "05 - Ante Up",
+    "pair247481704",
+    null
+   ],
+   [
+    "21 - C4SH Game",
+    "pair4251152131",
+    null
+   ],
+   [
+    "19 - Ace in the Hole",
+    "pair4271287588",
+    null
+   ],
+   [
+    "20 - Around the Corner",
+    "pair1857309058",
+    null
+   ],
+   [
+    "22 - House Edge",
+    "pair1579053925",
+    "1"
+   ],
+   [
+    "23 - No Limit",
+    "pair2665652686",
+    null
+   ]
+  ]
+ },
+ "Progress_robo_branch_sleightOfHand_3": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "28 - Tender Hearts",
+    "pair1579053925",
+    null
+   ],
+   [
+    "29 - Card sharp",
+    "pair4251152131",
+    null
+   ],
+   [
+    "30 - Hot Streak",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "25 - Kill Button",
+    "pair4271287588",
+    null
+   ],
+   [
+    "27 - Boom or Bust",
+    "pair1833012133",
+    "1"
+   ],
+   [
+    "26 - Payout",
+    "pair1857309058",
+    null
+   ]
+  ]
+ },
+ "Progress_robo_trunk": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "pair1126369170",
+    null
+   ],
+   [
+    null,
+    "pair2365812406",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 4",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 2",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 5",
+    "5"
+   ],
+   [
+    null,
+    "pair3193738870",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 2",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 2 - 5",
+    "5"
+   ],
+   [
+    null,
+    "pair780038864",
+    null
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair3488105346",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 4",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 5",
+    "5"
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "Trunk - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair3764263924",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ]
+  ]
+ },
+ "Progress_robo_trunk_cleromancy": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "63 - Ready to Roll",
+    "pair2352563474",
+    null
+   ],
+   [
+    "58 - Luck Be a Robot",
+    "pair996849512",
+    null
+   ],
+   [
+    "59 - Sweet Roll",
+    "pair2873643982",
+    null
+   ],
+   [
+    "61 - O Fortuna",
+    "pair2830995945",
+    null
+   ],
+   [
+    "60 - Charm Bracelet",
+    "pair535716755",
+    null
+   ],
+   [
+    "62 - Red Moon Rising",
+    "pair949974351",
+    null
+   ],
+   [
+    "64 - Riding High",
+    "pair1528740738",
+    null
+   ],
+   [
+    "65 - Bonemeal Ticket",
+    "pair1749107522",
+    null
+   ],
+   [
+    "Devil's Tines - CL",
+    "pair3409731364",
+    "1"
+   ],
+   [
+    "67 - Luckless",
+    "pair2140827513",
+    "1"
+   ],
+   [
+    "75 - Before She Knows You're Dead",
+    "pair3706155807",
+    null
+   ]
+  ]
+ },
+ "Progress_robo_trunk_crossFire": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Devil's Tine - CR",
+    "pair3409731364",
+    "1"
+   ],
+   [
+    "34 - Hard Boiled",
+    "pair535716755",
+    null
+   ],
+   [
+    "38 - Blur of Fingers and Brass",
+    "pair2140827513",
+    null
+   ],
+   [
+    "37 - Stand and Bleed",
+    "pair2352563474",
+    null
+   ],
+   [
+    "39 - Trick Shot",
+    "pair1749107522",
+    "3"
+   ],
+   [
+    "40 - Ride to Ruin",
+    "pair3706155807",
+    "1"
+   ],
+   [
+    "35 - Hot Hand",
+    "pair1528740738",
+    null
+   ],
+   [
+    "32 - Huckleberry",
+    "pair2873643982",
+    null
+   ],
+   [
+    "31 - Unchained",
+    "pair996849512",
+    null
+   ],
+   [
+    "33 - The Determinator",
+    "pair3163783157",
+    null
+   ],
+   [
+    "36 - Shootist",
+    "pair949974351",
+    null
+   ]
+  ]
+ },
+ "Progress_robo_trunk_sleightOfHand": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "03 - Splash the Pot",
+    "pair3163783157",
+    null
+   ],
+   [
+    "11 - Double-Down",
+    "pair3706155807",
+    null
+   ],
+   [
+    "07 - Trick-Taker",
+    "pair2352563474",
+    null
+   ],
+   [
+    "04 - Alchemy",
+    "pair535716755",
+    null
+   ],
+   [
+    "24 - Go For Broke",
+    "pair2830995945",
+    null
+   ],
+   [
+    "06 - Sounds of Rain",
+    "pair949974351",
+    null
+   ],
+   [
+    "09 - Late Scratch",
+    "pair1749107522",
+    "1"
+   ],
+   [
+    "01 - Table Flip",
+    "pair996849512",
+    null
+   ],
+   [
+    "Devil's Tines - SoH",
+    "pair3409731364",
+    "1"
+   ],
+   [
+    "12 - Wretched Shadows",
+    "pair2140827513",
+    "1"
+   ],
+   [
+    "02 - Insurance",
+    "pair137711528",
+    null
+   ]
+  ]
+ },
+ "echonav_upgrades": {
+  "file": "progress_graph6.json",
+  "pointpool": "progress_point_pool'EchoTokenProgressPoints'",
+  "graphtype": null,
+  "nodes": [
+   [
+    "Swimming Upgrade - Oxygen Cost Reduction II",
+    "EchoNav_Swim_03_of_04",
+    "2"
+   ],
+   [
+    "Glide Upgrade 3 - Cost Reduction",
+    "EchoNav_Glide_03_of_04",
+    "2"
+   ],
+   [
+    "Dash Upgrade 3 - Cost Reduction",
+    "EchoNav_Dash_03_of_04",
+    "2"
+   ],
+   [
+    "Swimming Upgrade - +Regen Speed",
+    "EchoNav_Swim_02_of_04",
+    "1"
+   ],
+   [
+    "Swimming Upgrade - ++Regen Speed",
+    "EchoNav_Swim_04_of_04",
+    "2"
+   ],
+   [
+    "Swimming Upgrade - Oxygen Cost Reduction I",
+    "EchoNav_Swim_01_of_04",
+    "1"
+   ],
+   [
+    "Dash Upgrade 4 - Distance Increase",
+    "EchoNav_Dash_04_of_04",
+    "3"
+   ],
+   [
+    "Dash Upgrade 2 - Cost Reduction",
+    "EchoNav_Dash_02_of_04",
+    "2"
+   ],
+   [
+    "ButtSlam Upgrade 1 - Cost Reduction",
+    "EchoNav_ButtSlam_01_of_05",
+    "1"
+   ],
+   [
+    "Glide Upgrade 1 - Cost Reduction",
+    "EchoNav_Glide_01_of_04",
+    "1"
+   ],
+   [
+    "Glide Upgrade 4 - Air Control",
+    "EchoNav_Glide_04_of_04",
+    "3"
+   ],
+   [
+    "Grapple Upgrade 2 - Cost Reduction",
+    "EchoNav_Grapple_02_of_02",
+    "2"
+   ],
+   [
+    "ButtSlam Upgrade 4 - Cost Reduction (Free)",
+    "EchoNav_ButtSlam_04_of_05",
+    "3"
+   ],
+   [
+    "ButtSlam Upgrade 3 - Increased AOE Range",
+    "EchoNav_ButtSlam_03_of_05",
+    "2"
+   ],
+   [
+    "Dash Upgrade 1 - Distance Increase",
+    "EchoNav_Dash_01_of_04",
+    "1"
+   ],
+   [
+    "Glide Upgrade 2 - Glide Speed",
+    "EchoNav_Glide_02_of_04",
+    "2"
+   ],
+   [
+    "ButtSlam Upgrade 2 - Increased Damage",
+    "EchoNav_ButtSlam_02_of_05",
+    "2"
+   ],
+   [
+    "Grapple Upgrade 1 - Cost Reduction",
+    "EchoNav_Grapple_01_of_02",
+    "1"
+   ]
+  ]
+ },
+ "progress_corpohacker_branch_Assimilation": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "Branch - Row 2 - 2",
+    "5"
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ]
+  ]
+ },
+ "progress_corpohacker_branch_Assimilation_01": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "No Time to Think",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Power Overwhelming",
+    "pair1833012133",
+    null
+   ],
+   [
+    "Manipulating RNG",
+    "pair1579053925",
+    null
+   ],
+   [
+    "Everchanging",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "Storage Upgrade",
+    "pair4271287588",
+    null
+   ]
+  ]
+ },
+ "progress_corpohacker_branch_Assimilation_02": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "FNX.bat",
+    "pair247481704",
+    "1"
+   ],
+   [
+    "InsultToInjury",
+    "pair4251152131",
+    null
+   ],
+   [
+    "Deeper Connexion",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Empowered Wyrm",
+    "pair1857309058",
+    null
+   ],
+   [
+    "Symbiosis Overflow",
+    "pair2665652686",
+    "1"
+   ],
+   [
+    "In Memoriam",
+    "pair1833012133",
+    null
+   ]
+  ]
+ },
+ "progress_corpohacker_branch_Assimilation_03": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Second Impact",
+    "pair2665652686",
+    null
+   ],
+   [
+    "Irradiate'emAll",
+    "pair4251152131",
+    null
+   ],
+   [
+    "What's your Status?",
+    "pair4271287588",
+    null
+   ],
+   [
+    "Explosive Mindset",
+    "pair1857309058",
+    null
+   ],
+   [
+    "IHATEYOU",
+    "pair1833012133",
+    null
+   ]
+  ]
+ },
+ "progress_corpohacker_branch_hackandslash": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "pair4239899458",
+    null
+   ],
+   [
+    null,
+    "pair2068739039",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    null,
+    "pair1209109279",
+    null
+   ],
+   [
+    null,
+    "pair3949762425",
+    null
+   ],
+   [
+    null,
+    "pair1821728740",
+    null
+   ],
+   [
+    null,
+    "pair1607116580",
+    null
+   ],
+   [
+    null,
+    "pair3627249593",
+    null
+   ],
+   [
+    null,
+    "Branch - Row 2 - 2",
+    "5"
+   ]
+  ]
+ },
+ "progress_graph_action_skills_template": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": "GroupNodeActivation",
+  "nodes": [
+   [
+    null,
+    "action_skill_0",
+    null
+   ],
+   [
+    null,
+    "action_skill_2",
+    null
+   ],
+   [
+    null,
+    "action_skill_1",
+    null
+   ],
+   [
+    null,
+    "Shared Vault Hunter Skill",
+    null
+   ],
+   [
+    null,
+    "Trait",
+    null
+   ]
+  ]
+ },
+ "progress_graph_askill_modifiers_template": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": "GroupNodeActivation",
+  "nodes": [
+   [
+    null,
+    "capstone_1",
+    null
+   ],
+   [
+    null,
+    "augment_1",
+    null
+   ],
+   [
+    null,
+    "capstone_3",
+    null
+   ],
+   [
+    null,
+    "augment_5",
+    null
+   ],
+   [
+    null,
+    "augment_4",
+    null
+   ],
+   [
+    null,
+    "augment_3",
+    null
+   ],
+   [
+    null,
+    "capstone_2",
+    null
+   ],
+   [
+    null,
+    "augment_2",
+    null
+   ]
+  ]
+ },
+ "progress_graph_exo_action_skills": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Type IX Arc-Knives",
+    "pair256377300",
+    null
+   ],
+   [
+    "Peacebreaker Cannons",
+    "pair2674582898",
+    null
+   ],
+   [
+    "APOPHIS Lance",
+    "pair1008204052",
+    null
+   ],
+   [
+    "Overdrive",
+    "pair2442309920",
+    null
+   ]
+  ]
+ },
+ "progress_graph_exo_mods": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair2945127574",
+    null
+   ],
+   [
+    null,
+    "pair217450736",
+    null
+   ],
+   [
+    null,
+    "pair455943371",
+    null
+   ],
+   [
+    null,
+    "pair3092265133",
+    null
+   ],
+   [
+    null,
+    "pair4044920886",
+    null
+   ],
+   [
+    null,
+    "pair3259457782",
+    null
+   ],
+   [
+    null,
+    "pair1631222928",
+    null
+   ],
+   [
+    null,
+    "pair1068101680",
+    null
+   ]
+  ]
+ },
+ "progress_graph_exo_mods_auto_lock": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Volatile Hollowpoints",
+    "pair1631222928",
+    null
+   ],
+   [
+    "Instinto",
+    "pair217450736",
+    null
+   ],
+   [
+    "Hell in a Shell",
+    "pair455943371",
+    null
+   ],
+   [
+    "Bullet-Buddy Deluxe",
+    "pair3092265133",
+    null
+   ],
+   [
+    "Double-Ought Autoshot",
+    "pair4044920886",
+    null
+   ],
+   [
+    "Unmissable Missiles",
+    "pair1068101680",
+    null
+   ],
+   [
+    "Beam Team",
+    "pair3259457782",
+    null
+   ],
+   [
+    "Insta-Fort Battle System",
+    "pair2945127574",
+    null
+   ]
+  ]
+ },
+ "progress_graph_exo_mods_buster": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Gibistruct Module",
+    "pair217450736",
+    null
+   ],
+   [
+    "Engorged Bore",
+    "pair1068101680",
+    null
+   ],
+   [
+    "Battery Subscription Service",
+    "pair3092265133",
+    null
+   ],
+   [
+    "Sangre por Sangre",
+    "pair455943371",
+    null
+   ],
+   [
+    "Project: BASILISK",
+    "pair1631222928",
+    null
+   ],
+   [
+    "Project: RAIJU",
+    "pair3259457782",
+    null
+   ],
+   [
+    "Ojo Rojo",
+    "pair2945127574",
+    null
+   ],
+   [
+    "Project: GORGON",
+    "pair4044920886",
+    null
+   ]
+  ]
+ },
+ "progress_graph_exo_mods_heavy_arms": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Inferno Protocol",
+    "pair3259457782",
+    null
+   ],
+   [
+    "Altered Cabr?n",
+    "pair3092265133",
+    null
+   ],
+   [
+    "Acid Drop",
+    "pair1068101680",
+    null
+   ],
+   [
+    "Thundercutter",
+    "pair2945127574",
+    null
+   ],
+   [
+    "Dead Man Walking",
+    "pair217450736",
+    null
+   ],
+   [
+    "Galvanic Panic",
+    "pair1631222928",
+    null
+   ],
+   [
+    "Hurac?n Especial",
+    "pair4044920886",
+    null
+   ],
+   [
+    "Parting Gift",
+    "pair455943371",
+    null
+   ]
+  ]
+ },
+ "progress_graph_exo_traits": {
+  "file": "progress_graph6.json",
+  "pointpool": null,
+  "graphtype": "GroupNodeActivation",
+  "nodes": [
+   [
+    "Trait",
+    "node_00",
+    null
+   ]
+  ]
+ },
+ "progress_graph_grav_action_skills": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Grav",
+    "pair2442309920",
+    null
+   ],
+   [
+    "Exodus",
+    "pair2674582898",
+    null
+   ],
+   [
+    "Terminal",
+    "pair256377300",
+    null
+   ],
+   [
+    "Stasis",
+    "pair1008204052",
+    null
+   ]
+  ]
+ },
+ "progress_graph_grav_mods": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair144701864",
+    null
+   ],
+   [
+    null,
+    "pair2945127574",
+    null
+   ],
+   [
+    null,
+    "pair1631222928",
+    null
+   ],
+   [
+    null,
+    "pair1002439016",
+    null
+   ],
+   [
+    null,
+    "pair217450736",
+    null
+   ],
+   [
+    null,
+    "pair4044920886",
+    null
+   ],
+   [
+    null,
+    "pair3259457782",
+    null
+   ],
+   [
+    null,
+    "pair1068101680",
+    null
+   ],
+   [
+    null,
+    "pair3157903861",
+    null
+   ],
+   [
+    null,
+    "pair3092265133",
+    null
+   ],
+   [
+    null,
+    "pair2883773902",
+    null
+   ],
+   [
+    null,
+    "pair2562530574",
+    null
+   ],
+   [
+    null,
+    "pair2405839157",
+    null
+   ],
+   [
+    null,
+    "pair455943371",
+    null
+   ],
+   [
+    null,
+    "pair524604819",
+    null
+   ]
+  ]
+ },
+ "progress_graph_grav_mods_exodus": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Augment 2: Inflation",
+    "pair217450736",
+    null
+   ],
+   [
+    "Capstone 1: Devastation",
+    "pair4044920886",
+    null
+   ],
+   [
+    "Capstone 2: Dynamism",
+    "pair3259457782",
+    null
+   ],
+   [
+    null,
+    "pair144701864",
+    null
+   ],
+   [
+    null,
+    "pair3157903861",
+    null
+   ],
+   [
+    "Augment 1: Anachrony",
+    "pair1068101680",
+    null
+   ],
+   [
+    null,
+    "pair2562530574",
+    null
+   ],
+   [
+    null,
+    "pair2405839157",
+    null
+   ],
+   [
+    null,
+    "pair1002439016",
+    null
+   ],
+   [
+    "Augment 5: Special Magnets",
+    "pair455943371",
+    null
+   ],
+   [
+    null,
+    "pair524604819",
+    null
+   ],
+   [
+    "Capstone 3: Destruction",
+    "pair1631222928",
+    null
+   ],
+   [
+    "Augment 3: Temporal Loop",
+    "pair2945127574",
+    null
+   ],
+   [
+    null,
+    "pair2883773902",
+    null
+   ],
+   [
+    "Augment 4: Demi",
+    "pair3092265133",
+    null
+   ]
+  ]
+ },
+ "progress_graph_grav_mods_stasis": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Capstone 3: Particle Diffuser",
+    "pair1631222928",
+    null
+   ],
+   [
+    null,
+    "pair2562530574",
+    null
+   ],
+   [
+    "Augment 3: Peer Review",
+    "pair2945127574",
+    null
+   ],
+   [
+    "Augment 1: Bullet Magnet",
+    "pair1068101680",
+    null
+   ],
+   [
+    "Capstone 2: Kinetic Chaos",
+    "pair3259457782",
+    null
+   ],
+   [
+    "Augment 2: Controlled Chaos",
+    "pair217450736",
+    null
+   ],
+   [
+    "Augment 4: More Power",
+    "pair3092265133",
+    null
+   ],
+   [
+    null,
+    "pair3157903861",
+    null
+   ],
+   [
+    null,
+    "pair144701864",
+    null
+   ],
+   [
+    null,
+    "pair1002439016",
+    null
+   ],
+   [
+    "Capstone 1: Nth Dimension",
+    "pair4044920886",
+    null
+   ],
+   [
+    null,
+    "pair2883773902",
+    null
+   ],
+   [
+    null,
+    "pair2405839157",
+    null
+   ],
+   [
+    null,
+    "pair524604819",
+    null
+   ],
+   [
+    "Augment 5: In Perpetuity",
+    "pair455943371",
+    null
+   ]
+  ]
+ },
+ "progress_graph_grav_mods_terminal": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Capstone 1: Ultraviolent Radiation",
+    "pair4044920886",
+    null
+   ],
+   [
+    null,
+    "pair2405839157",
+    null
+   ],
+   [
+    "Augment 3: Irradiance",
+    "pair2945127574",
+    null
+   ],
+   [
+    "Augment 2: Heat Transfer",
+    "pair217450736",
+    null
+   ],
+   [
+    "Capstone 2: Potential Transference",
+    "pair3259457782",
+    null
+   ],
+   [
+    null,
+    "pair2562530574",
+    null
+   ],
+   [
+    "Capstone 3: Sun Spots",
+    "pair1631222928",
+    null
+   ],
+   [
+    null,
+    "pair2883773902",
+    null
+   ],
+   [
+    "Augment 4: Coronal Loop",
+    "pair3092265133",
+    null
+   ],
+   [
+    null,
+    "pair3157903861",
+    null
+   ],
+   [
+    "Augment 1: Corona",
+    "pair1068101680",
+    null
+   ],
+   [
+    null,
+    "pair524604819",
+    null
+   ],
+   [
+    "Augment 5: Red Giant",
+    "pair455943371",
+    null
+   ],
+   [
+    null,
+    "pair1002439016",
+    null
+   ],
+   [
+    null,
+    "pair144701864",
+    null
+   ]
+  ]
+ },
+ "progress_graph_passives_template": {
+  "file": "progress_graph6.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": []
+ },
+ "progress_graph_passives_template_branch": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "Branch - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 3 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 1 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Branch - Row 2 - 2",
+    "5"
+   ]
+  ]
+ },
+ "progress_graph_passives_template_trunk": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "Trunk - Row 1 - 5",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 2 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 2 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 2",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 4",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 2 - 5",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 4",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 1",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 2",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 3",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 3 - 5",
+    "5"
+   ],
+   [
+    null,
+    "Trunk - Row 1 - 3",
+    "5"
+   ]
+  ]
+ },
+ "progress_grav_branch_exodusshard": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": []
+ },
+ "progress_grav_branch_stasisshard": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": []
+ },
+ "progress_grav_branch_terminalshard": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": []
+ },
+ "progress_robo_action_skills": {
+  "file": "progress_graph4.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Sleight of Hand",
+    "pair2674582898",
+    null
+   ],
+   [
+    "Windfall",
+    "pair2442309920",
+    null
+   ],
+   [
+    "Cleromancy",
+    "pair256377300",
+    null
+   ],
+   [
+    "Cross Fire",
+    "pair1008204052",
+    null
+   ]
+  ]
+ },
+ "progress_robo_mods": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": []
+ },
+ "progress_robo_mods_cleromancy": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair217450736",
+    null
+   ],
+   [
+    null,
+    "pair4044920886",
+    null
+   ],
+   [
+    null,
+    "pair3259457782",
+    null
+   ],
+   [
+    null,
+    "pair1068101680",
+    null
+   ],
+   [
+    null,
+    "pair1631222928",
+    null
+   ],
+   [
+    null,
+    "pair2945127574",
+    null
+   ],
+   [
+    null,
+    "pair455943371",
+    null
+   ],
+   [
+    null,
+    "pair3092265133",
+    null
+   ]
+  ]
+ },
+ "progress_robo_mods_crossFire": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "pair3092265133",
+    null
+   ],
+   [
+    null,
+    "pair2945127574",
+    null
+   ],
+   [
+    null,
+    "pair455943371",
+    null
+   ],
+   [
+    null,
+    "pair1068101680",
+    null
+   ],
+   [
+    null,
+    "pair217450736",
+    null
+   ],
+   [
+    null,
+    "pair3259457782",
+    null
+   ],
+   [
+    null,
+    "pair4044920886",
+    null
+   ],
+   [
+    null,
+    "pair1631222928",
+    null
+   ]
+  ]
+ },
+ "progress_robo_mods_sleightOfHand": {
+  "file": "progress_graph0.json",
+  "pointpool": null,
+  "graphtype": null,
+  "nodes": [
+   [
+    "Augment 2 - Acid Spray",
+    "pair217450736",
+    null
+   ],
+   [
+    "Augment 5 - Color Spray",
+    "pair455943371",
+    null
+   ],
+   [
+    "Augment 7 - Homing Nuke",
+    "pair3259457782",
+    null
+   ],
+   [
+    "Augment1 - Bolt",
+    "pair1068101680",
+    null
+   ],
+   [
+    "Augment 8 - Ball of Fire and Lightning",
+    "pair1631222928",
+    null
+   ],
+   [
+    "Augment 3 - Radiation Black Hole",
+    "pair2945127574",
+    null
+   ],
+   [
+    "Augment 6 - Cryo Shards",
+    "pair4044920886",
+    null
+   ],
+   [
+    "Augment 4 - Vampiric Touch",
+    "pair3092265133",
+    null
+   ]
+  ]
+ },
+ "sdu_upgrades": {
+  "file": "progress_graph0.json",
+  "pointpool": "progress_point_pool'EchoTokenProgressPoints'",
+  "graphtype": null,
+  "nodes": [
+   [
+    null,
+    "Ammo_AR_07",
+    "120"
+   ],
+   [
+    null,
+    "Ammo_Pistol_05",
+    "50"
+   ],
+   [
+    null,
+    "Weapon_Slot_04",
+    null
+   ],
+   [
+    null,
+    "Ammo_SG_03",
+    "20"
+   ],
+   [
+    null,
+    "Ammo_SMG_01",
+    "5"
+   ],
+   [
+    null,
+    "Ammo_AR_04",
+    "30"
+   ],
+   [
+    null,
+    "Enhancement_Slot",
+    null
+   ],
+   [
+    null,
+    "Class_Mod_Slot",
+    null
+   ],
+   [
+    null,
+    "Ammo_SG_01",
+    "5"
+   ],
+   [
+    null,
+    "Ammo_SR_01",
+    "5"
+   ],
+   [
+    null,
+    "Ammo_SR_04",
+    "30"
+   ],
+   [
+    null,
+    "Ammo_SMG_07",
+    "120"
+   ],
+   [
+    null,
+    "Bank_02",
+    "10"
+   ],
+   [
+    null,
+    "Ammo_AR_02",
+    "10"
+   ],
+   [
+    null,
+    "Ammo_Pistol_07",
+    "120"
+   ],
+   [
+    null,
+    "Ammo_SMG_06",
+    "80"
+   ],
+   [
+    null,
+    "Ammo_SR_07",
+    "120"
+   ],
+   [
+    null,
+    "Ammo_SMG_05",
+    "50"
+   ],
+   [
+    null,
+    "Ammo_SG_05",
+    "50"
+   ],
+   [
+    null,
+    "Ammo_Pistol_02",
+    "10"
+   ],
+   [
+    null,
+    "Backpack_02",
+    "10"
+   ],
+   [
+    null,
+    "Ammo_SR_03",
+    "20"
+   ],
+   [
+    null,
+    "Ammo_AR_05",
+    "50"
+   ],
+   [
+    null,
+    "Lost_Loot_03",
+    "20"
+   ],
+   [
+    null,
+    "Backpack_06",
+    "80"
+   ],
+   [
+    null,
+    "Ammo_SMG_03",
+    "20"
+   ],
+   [
+    null,
+    "Ammo_SG_04",
+    "30"
+   ],
+   [
+    null,
+    "Ammo_SG_07",
+    "120"
+   ],
+   [
+    null,
+    "Backpack_05",
+    "50"
+   ],
+   [
+    null,
+    "Bank_01",
+    "5"
+   ],
+   [
+    null,
+    "Ammo_SMG_04",
+    "30"
+   ],
+   [
+    null,
+    "Ammo_SR_02",
+    "10"
+   ],
+   [
+    null,
+    "Backpack_01",
+    "5"
+   ],
+   [
+    null,
+    "Bank_06",
+    "80"
+   ],
+   [
+    null,
+    "Ammo_Pistol_03",
+    "20"
+   ],
+   [
+    null,
+    "Bank_07",
+    "120"
+   ],
+   [
+    null,
+    "Backpack_07",
+    "120"
+   ],
+   [
+    null,
+    "Lost_Loot_04",
+    "30"
+   ],
+   [
+    null,
+    "Ammo_Pistol_01",
+    "5"
+   ],
+   [
+    null,
+    "Ammo_AR_01",
+    "5"
+   ],
+   [
+    null,
+    "RepKit_Slot",
+    null
+   ],
+   [
+    null,
+    "Ammo_SG_02",
+    "10"
+   ],
+   [
+    null,
+    "Ammo_Pistol_04",
+    "30"
+   ],
+   [
+    null,
+    "Ammo_SMG_02",
+    "10"
+   ],
+   [
+    null,
+    "Ammo_AR_06",
+    "80"
+   ],
+   [
+    null,
+    "Bank_04",
+    "30"
+   ],
+   [
+    null,
+    "Weapon_Slot_03",
+    null
+   ],
+   [
+    null,
+    "Lost_Loot_07",
+    "120"
+   ],
+   [
+    null,
+    "Ammo_Pistol_06",
+    "80"
+   ],
+   [
+    null,
+    "Backpack_08",
+    "235"
+   ],
+   [
+    "Ammo_AR_03",
+    "Ammo_AR_03",
+    "20"
+   ],
+   [
+    null,
+    "Lost_Loot_06",
+    "80"
+   ],
+   [
+    null,
+    "Bank_08",
+    "235"
+   ],
+   [
+    null,
+    "Bank_03",
+    "20"
+   ],
+   [
+    null,
+    "Ammo_SR_06",
+    "80"
+   ],
+   [
+    null,
+    "Bank_05",
+    "50"
+   ],
+   [
+    null,
+    "Lost_Loot_02",
+    "10"
+   ],
+   [
+    null,
+    "Lost_Loot_01",
+    "5"
+   ],
+   [
+    null,
+    "Ammo_SR_05",
+    "50"
+   ],
+   [
+    null,
+    "Backpack_04",
+    "30"
+   ],
+   [
+    null,
+    "Backpack_03",
+    "20"
+   ],
+   [
+    null,
+    "Ammo_SG_06",
+    "80"
+   ],
+   [
+    null,
+    "Lost_Loot_05",
+    "50"
+   ],
+   [
+    null,
+    "Lost_Loot_08",
+    "235"
+   ]
+  ]
+ },
+ "vaultpower_vaultreward_upgrades": {
+  "file": "progress_graph0.json",
+  "pointpool": "progress_point_pool'EchoTokenProgressPoints'",
+  "graphtype": "GroupNodeActivation",
+  "nodes": [
+   [
+    "Vault Power Upgrade 1 - Increased Regen Speed",
+    "EchoNav_VaultPower_01_of_01",
+    "1"
+   ],
+   [
+    "Vault Power Upgrade 3 - 50% Cost Reduction per Move",
+    "EchoNav_VaultPower_03_of_03",
+    "2"
+   ],
+   [
+    "Vault Power Upgrade 2 - Reduced Regen Delay",
+    "EchoNav_VaultPower_02_of_03",
+    "2"
+   ]
+  ]
+ }
+}

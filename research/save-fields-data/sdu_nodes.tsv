@@ -1,0 +1,65 @@
+#pointpool progress_point_pool'EchoTokenProgressPoints' {'pointpool': "progress_point_pool'EchoTokenProgressPoints'", 'progress_graph': 'sdu_upgrades', 'bdeactivatenodeswhenlocked': 'true', 'displaydata': "display_data'3CEntry'", 'groups': {'pairs': {'pair344806925': {'key': 'Backpack_Upgrades', 'value': {'nodes': ['Backpack_01', 'Backpack_02', 'Backpack_03', 'Backpack_04', 'Backpack_05', 'Backpack_06', 'Backpack_07', 'Backpack_08'], 'displaydata': "display_data'DisplayData_EchoUpgrade_Group_Backpack'"}}, 'pair1825449632': {'value': {'nodes': ['Bank_01', 'Bank_02', 'Bank_03', 'Bank_04', 'Bank_05', 'Bank_06', 'Bank_07', 'Bank_08'], 'displaydata': "display_data'DisplayData_EchoUpgrade_Group_Bank'"}, 'key': 'Bank_Upgrades'}, 'pair2574480271': {'key': 'Ammo_Upgrades_Pistol', 'value': {'displaydata': "display_data'DisplayData_EchoUpgrade_Group_PistolAmmo'", 'nodes': ['Ammo_Pistol_01', 'Ammo_Pistol_02', 'Ammo_Pistol_03', 'Ammo_Pistol_04', 'Ammo_Pistol_05', 'Ammo_Pistol_06', 'Ammo_Pistol_07']}}, 'pair2935748851': {'value': {'nodes': ['Lost_Loot_01', 'Lost_Loot_02', 'Lost_Loot_03', 'Lost_Loot_04', 'Lost_Loot_05', 'Lost_Loot_06', 'Lost_Loot_07', 'Lost_Loot_08'], 'displaydata': "display_data'DisplayData_EchoUpgrade_Group_LostLoot'"}, 'key': 'Lost_Loot_Upgrades'}, 'pair2829249305': {'value': {'nodes': ['Ammo_AR_01', 'Ammo_AR_02', 'Ammo_AR_03', 'Ammo_AR_04', 'Ammo_AR_05', 'Ammo_AR_06', 'Ammo_AR_07'], 'displaydata': "display_data'DisplayData_EchoUpgrade_Group_AssaultRifleAmmo'"}, 'key': 'Ammo_Upgrades_AR'}, 'pair1049009793': {'key': 'Ammo_Upgrades_SG', 'value': {'displaydata': "display_data'DisplayData_EchoUpgrade_Group_ShotgunAmmo'", 'nodes': ['Ammo_SG_01', 'Ammo_SG_02', 'Ammo_SG_03', 'Ammo_SG_04', 'Ammo_SG_05', 'Ammo_SG_06', 'Ammo_SG_07']}}, 'pair1502042656': {'key': 'Ammo_Upgrades_SR', 'value': {'nodes': ['Ammo_SR_01', 'Ammo_SR_02', 'Ammo_SR_03', 'Ammo_SR_04', 'Ammo_SR_05', 'Ammo_SR_06', 'Ammo_SR_07'], 'displaydata': "display_data'DisplayData_EchoUpgrade_Group_SniperAmmo'"}}, 'pair320573139': {'value': {'displaydata': "display_data'DisplayData_EchoUpgrade_Group_SMGAmmo'", 'nodes': ['Ammo_SMG_01', 'Ammo_SMG_02', 'Ammo_SMG_03', 'Ammo_SMG_04', 'Ammo_SMG_05', 'Ammo_SMG_06', 'Ammo_SMG_07']}, 'key': 'Ammo_Upgrades_SMG'}}}}
+Ammo_AR_01	5	{}	ammo_assaultrifle_maxvalue PreAdd 140.000000
+Ammo_AR_02	10	Ammo_AR_01	ammo_assaultrifle_maxvalue PreAdd 140.000000
+Ammo_AR_03	20	Ammo_AR_02	ammo_assaultrifle_maxvalue PreAdd 140.000000
+Ammo_AR_04	30	Ammo_AR_03	ammo_assaultrifle_maxvalue PreAdd 140.000000
+Ammo_AR_05	50	Ammo_AR_04	ammo_assaultrifle_maxvalue PreAdd 140.000000
+Ammo_AR_06	80	Ammo_AR_05	ammo_assaultrifle_maxvalue PreAdd 140.000000
+Ammo_AR_07	120	Ammo_AR_06	ammo_assaultrifle_maxvalue PreAdd 140.000000
+Ammo_Pistol_01	5	{}	ammo_pistol_maxvalue PreAdd 100.000000
+Ammo_Pistol_02	10	Ammo_Pistol_01	ammo_pistol_maxvalue PreAdd 100.000000
+Ammo_Pistol_03	20	Ammo_Pistol_02	ammo_pistol_maxvalue PreAdd 100.000000
+Ammo_Pistol_04	30	Ammo_Pistol_03	ammo_pistol_maxvalue PreAdd 100.000000
+Ammo_Pistol_05	50	Ammo_Pistol_04	ammo_pistol_maxvalue PreAdd 100.000000
+Ammo_Pistol_06	80	Ammo_Pistol_05	ammo_pistol_maxvalue PreAdd 100.000000
+Ammo_Pistol_07	120	Ammo_Pistol_06	ammo_pistol_maxvalue PreAdd 100.000000
+Ammo_SG_01	5	{}	ammo_shotgun_maxvalue PreAdd 20.000000
+Ammo_SG_02	10	Ammo_SG_01	ammo_shotgun_maxvalue PreAdd 20.000000
+Ammo_SG_03	20	Ammo_SG_02	ammo_shotgun_maxvalue PreAdd 20.000000
+Ammo_SG_04	30	Ammo_SG_03	ammo_shotgun_maxvalue PreAdd 20.000000
+Ammo_SG_05	50	Ammo_SG_04	ammo_shotgun_maxvalue PreAdd 20.000000
+Ammo_SG_06	80	Ammo_SG_05	ammo_shotgun_maxvalue PreAdd 20.000000
+Ammo_SG_07	120	Ammo_SG_06	ammo_shotgun_maxvalue PreAdd 20.000000
+Ammo_SMG_01	5	{}	ammo_smg_maxvalue PreAdd 180.000000
+Ammo_SMG_02	10	Ammo_SMG_01	ammo_smg_maxvalue PreAdd 180.000000
+Ammo_SMG_03	20	Ammo_SMG_02	ammo_smg_maxvalue PreAdd 180.000000
+Ammo_SMG_04	30	Ammo_SMG_03	ammo_smg_maxvalue PreAdd 180.000000
+Ammo_SMG_05	50	Ammo_SMG_04	ammo_smg_maxvalue PreAdd 180.000000
+Ammo_SMG_06	80	Ammo_SMG_05	ammo_smg_maxvalue PreAdd 180.000000
+Ammo_SMG_07	120	Ammo_SMG_06	ammo_smg_maxvalue PreAdd 180.000000
+Ammo_SR_01	5	{}	ammo_sniper_maxvalue PreAdd 20.000000
+Ammo_SR_02	10	Ammo_SR_01	ammo_sniper_maxvalue PreAdd 20.000000
+Ammo_SR_03	20	Ammo_SR_02	ammo_sniper_maxvalue PreAdd 20.000000
+Ammo_SR_04	30	Ammo_SR_03	ammo_sniper_maxvalue PreAdd 20.000000
+Ammo_SR_05	50	Ammo_SR_04	ammo_sniper_maxvalue PreAdd 20.000000
+Ammo_SR_06	80	Ammo_SR_05	ammo_sniper_maxvalue PreAdd 20.000000
+Ammo_SR_07	120	Ammo_SR_06	ammo_sniper_maxvalue PreAdd 20.000000
+Backpack_01	5	{}	backpack_max_size PreAdd 4.000000
+Backpack_02	10	Backpack_01	backpack_max_size PreAdd 4.000000
+Backpack_03	20	Backpack_02	backpack_max_size PreAdd 6.000000
+Backpack_04	30	Backpack_03	backpack_max_size PreAdd 6.000000
+Backpack_05	50	Backpack_04	backpack_max_size PreAdd 6.000000
+Backpack_06	80	Backpack_05	backpack_max_size PreAdd 8.000000
+Backpack_07	120	Backpack_06	backpack_max_size PreAdd 8.000000
+Backpack_08	235	Backpack_07	backpack_max_size PreAdd 12.000000
+Bank_01	5	{}	bank_max_size PreAdd 25.000000
+Bank_02	10	Bank_01	bank_max_size PreAdd 50.000000
+Bank_03	20	Bank_02	bank_max_size PreAdd 50.000000
+Bank_04	30	Bank_03	bank_max_size PreAdd 50.000000
+Bank_05	50	Bank_04	bank_max_size PreAdd 50.000000
+Bank_06	80	Bank_05	bank_max_size PreAdd 50.000000
+Bank_07	120	Bank_06	bank_max_size PreAdd 100.000000
+Bank_08	235	Bank_07	bank_max_size PreAdd 100.000000
+Class_Mod_Slot	-	playerlevel>=20.000000	reward pgraph.sdu_upgrades.Class_Mod_Slot [{"structtype": "Asset'/Script/GbxGame.GbxRewardData_InventoryEquipSlot'", "equipslot": "8"}]
+Enhancement_Slot	-	playerlevel>=15.000000	reward pgraph.sdu_upgrades.Enhancement_Slot [{"structtype": "Asset'/Script/GbxGame.GbxRewardData_InventoryEquipSlot'", "equipslot": "7"}]
+Lost_Loot_01	5	{}	lost_loot_storage_maxsize PreAdd 1.000000
+Lost_Loot_02	10	Lost_Loot_01	lost_loot_storage_maxsize PreAdd 1.000000
+Lost_Loot_03	20	Lost_Loot_02	lost_loot_storage_maxsize PreAdd 1.000000
+Lost_Loot_04	30	Lost_Loot_03	lost_loot_storage_maxsize PreAdd 1.000000
+Lost_Loot_05	50	Lost_Loot_04	lost_loot_storage_maxsize PreAdd 1.000000
+Lost_Loot_06	80	Lost_Loot_05	lost_loot_storage_maxsize PreAdd 1.000000
+Lost_Loot_07	120	Lost_Loot_06	lost_loot_storage_maxsize PreAdd 1.000000
+Lost_Loot_08	235	Lost_Loot_07	lost_loot_storage_maxsize PreAdd 1.000000
+RepKit_Slot	-	{"structtype": "Asset'/Script/GbxGame.GbxUnlockConditionData_Fact'", "factexpression": "(Global.repkit_unlocked == True)"}	reward pgraph.sdu_upgrades.RepKit_Slot [{"equipslot": "6", "structtype": "Asset'/Script/GbxGame.GbxRewardData_InventoryEquipSlot'"}]
+Weapon_Slot_03	-	playerlevel>=5.000000	reward pgraph.sdu_upgrades.Weapon_Slot_03 [{"equipslot": "2", "structtype": "Asset'/Script/GbxGame.GbxRewardData_InventoryEquipSlot'"}]
+Weapon_Slot_04	-	playerlevel>=8.000000	reward pgraph.sdu_upgrades.Weapon_Slot_04 [{"structtype": "Asset'/Script/GbxGame.GbxRewardData_InventoryEquipSlot'", "equipslot": "3"}]

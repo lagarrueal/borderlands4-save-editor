@@ -1,0 +1,5290 @@
+{
+ "contract_bounty_bandit": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 2
+ },
+ "contract_bounty_bat": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_bounty_beast": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_bounty_cat": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_bounty_creep": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_bounty_order": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_bounty_pangolin": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_bounty_thresher": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_collect_bandit": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {target_object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_collect_bat": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {target_object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_collect_beast": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {target_object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_collect_cat": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {target_object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_collect_creep": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {target_object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_collect_order": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {target_object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_collect_pangolin": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {target_object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_collect_thresher": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {target_object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_corrupt_bandit": {
+  "set": "",
+  "type": "Contract",
+  "name": "Vile Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_corrupt_bat": {
+  "set": "",
+  "type": "Contract",
+  "name": "Vile Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_corrupt_beast": {
+  "set": "",
+  "type": "Contract",
+  "name": "Vile Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_corrupt_cat": {
+  "set": "",
+  "type": "Contract",
+  "name": "Vile Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_corrupt_creep": {
+  "set": "",
+  "type": "Contract",
+  "name": "Vile Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_corrupt_order": {
+  "set": "",
+  "type": "Contract",
+  "name": "Vile Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_corrupt_pangolin": {
+  "set": "",
+  "type": "Contract",
+  "name": "Vile Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_corrupt_thresher": {
+  "set": "",
+  "type": "Contract",
+  "name": "Vile Bounty: {Boss_Name_Text}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_patrol_bandit": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Rippers",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_patrol_bat": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Kratch",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_patrol_beast": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Wildhorns",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_patrol_cat": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Manglers",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_patrol_creep": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Creeps",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_patrol_order": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Order Troops",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_patrol_pangolin": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Pangolins",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_patrol_thresher": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Threshers",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_search_bandit": {
+  "set": "",
+  "type": "Contract",
+  "name": "Trace:\u00a0{Target_Object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_search_creature": {
+  "set": "",
+  "type": "Contract",
+  "name": "Trace:\u00a0{Target_Object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_search_order": {
+  "set": "",
+  "type": "Contract",
+  "name": "Trace:\u00a0{Target_Object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "mission_worldevent_colosseum": {
+  "set": "",
+  "type": "Colosseum",
+  "name": "The Goredello",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 112
+ },
+ "mission_worldevent_enterairship": {
+  "set": "",
+  "type": "Airship",
+  "name": "Airship",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 86
+ },
+ "mission_worldevent_meteordestroyer": {
+  "set": "",
+  "type": "Meteor",
+  "name": "Creep Impact",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 57
+ },
+ "contract_deliver_bandit_blade": {
+  "set": "",
+  "type": "Contract",
+  "name": "Acquire:\u00a0{Target_Object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_deliver_bandit_book": {
+  "set": "",
+  "type": "Contract",
+  "name": "Acquire:\u00a0{Target_Object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_deliver_bandit_pill": {
+  "set": "",
+  "type": "Contract",
+  "name": "Acquire:\u00a0{Target_Object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_deliver_creature_crystal": {
+  "set": "",
+  "type": "Contract",
+  "name": "Acquire:\u00a0{Target_Object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_deliver_creature_egg": {
+  "set": "",
+  "type": "Contract",
+  "name": "Acquire:\u00a0{Target_Object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_deliver_creature_ore": {
+  "set": "",
+  "type": "Contract",
+  "name": "Acquire:\u00a0{Target_Object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_deliver_order_ball": {
+  "set": "",
+  "type": "Contract",
+  "name": "Acquire:\u00a0{Target_Object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_deliver_order_plant": {
+  "set": "",
+  "type": "Contract",
+  "name": "Acquire:\u00a0{Target_Object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "contract_deliver_order_tablet": {
+  "set": "",
+  "type": "Contract",
+  "name": "Acquire:\u00a0{Target_Object}",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "mission_dlc2_digidimension": {
+  "set": "",
+  "type": "DigispaceBoss",
+  "name": "Tediore Digi-Rifts",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 17
+ },
+ "mission_dynamicevent_geyserevent": {
+  "set": "",
+  "type": "Volcano",
+  "name": "The Furious Earth",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "mission_dynamicevent_geyserevent_storyvariant": {
+  "set": "",
+  "type": "Volcano",
+  "name": "The Furious Earth",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "mission_main_cowbell0": {
+  "set": "missionset_main_cowbell_unlock",
+  "type": "DLC_MainStory",
+  "name": "An Invitation",
+  "region": "game_region'Cowbell_CrookedTeeth'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "mission_main_harmonica0": {
+  "set": "missionset_main_harmonica0",
+  "type": "DLC_MainStory",
+  "name": "FL4K and the Last Resort",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "mission_main_harmonica1": {
+  "set": "missionset_main_harmonica1",
+  "type": "DLC_MainStory",
+  "name": "The Skag and the Robot",
+  "region": "game_region'Harmonica_VinechokedCanopy'",
+  "src": "Mission0",
+  "n_objectives": 84
+ },
+ "mission_main_harmonica4": {
+  "set": "missionset_main_harmonica4",
+  "type": "DLC_MainStory",
+  "name": "The Rescue",
+  "region": "game_region'Harmonica_VolcanoFortress'",
+  "src": "Mission0",
+  "n_objectives": 71
+ },
+ "grasslands_side_claptrapofpandora": {
+  "set": "missionset_side_grasslandsa",
+  "type": "SideMission",
+  "name": "No Place Like Home",
+  "region": "game_region'grasslands'",
+  "src": "Mission0",
+  "n_objectives": 56
+ },
+ "grasslands_side_murdermystery": {
+  "set": "missionset_side_grasslandsa",
+  "type": "SideMission",
+  "name": "Meat is Murder",
+  "region": "game_region'grasslands'",
+  "src": "Mission0",
+  "n_objectives": 60
+ },
+ "grasslands_side_murdermystery_beckon": {
+  "set": "missionset_side_grasslandsa",
+  "type": "SideMission",
+  "name": "Grasslands_Side_MurderMystery_Beckon",
+  "region": "game_region'grasslands'",
+  "src": "Mission0",
+  "n_objectives": 5
+ },
+ "grasslands_side_rocketmonsters": {
+  "set": "missionset_side_mountainsa",
+  "type": "SideMission",
+  "name": "Wayward Gun",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 45
+ },
+ "grasslands_side_salvagerippertunnelsintro": {
+  "set": "missionset_side_grasslandsa",
+  "type": "SideMission",
+  "name": "Grasslands_Side_SalvageRipperTunnelsIntro",
+  "region": "game_region'Grasslands'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "grasslands_survivalists01": {
+  "set": "missionset_side_grasslandse",
+  "type": "FactionMission",
+  "name": "Null and Void",
+  "region": "game_region'Grasslands'",
+  "src": "Mission0",
+  "n_objectives": 39
+ },
+ "grasslands_survivalists02": {
+  "set": "missionset_side_grasslandse",
+  "type": "FactionMission",
+  "name": "All Charged Up",
+  "region": "game_region'Grasslands'",
+  "src": "Mission0",
+  "n_objectives": 44
+ },
+ "grasslands_survivalists03": {
+  "set": "missionset_side_grasslandse",
+  "type": "FactionMission",
+  "name": "Bound for Launch",
+  "region": "game_region'grasslands'",
+  "src": "Mission0",
+  "n_objectives": 21
+ },
+ "micro_augerscout": {
+  "set": "missionset_micro_mountainsa",
+  "type": "MicroMission",
+  "name": "Way Too Chill",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 11
+ },
+ "micro_blackmarketbolts": {
+  "set": "missionset_micro_mountainsa",
+  "type": "MicroMission",
+  "name": "Tandem Access Memory",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 15
+ },
+ "micro_boltfuneralrites": {
+  "set": "missionset_micro_mountainsa",
+  "type": "MicroMission",
+  "name": "Returned to the Mountain",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 33
+ },
+ "micro_grasslands_carriedaway01": {
+  "set": "missionset_micro_grasslandsb",
+  "type": "MicroMission",
+  "name": "Carried Away",
+  "region": "game_region'grasslands'",
+  "src": "Mission0",
+  "n_objectives": 7
+ },
+ "micro_grasslands_carriedaway02": {
+  "set": "missionset_micro_grasslandsb",
+  "type": "MicroMission",
+  "name": "Droning On",
+  "region": "game_region'grasslands'",
+  "src": "Mission0",
+  "n_objectives": 7
+ },
+ "micro_grasslands_carriedaway03": {
+  "set": "missionset_micro_grasslandsb",
+  "type": "MicroMission",
+  "name": "Drone Ranger",
+  "region": "game_region'grasslands'",
+  "src": "Mission0",
+  "n_objectives": 10
+ },
+ "micro_grasslands_extremebopit": {
+  "set": "missionset_micro_grasslandsc",
+  "type": "MicroMission",
+  "name": "Free for the TASKing",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 133
+ },
+ "micro_grasslands_extremebopit2": {
+  "set": "missionset_micro_grasslandsc",
+  "type": "MicroMission",
+  "name": "TASK and Ye Shall Receive",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 166
+ },
+ "micro_grasslands_extremebopit3": {
+  "set": "missionset_micro_grasslandsc",
+  "type": "MicroMission",
+  "name": "TASK Master",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 178
+ },
+ "micro_grasslands_hydroplantpowerup": {
+  "set": "missionset_micro_grasslandsb",
+  "type": "MicroMission",
+  "name": "Electroshock Therapy",
+  "region": "game_region'grasslands_RegionC'",
+  "src": "Mission0",
+  "n_objectives": 25
+ },
+ "micro_grasslands_splicersplits": {
+  "set": "missionset_micro_grasslandsb",
+  "type": "MicroMission",
+  "name": "To the Limb It",
+  "region": "game_region'grasslands_RegionE'",
+  "src": "Mission0",
+  "n_objectives": 5
+ },
+ "micro_grasslands_underconstruction": {
+  "set": "missionset_micro_grasslandsc",
+  "type": "MicroMission",
+  "name": "Working for Tips",
+  "region": "game_region'grasslands_RegionB'",
+  "src": "Mission0",
+  "n_objectives": 14
+ },
+ "micro_mountains_youarethelifecoachpt1": {
+  "set": "missionset_micro_mountainsa",
+  "type": "MicroMission",
+  "name": "The Next Quest Thing",
+  "region": "game_region'mountains'",
+  "src": "Mission0",
+  "n_objectives": 33
+ },
+ "micro_nevermeetyourheroes": {
+  "set": "missionset_micro_mountainsa",
+  "type": "MicroMission",
+  "name": "Never Meet Your Heroes",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 8
+ },
+ "micro_orderup": {
+  "set": "missionset_micro_mountainsb",
+  "type": "MicroMission",
+  "name": "A Brother in Need",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 15
+ },
+ "micro_shattered_brokenships": {
+  "set": "missionset_micro_shatteredlandsd",
+  "type": "MicroMission",
+  "name": "Broken Ships",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 22
+ },
+ "micro_shattered_ep_agri": {
+  "set": "missionset_micro_shatteredlandsb",
+  "type": "MicroMission",
+  "name": "Enter the Electi Part 1",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 5
+ },
+ "micro_shattered_ep_mole": {
+  "set": "missionset_micro_shatteredlandsb",
+  "type": "MicroMission",
+  "name": "Enter the Electi Part 2",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 20
+ },
+ "micro_shattered_hof1": {
+  "set": "missionset_micro_shatteredlandsb",
+  "type": "MicroMission",
+  "name": "Her Own Funeral",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 15
+ },
+ "micro_shattered_htbripperpbj": {
+  "set": "missionset_micro_shatteredlandsa",
+  "type": "MicroMission",
+  "name": "PB&J",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 4
+ },
+ "micro_shattered_ripplesandrituals": {
+  "set": "missionset_micro_shatteredlandsd",
+  "type": "MicroMission",
+  "name": "Ripples and Rituals",
+  "region": "game_region'shatteredlands'",
+  "src": "Mission0",
+  "n_objectives": 17
+ },
+ "micro_shattered_siblingrivalry": {
+  "set": "missionset_micro_shatteredlandsa",
+  "type": "MicroMission",
+  "name": "Imminent Jest",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 7
+ },
+ "mission_main_grasslands1": {
+  "set": "missionset_main_grasslands1",
+  "type": "",
+  "name": "Down and Outbound",
+  "region": "game_region'grasslands'",
+  "src": "Mission0",
+  "n_objectives": 68
+ },
+ "mission_main_grasslands2": {
+  "set": "missionset_main_grasslands2a",
+  "type": "",
+  "name": "A Lot to Process",
+  "region": "game_region'Grasslands'",
+  "src": "Mission0",
+  "n_objectives": 97
+ },
+ "mission_main_mountains1": {
+  "set": "missionset_main_mountains1",
+  "type": "",
+  "name": "Shadow of the Mountain",
+  "region": "game_region'mountains_RegionA'",
+  "src": "Mission0",
+  "n_objectives": 62
+ },
+ "mission_main_mountains2": {
+  "set": "missionset_main_mountains2a",
+  "type": "",
+  "name": "Crystal Brawl",
+  "region": "game_region'mountains'",
+  "src": "Mission0",
+  "n_objectives": 68
+ },
+ "mission_main_mountains2b": {
+  "set": "missionset_main_mountains2b",
+  "type": "",
+  "name": "Dark Subject",
+  "region": "game_region'mountains_RegionC'",
+  "src": "Mission0",
+  "n_objectives": 43
+ },
+ "mission_main_shatteredlands3": {
+  "set": "missionset_main_shatteredlands3",
+  "type": "",
+  "name": "Her Flaming Vision",
+  "region": "game_region'Shatteredlands'",
+  "src": "Mission0",
+  "n_objectives": 73
+ },
+ "mission_micro_andwelcometothejam": {
+  "set": "missionset_micro_shatteredlandsa",
+  "type": "MicroMission",
+  "name": "And Welcome to the Jam",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 8
+ },
+ "mission_micro_backmccrackypt1": {
+  "set": "missionset_micro_mountainsa",
+  "type": "MicroMission",
+  "name": "Crack This Guy's Back",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 21
+ },
+ "mission_micro_blackmarket": {
+  "set": "missionset_micro_citya",
+  "type": "MicroMission",
+  "name": "The Black Market",
+  "region": "game_region'city_RegionC'",
+  "src": "Mission0",
+  "n_objectives": 20
+ },
+ "mission_micro_catnapping": {
+  "set": "missionset_micro_citya",
+  "type": "MicroMission",
+  "name": "The Cat's Pajamas",
+  "region": "game_region'city_RegionC'",
+  "src": "Mission0",
+  "n_objectives": 8
+ },
+ "mission_micro_heistrecruits_demo": {
+  "set": "missionset_micro_grasslandsb",
+  "type": "MicroMission",
+  "name": "Scoundrel Roundup: Kilo",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 63
+ },
+ "mission_micro_heistrecruits_tech": {
+  "set": "missionset_micro_grasslandsb",
+  "type": "MicroMission",
+  "name": "Scoundrel Roundup: Glitch",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 9
+ },
+ "mission_micro_huntedpart1": {
+  "set": "missionset_micro_citya",
+  "type": "MicroMission",
+  "name": "The Neverending Quarry",
+  "region": "game_region'city_RegionB'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "mission_micro_huntedpart2": {
+  "set": "missionset_micro_citya",
+  "type": "MicroMission",
+  "name": "A Quarry of Epic Proportions",
+  "region": "game_region'city_RegionB'",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "mission_micro_huntedpart3": {
+  "set": "missionset_micro_citya",
+  "type": "MicroMission",
+  "name": "The Final Quarrel",
+  "region": "game_region'city_RegionB'",
+  "src": "Mission0",
+  "n_objectives": 2
+ },
+ "mission_micro_joeandsue": {
+  "set": "missionset_micro_citya",
+  "type": "MicroMission",
+  "name": "Joe & Sue",
+  "region": "game_region'city_RegionC'",
+  "src": "Mission0",
+  "n_objectives": 14
+ },
+ "mission_micro_mountainsfaction4intro": {
+  "set": "missionset_micro_mountainsd",
+  "type": "MicroMission",
+  "name": "Mission_Micro_MountainsFaction4Intro",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "mission_micro_powercoreplinko": {
+  "set": "missionset_micro_grasslandse",
+  "type": "MicroMission",
+  "name": "PowerDrop",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 18
+ },
+ "mission_micro_rainbowegg": {
+  "set": "missionset_micro_grasslandsa",
+  "type": "MicroMission",
+  "name": "Brew-ha-ha",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 27
+ },
+ "mission_micro_resistance": {
+  "set": "missionset_micro_cityb",
+  "type": "MicroMission",
+  "name": "Old Tricks",
+  "region": "game_region'city_RegionB'",
+  "src": "Mission0",
+  "n_objectives": 19
+ },
+ "mission_micro_theentertainment": {
+  "set": "missionset_micro_mountainse",
+  "type": "MicroMission",
+  "name": "La-La-Last Call",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 6
+ },
+ "mission_micro_thesupply": {
+  "set": "missionset_micro_mountainse",
+  "type": "MicroMission",
+  "name": "Ain't No Sham in It",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 6
+ },
+ "mission_micro_whackathresher": {
+  "set": "missionset_micro_grasslandsa",
+  "type": "MicroMission",
+  "name": "Whack-A-Thresher",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 19
+ },
+ "mission_micro_zanzibart": {
+  "set": "missionset_side_postgame",
+  "type": "MicroMission",
+  "name": "Forgive Me",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 34
+ },
+ "mission_side_agreatdisturbance": {
+  "set": "missionset_side_shatteredlandsa",
+  "type": "SideMission",
+  "name": "Fault Hunting",
+  "region": "game_region'shatteredlands'",
+  "src": "Mission0",
+  "n_objectives": 62
+ },
+ "mission_side_belowthesurface": {
+  "set": "missionset_side_citya",
+  "type": "SideMission",
+  "name": "Below the Surface",
+  "region": "game_region'city_RegionB'",
+  "src": "Mission0",
+  "n_objectives": 53
+ },
+ "mission_side_castingcall": {
+  "set": "missionset_side_shatteredlandsa",
+  "type": "SideMission",
+  "name": "The Power Ballad of Rodd Vomit",
+  "region": "game_region'Shatteredlands'",
+  "src": "Mission0",
+  "n_objectives": 37
+ },
+ "mission_side_city_waterthechances": {
+  "set": "missionset_side_citya",
+  "type": "SideMission",
+  "name": "Love in the Time of Eridium Poisoning",
+  "region": "game_region'city'",
+  "src": "Mission0",
+  "n_objectives": 27
+ },
+ "mission_side_electifactionmission1": {
+  "set": "missionset_side_shatteredlandsb",
+  "type": "FactionMission",
+  "name": "The Council Divided",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 50
+ },
+ "mission_side_electifactionmission3": {
+  "set": "missionset_side_shatteredlandsd",
+  "type": "FactionMission",
+  "name": "The Mole's Gambit",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 41
+ },
+ "mission_side_flatkairoser": {
+  "set": "missionset_side_mountainsa",
+  "type": "SideMission",
+  "name": "Flat Kairoser",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 31
+ },
+ "mission_side_lifecoach": {
+  "set": "missionset_side_mountainsa",
+  "type": "SideMission",
+  "name": "Sage Against the Machine",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 34
+ },
+ "mission_side_lifespurpose": {
+  "set": "missionset_side_grasslandsa",
+  "type": "SideMission",
+  "name": "Ready to Blow",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 37
+ },
+ "mission_side_mountainsfaction1": {
+  "set": "missionset_side_mountainsa",
+  "type": "FactionMission",
+  "name": "Mob Mentality",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 37
+ },
+ "mission_side_mountainsfaction2": {
+  "set": "missionset_side_mountainsa",
+  "type": "FactionMission",
+  "name": "Mob Rules",
+  "region": "game_region'mountains'",
+  "src": "Mission0",
+  "n_objectives": 30
+ },
+ "mission_side_mountainsfaction3": {
+  "set": "missionset_side_mountainsa",
+  "type": "FactionMission",
+  "name": "Angry Mob",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 43
+ },
+ "mission_side_mountainsfaction4": {
+  "set": "missionset_side_mountainsa",
+  "type": "FactionMission",
+  "name": "Mob Justice",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 29
+ },
+ "mission_side_obstaclecourse_grapple": {
+  "set": "missionset_side_mountainsa",
+  "type": "SideMission",
+  "name": "Peak Performance",
+  "region": "game_region'mountains'",
+  "src": "Mission0",
+  "n_objectives": 21
+ },
+ "mission_side_obstaclecourseglide": {
+  "set": "missionset_side_mountainsa",
+  "type": "SideMission",
+  "name": "Father of the Glide",
+  "region": "game_region'mountains'",
+  "src": "Mission0",
+  "n_objectives": 32
+ },
+ "mission_side_oldraymondpart1": {
+  "set": "missionset_side_cityb",
+  "type": "SideMission",
+  "name": "Old Raymond",
+  "region": "game_region'city_RegionA'",
+  "src": "Mission0",
+  "n_objectives": 22
+ },
+ "mission_side_oldraymondpart2": {
+  "set": "missionset_side_cityb",
+  "type": "SideMission",
+  "name": "Old Lads",
+  "region": "game_region'city_RegionA'",
+  "src": "Mission0",
+  "n_objectives": 29
+ },
+ "mission_side_planetaryescape": {
+  "set": "missionset_side_mountainsd",
+  "type": "SideMission",
+  "name": "Exit Through the Rift Shop",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 98
+ },
+ "mission_side_seedsofrevolutionpart1": {
+  "set": "missionset_side_citya",
+  "type": "SideMission",
+  "name": "Bad Seed ",
+  "region": "game_region'city_RegionC'",
+  "src": "Mission0",
+  "n_objectives": 31
+ },
+ "mission_side_seedsofrevolutionpart2": {
+  "set": "missionset_side_cityb",
+  "type": "SideMission",
+  "name": "Bad Seed Pt. 2",
+  "region": "game_region'city_RegionA'",
+  "src": "Mission0",
+  "n_objectives": 20
+ },
+ "mission_side_thecure": {
+  "set": "missionset_side_grasslandsa",
+  "type": "SideMission",
+  "name": "Hangover Helper",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 64
+ },
+ "mission_side_thepriceoffreedompart2": {
+  "set": "missionset_side_citya",
+  "type": "SideMission",
+  "name": "Price of Freedom Pt. 2",
+  "region": "game_region'city_RegionC'",
+  "src": "Mission0",
+  "n_objectives": 16
+ },
+ "mission_side_theweirdwayhome": {
+  "set": "missionset_side_mountainsc",
+  "type": "SideMission",
+  "name": "It's a Whole Phase Situation",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 48
+ },
+ "mission_side_thresherrancherintro": {
+  "set": "missionset_side_grasslandsa",
+  "type": "SideMission",
+  "name": "Mission_GL_Side_ThresherRancher_InvisIntro",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 4
+ },
+ "mission_side_vending": {
+  "set": "missionset_side_shatteredlandsa",
+  "type": "SideMission",
+  "name": "Vend of the Line",
+  "region": "game_region'shatteredlands_RegionA'",
+  "src": "Mission0",
+  "n_objectives": 36
+ },
+ "mission_side_whatlurksbeneath": {
+  "set": "missionset_side_cityb",
+  "type": "SideMission",
+  "name": "One Slimy Issue",
+  "region": "game_region'city_RegionA'",
+  "src": "Mission0",
+  "n_objectives": 22
+ },
+ "vendingmicro1_zink": {
+  "set": "missionset_micro_shatteredlandsa",
+  "type": "MicroMission",
+  "name": "Vicious News Cycle: Cannon Fodder",
+  "region": "game_region'shatteredlands'",
+  "src": "Mission0",
+  "n_objectives": 9
+ },
+ "micro_grasslands_abductioninjunction": {
+  "set": "missionset_micro_grasslandsa",
+  "type": "MicroMission",
+  "name": "Abduction Injunction",
+  "region": "game_region'grasslands_RegionA'",
+  "src": "Mission0",
+  "n_objectives": 10
+ },
+ "micro_grasslands_abductioninjunctionending": {
+  "set": "missionset_micro_grasslandsa",
+  "type": "MicroMission",
+  "name": "Micro_Grasslands_AbductionInjunctionEnding",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 1
+ },
+ "micro_grasslands_gottagofast": {
+  "set": "missionset_micro_grasslandsc",
+  "type": "MicroMission",
+  "name": "Finway's Cup",
+  "region": "game_region'grasslands_RegionB'",
+  "src": "Mission0",
+  "n_objectives": 34
+ },
+ "micro_grasslands_hydroplantpowerup2": {
+  "set": "missionset_micro_grasslandsb",
+  "type": "MicroMission",
+  "name": "Electroshock Therapy: The Second Session",
+  "region": "game_region'grasslands_RegionC'",
+  "src": "Mission0",
+  "n_objectives": 14
+ },
+ "micro_grasslands_splicersplits2": {
+  "set": "missionset_micro_grasslandsb",
+  "type": "MicroMission",
+  "name": "To the Limb It: Redux",
+  "region": "game_region'grasslands_RegionD'",
+  "src": "Mission0",
+  "n_objectives": 5
+ },
+ "micro_grasslands_splicersplits3": {
+  "set": "missionset_micro_grasslandsb",
+  "type": "MicroMission",
+  "name": "To the Limb It: Couples Therapy",
+  "region": "game_region'grasslands_RegionD'",
+  "src": "Mission0",
+  "n_objectives": 13
+ },
+ "micro_shattered_vgdave": {
+  "set": "missionset_micro_shatteredlandsa",
+  "type": "MicroMission",
+  "name": "Vicious News Cycle: Hot Tag ",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 18
+ },
+ "micro_shattered_william": {
+  "set": "missionset_micro_shatteredlandsa",
+  "type": "MicroMission",
+  "name": "Vicious News Cycle: Mine Time Live",
+  "region": "game_region'shatteredlands_RegionA'",
+  "src": "Mission0",
+  "n_objectives": 9
+ },
+ "micro_uvh_blackmarkettutorial": {
+  "set": "missionset_main_postgame",
+  "type": "",
+  "name": "Ultimate Vault Hunter: Maurice's Bounty",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 2
+ },
+ "micro_uvh_trait": {
+  "set": "missionset_main_postgame",
+  "type": "",
+  "name": "Ultimate Vault Hunter: Wildcard Missions",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 2
+ },
+ "micro_mountains_whoneedsinstructions": {
+  "set": "missionset_micro_mountainsa",
+  "type": "MicroMission",
+  "name": "The Importance of Being Furnished",
+  "region": "game_region'mountains'",
+  "src": "Mission0",
+  "n_objectives": 35
+ },
+ "micro_uvh_firmwaretransfertutorial": {
+  "set": "missionset_main_postgame",
+  "type": "",
+  "name": "Ultimate Vault Hunter: Zane's Firmware",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 10
+ },
+ "micro_uvh_trueboss": {
+  "set": "missionset_main_postgame",
+  "type": "",
+  "name": "Ultimate Vault Hunter: Big Encore",
+  "region": "game_region'grasslands_RegionA'",
+  "src": "Mission0",
+  "n_objectives": 8
+ },
+ "mission_city_side_overwritingawrong": {
+  "set": "missionset_side_citya",
+  "type": "SideMission",
+  "name": "Overwriting a Wrong",
+  "region": "game_region'city'",
+  "src": "Mission0",
+  "n_objectives": 27
+ },
+ "mission_main_beach": {
+  "set": "missionset_main_beach",
+  "type": "",
+  "name": "Recruitment Drive",
+  "region": "game_region'Grasslands'",
+  "src": "Mission0",
+  "n_objectives": 58
+ },
+ "mission_main_city1": {
+  "set": "missionset_main_city1",
+  "type": "",
+  "name": "The Falling Wall",
+  "region": "game_region'city'",
+  "src": "Mission0",
+  "n_objectives": 29
+ },
+ "mission_main_city1_b": {
+  "set": "missionset_main_city1_b",
+  "type": "",
+  "name": "Means of Ascent",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 33
+ },
+ "mission_main_city2": {
+  "set": "missionset_main_city2",
+  "type": "",
+  "name": "Plan Z",
+  "region": "game_region'city'",
+  "src": "Mission0",
+  "n_objectives": 34
+ },
+ "mission_main_city3": {
+  "set": "missionset_main_city3",
+  "type": "",
+  "name": "The Timekeeper's Order",
+  "region": "game_region'city'",
+  "src": "Mission0",
+  "n_objectives": 40
+ },
+ "mission_main_cityepilogue": {
+  "set": "missionset_main_cityepilogue",
+  "type": "",
+  "name": "Secrets of the Vault",
+  "region": "game_region'city_Upper'",
+  "src": "Mission0",
+  "n_objectives": 20
+ },
+ "mission_main_elpis": {
+  "set": "missionset_main_elpis",
+  "type": "",
+  "name": "Another Day, Another Universe",
+  "region": "game_region'elpis'",
+  "src": "Mission0",
+  "n_objectives": 101
+ },
+ "mission_main_grasslands2b": {
+  "set": "missionset_main_grasslands2b",
+  "type": "",
+  "name": "One Fell Swoop",
+  "region": "game_region'Grasslands'",
+  "src": "Mission0",
+  "n_objectives": 65
+ },
+ "mission_main_grasslands3": {
+  "set": "missionset_main_grasslands3",
+  "type": "",
+  "name": "Rush the Gate",
+  "region": "game_region'grasslands'",
+  "src": "Mission0",
+  "n_objectives": 57
+ },
+ "mission_main_mountains3": {
+  "set": "missionset_main_mountains3",
+  "type": "",
+  "name": "His Vile Sanctum",
+  "region": "game_region'Mountains_Fortress'",
+  "src": "Mission0",
+  "n_objectives": 114
+ },
+ "mission_main_prisonprologue": {
+  "set": "missionset_main_prisonprologue",
+  "type": "",
+  "name": "Guns Blazing",
+  "region": "game_region'grasslands_Prison'",
+  "src": "Mission0",
+  "n_objectives": 48
+ },
+ "mission_main_searchforlilith": {
+  "set": "missionset_main_searchforlilith",
+  "type": "",
+  "name": "Rising Action",
+  "region": "game_region'shatteredlands'",
+  "src": "Mission0",
+  "n_objectives": 49
+ },
+ "mission_main_shatteredlands1": {
+  "set": "missionset_main_shatteredlands1",
+  "type": "",
+  "name": "Wrath of the Ripper Queen",
+  "region": "game_region'Shatteredlands'",
+  "src": "Mission0",
+  "n_objectives": 44
+ },
+ "mission_main_shatteredlands1b": {
+  "set": "missionset_main_shatteredlands1",
+  "type": "",
+  "name": "Siege and Destroy",
+  "region": "game_region'shatteredlands'",
+  "src": "Mission0",
+  "n_objectives": 57
+ },
+ "mission_main_shatteredlands2": {
+  "set": "missionset_main_shatteredlands2",
+  "type": "",
+  "name": "Unpaid Tab",
+  "region": "game_region'Shatteredlands'",
+  "src": "Mission0",
+  "n_objectives": 135
+ },
+ "mission_side_city_aaaforeffort": {
+  "set": "missionset_side_citya",
+  "type": "SideMission",
+  "name": "AAA for Effort",
+  "region": "game_region'city'",
+  "src": "Mission0",
+  "n_objectives": 41
+ },
+ "mission_side_clapgen": {
+  "set": "missionset_side_shatteredlandsa",
+  "type": "SideMission",
+  "name": "Potty Mouth",
+  "region": "game_region'shatteredlands_RegionA'",
+  "src": "Mission0",
+  "n_objectives": 50
+ },
+ "mission_side_electifactionmission2": {
+  "set": "missionset_side_shatteredlandsc",
+  "type": "FactionMission",
+  "name": "A Traitor Within",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 40
+ },
+ "mission_side_grasslandsvault": {
+  "set": "missionset_vault_grasslands",
+  "type": "SideMission",
+  "name": "Primordial Vault: Fadefields",
+  "region": "game_region'grasslands'",
+  "src": "Mission0",
+  "n_objectives": 26
+ },
+ "mission_side_heist": {
+  "set": "missionset_side_grasslandsb",
+  "type": "SideMission",
+  "name": "The Kairos Job",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 178
+ },
+ "mission_side_madscientist": {
+  "set": "missionset_side_mountainsb",
+  "type": "SideMission",
+  "name": "A Call for Help",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 100
+ },
+ "mission_side_noescaperoom": {
+  "set": "missionset_side_citya",
+  "type": "SideMission",
+  "name": "No-Escape Room",
+  "region": "game_region'city_RegionB'",
+  "src": "Mission0",
+  "n_objectives": 63
+ },
+ "mission_side_onegassyissue": {
+  "set": "missionset_side_cityb",
+  "type": "SideMission",
+  "name": "One Gassy Issue",
+  "region": "game_region'city_RegionA'",
+  "src": "Mission0",
+  "n_objectives": 34
+ },
+ "mission_side_resonatorvault": {
+  "set": "missionset_vault_shatteredlands",
+  "type": "SideMission",
+  "name": "Primordial Vault: Carcadia Burn",
+  "region": "game_region'shatteredlands'",
+  "src": "Mission0",
+  "n_objectives": 26
+ },
+ "mission_side_thepriceoffreedompart1": {
+  "set": "missionset_side_citya",
+  "type": "SideMission",
+  "name": "Price of Freedom",
+  "region": "game_region'city_RegionC'",
+  "src": "Mission0",
+  "n_objectives": 34
+ },
+ "mission_side_thepriceoffreedompart3": {
+  "set": "missionset_side_citya",
+  "type": "SideMission",
+  "name": "Price of Freedom Pt. 3",
+  "region": "game_region'city_RegionC'",
+  "src": "Mission0",
+  "n_objectives": 9
+ },
+ "mission_side_thresherrancher": {
+  "set": "missionset_side_grasslandsa",
+  "type": "SideMission",
+  "name": "Breeding Daisies",
+  "region": "",
+  "src": "Mission0",
+  "n_objectives": 26
+ },
+ "mission_side_vault_glide": {
+  "set": "missionset_vault_mountains",
+  "type": "SideMission",
+  "name": "Primordial Vault: Terminus Range",
+  "region": "game_region'Mountains'",
+  "src": "Mission0",
+  "n_objectives": 26
+ },
+ "side_grasslands_lighthousekeeper": {
+  "set": "missionset_side_grasslandsb",
+  "type": "SideMission",
+  "name": "Gone Are My Leggies",
+  "region": "game_region'Grasslands'",
+  "src": "Mission0",
+  "n_objectives": 15
+ },
+ "side_grasslands_salvagerippertunnels": {
+  "set": "missionset_side_grasslandsa",
+  "type": "SideMission",
+  "name": "Savage Salvage",
+  "region": "game_region'grasslands'",
+  "src": "Mission0",
+  "n_objectives": 35
+ },
+ "side_grasslands_sumofhisparts": {
+  "set": "missionset_side_grasslandsa",
+  "type": "SideMission",
+  "name": "Sum of His Parts",
+  "region": "game_region'Grasslands'",
+  "src": "Mission0",
+  "n_objectives": 28
+ },
+ "activity_cowbell_speakeasyportal1": {
+  "set": "missionset_cowbell_activity_speakeasyportal",
+  "type": "Silo",
+  "name": "Activity_Cowbell_SpeakeasyPortal1",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc1_bounty_creaturebat": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc1_bounty_creaturecreep": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc1_bounty_creaturekraggon": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc1_bounty_dahl": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc1_bounty_dahl_urgent": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "contractdlc1_bounty_scav": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc1_bounty_scav_urgent": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "contractdlc1_collect_bat": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {Target_Object}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 5
+ },
+ "contractdlc1_collect_creep": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {Target_Object}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 5
+ },
+ "contractdlc1_collect_dahl": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {Target_Object}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 5
+ },
+ "contractdlc1_collect_scav": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {Target_Object}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 5
+ },
+ "contractdlc1_patrol_bat": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Kratch",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc1_patrol_creep": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Creeps",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc1_patrol_dahl": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Legion Troops",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc1_patrol_kraggon": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Kraggons",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc1_patrol_scav": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Scavs",
+  "region": "game_region'KairosGeneric'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc1_trace_creature": {
+  "set": "",
+  "type": "Contract",
+  "name": "Trace: {Target_Object}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc1_trace_creature_urgent": {
+  "set": "",
+  "type": "Contract",
+  "name": "Trace: {Target_Object}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "contractdlc1_trace_dahl": {
+  "set": "",
+  "type": "Contract",
+  "name": "Trace: {Target_Object}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc1_trace_scav": {
+  "set": "",
+  "type": "Contract",
+  "name": "Trace: {Target_Object}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_bounty_cat": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_bounty_creep": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_bounty_pangolin": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_bounty_rip": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_bounty_rip_urgent": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "contractdlc2_bounty_ted": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_bounty_ted_urgent": {
+  "set": "",
+  "type": "Contract",
+  "name": "Bounty: {Boss_Name_Text}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "contractdlc2_collect_creature": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {Target_Object}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 7
+ },
+ "contractdlc2_collect_ripper": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {Target_Object}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 4
+ },
+ "contractdlc2_collect_tediore": {
+  "set": "",
+  "type": "Contract",
+  "name": "Collect: {Target_Object}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 7
+ },
+ "contractdlc2_mrchewchallenge_generic": {
+  "set": "",
+  "type": "Contract",
+  "name": "What Is It, Boy?",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_mrchewchallenge_loot": {
+  "set": "",
+  "type": "Contract",
+  "name": "What Is It, Boy? : Loot",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_mrchewchallenge_puzzle": {
+  "set": "",
+  "type": "Contract",
+  "name": "What Is It, Boy? : Puzzle",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_patrol_creature": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Creature",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_patrol_rip": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Rippers",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_patrol_ted": {
+  "set": "",
+  "type": "Contract",
+  "name": "Patrol: Tediore",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_search_crea": {
+  "set": "",
+  "type": "Contract",
+  "name": "Trace: {Target_Object}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_search_rip": {
+  "set": "",
+  "type": "Contract",
+  "name": "Trace: {Target_Object}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_search_ted": {
+  "set": "",
+  "type": "Contract",
+  "name": "Trace: {Target_Object}",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "contractdlc2_wavecombat_ted": {
+  "set": "",
+  "type": "",
+  "name": "",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "cowbell_side_miscconvos_elliemoxxi_invisible": {
+  "set": "missionset_side_cowbell",
+  "type": "SideMission",
+  "name": "Cowbell_Side_MiscConvos_Invisible",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 9
+ },
+ "mission_cello_pearl_gear_gen": {
+  "set": "missionset_dlc_cello_pearl_gear_gen",
+  "type": "PearlGenerator",
+  "name": "Ordonite Processor",
+  "region": "game_region'mountains_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 44
+ },
+ "mission_dlc1_riftboss": {
+  "set": "",
+  "type": "RiftBoss",
+  "name": "Nightmare Rift Boss",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 4
+ },
+ "mission_dlc1_spookystory_buyerremorse": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Spooky Story - Buyer's Remorse",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_dlc1_spookystory_lallorona1": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Spooky Story - La Llorona 1",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_dlc1_spookystory_lallorona2": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Spooky Story - La Llorona 2",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_dlc1_spookystory_lallorona3": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Spooky Story - La Llorona 3",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_dlc1_spookystory_lucine1": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Spooky Story - Lucine 1",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_dlc1_spookystory_lucine2": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Spooky Story - Lucine 2",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_dlc1_spookystory_lucine3": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Spooky Story - Lucine 3",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_dlc1_spookystory_lucine4": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Spooky Story - Lucine 4",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_dlc1_spookystory_lucine5": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Spooky Story - Lucine 5",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_dlc1_spookystory_lucineintro": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Spooky Story - Lucine Intro",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_dlc1_spookystory_prettiersmile": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Spooky Story - Prettier Smile",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_dlc1_spookystory_voodoo": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Spooky Story - Voodoo Death",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_dlc_banjo": {
+  "set": "missionset_dlc_banjo",
+  "type": "DLC_SideMission",
+  "name": "The War On Mercenary Day",
+  "region": "game_region'grasslands_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 83
+ },
+ "mission_dlc_cello": {
+  "set": "missionset_dlc_cello",
+  "type": "DLC_SideMission",
+  "name": "The Cursed Mine",
+  "region": "game_region'mountains_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 82
+ },
+ "mission_dlc_harp": {
+  "set": "missionset_dlc_harp",
+  "type": "DLC_SideMission",
+  "name": "Murders & Acquisitions",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 96
+ },
+ "mission_dlc_mandolin": {
+  "set": "missionset_dlc_mandolin",
+  "type": "DLC_MainStory",
+  "name": "A Zane to Kill For",
+  "region": "game_region'shatteredlands_RegionD'",
+  "src": "Mission4",
+  "n_objectives": 123
+ },
+ "mission_dlc_raid1": {
+  "set": "missionset_dlc_raid1",
+  "type": "DLC_SideMission",
+  "name": "The Wrath of Bloomreaper",
+  "region": "game_region'shatteredlands_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 8
+ },
+ "mission_dlc_raid2": {
+  "set": "missionset_dlc_raid2",
+  "type": "DLC_SideMission",
+  "name": "Brothers in Harm",
+  "region": "game_region'shatteredlands_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 4
+ },
+ "mission_dlc_tuba": {
+  "set": "missionset_dlc_tuba",
+  "type": "Takedown",
+  "name": "Takedown: Child of Terramorphous",
+  "region": "game_region'Tuba'",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_dlc_tuba_base": {
+  "set": "missionset_dlc_tuba",
+  "type": "Takedown",
+  "name": "The Shape of Slaughter: Takedown at Hadron Abyss",
+  "region": "game_region'Tuba'",
+  "src": "Mission4",
+  "n_objectives": 80
+ },
+ "mission_main_cowbell1": {
+  "set": "missionset_main_cowbell",
+  "type": "DLC_MainStory",
+  "name": "On Icebound Shores Abandoned",
+  "region": "game_region'Cowbell_CrookedTeeth'",
+  "src": "Mission4",
+  "n_objectives": 52
+ },
+ "mission_main_cowbell2": {
+  "set": "missionset_main_cowbell",
+  "type": "DLC_MainStory",
+  "name": "Hearing Things",
+  "region": "game_region'Cowbell_CrookedTeeth'",
+  "src": "Mission4",
+  "n_objectives": 53
+ },
+ "mission_main_cowbell3": {
+  "set": "missionset_main_cowbell",
+  "type": "DLC_MainStory",
+  "name": "It Grows Below",
+  "region": "game_region'Cowbell_BloodstainedHollow'",
+  "src": "Mission4",
+  "n_objectives": 99
+ },
+ "mission_main_cowbell4": {
+  "set": "missionset_main_cowbell",
+  "type": "DLC_MainStory",
+  "name": "What Lies Dreaming",
+  "region": "game_region'Cowbell_Feuermann'",
+  "src": "Mission4",
+  "n_objectives": 96
+ },
+ "mission_main_cowbell5": {
+  "set": "missionset_main_cowbell",
+  "type": "DLC_MainStory",
+  "name": "Damnation Encroaches",
+  "region": "game_region'Cowbell_VaultOfTheDamned'",
+  "src": "Mission4",
+  "n_objectives": 72
+ },
+ "mission_main_harmonica2": {
+  "set": "missionset_main_harmonica2",
+  "type": "DLC_MainStory",
+  "name": "The Chase",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 50
+ },
+ "mission_main_harmonica2b": {
+  "set": "missionset_main_harmonica2b",
+  "type": "DLC_MainStory",
+  "name": "Clear Comms",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 90
+ },
+ "mission_main_harmonica3": {
+  "set": "missionset_main_harmonica3",
+  "type": "DLC_MainStory",
+  "name": "Throwing Down the Digi-Gauntlet",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 34
+ },
+ "mission_main_harmonica3_handycounter": {
+  "set": "missionset_main_harmonica4_handcounter",
+  "type": "DLC_MainStory",
+  "name": "Mission_Main_Harmonica3_HandyCounter",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 11
+ },
+ "mission_main_harmonica3_hotel": {
+  "set": "missionset_main_harmonica3_managers",
+  "type": "DLC_MainStory",
+  "name": "Digi-Gauntlet: Team Building",
+  "region": "game_region'Harmonica_BagheeraRange'",
+  "src": "Mission4",
+  "n_objectives": 87
+ },
+ "mission_main_harmonica3_lava": {
+  "set": "missionset_main_harmonica3_managers",
+  "type": "DLC_MainStory",
+  "name": "Digi-Gauntlet: Some Like It Hot",
+  "region": "game_region'Harmonica_LavaField'",
+  "src": "Mission4",
+  "n_objectives": 23
+ },
+ "mission_main_harmonica3_logistics": {
+  "set": "missionset_main_harmonica3_managers",
+  "type": "DLC_MainStory",
+  "name": "Digi-Gauntlet: M3_Final_v5",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 44
+ },
+ "mission_main_harmonica3_spa": {
+  "set": "missionset_main_harmonica3_managers",
+  "type": "DLC_MainStory",
+  "name": "Digi-Gauntlet: You Can't Fire Me, I Quit",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 111
+ },
+ "mission_main_harmonica3_theatre": {
+  "set": "missionset_main_harmonica3_managers",
+  "type": "DLC_MainStory",
+  "name": "Digi-Gauntlet: R&D",
+  "region": "game_region'Harmonica_UpperCrust'",
+  "src": "Mission4",
+  "n_objectives": 89
+ },
+ "mission_mandolin_circleofslaughter": {
+  "set": "missionset_mandolin_circleofslaughter",
+  "type": "DLC_SideMission",
+  "name": "Silent Crisis: Time Scope 5",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 38
+ },
+ "mission_micro_catchingfire": {
+  "set": "missionset_micro_harmonica1",
+  "type": "DLC_MicroMission",
+  "name": "Burnt Offering",
+  "region": "game_region'Harmonica_LavaField'",
+  "src": "Mission4",
+  "n_objectives": 5
+ },
+ "mission_micro_harmonica_guarded": {
+  "set": "missionset_micro_harmonica1",
+  "type": "DLC_MicroMission",
+  "name": "The Relieving of the Guard",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 5
+ },
+ "mission_micro_harmonica_guardedending": {
+  "set": "missionset_micro_harmonica1",
+  "type": "DLC_MicroMission",
+  "name": "The Second Relieving of the Guard",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 4
+ },
+ "mission_micro_hosting": {
+  "set": "missionset_micro_cowbell",
+  "type": "DLC_SideMission",
+  "name": "Host in the Shell",
+  "region": "game_region'Cowbell_WindsweptWastes'",
+  "src": "Mission4",
+  "n_objectives": 20
+ },
+ "mission_micro_icefishing": {
+  "set": "missionset_micro_cowbell",
+  "type": "DLC_SideMission",
+  "name": "Ice Fishing",
+  "region": "game_region'Cowbell_CrookedTeeth'",
+  "src": "Mission4",
+  "n_objectives": 8
+ },
+ "mission_micro_managerhand1_pangolin": {
+  "set": "missionset_micro_harmonica2",
+  "type": "DLC_MicroMission",
+  "name": "No Sunrise",
+  "region": "game_region'Harmonica_VolcanoFortress'",
+  "src": "Mission4",
+  "n_objectives": 4
+ },
+ "mission_micro_managerhand2_tediore": {
+  "set": "missionset_micro_harmonica2",
+  "type": "DLC_MicroMission",
+  "name": "Disallowed Leftward",
+  "region": "game_region'Harmonica_VolcanoFortress'",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "mission_micro_operation": {
+  "set": "missionset_micro_cowbell",
+  "type": "DLC_SideMission",
+  "name": "Doc of the Bay",
+  "region": "game_region'Cowbell_Feuermann'",
+  "src": "Mission4",
+  "n_objectives": 43
+ },
+ "mission_micro_snowcone": {
+  "set": "missionset_micro_harmonica2",
+  "type": "DLC_MicroMission",
+  "name": "Pay to Play",
+  "region": "game_region'Harmonica_BagheeraRange'",
+  "src": "Mission4",
+  "n_objectives": 13
+ },
+ "mission_micro_whodidit": {
+  "set": "missionset_micro_cowbell",
+  "type": "DLC_SideMission",
+  "name": "Yes, Chef",
+  "region": "game_region'Cowbell_Feuermann'",
+  "src": "Mission4",
+  "n_objectives": 13
+ },
+ "mission_pearlgen_gra": {
+  "set": "missionset_pearlgen_gra",
+  "type": "PearlGenerator",
+  "name": "Ordonite Up!",
+  "region": "game_region'grasslands_RegionC'",
+  "src": "Mission4",
+  "n_objectives": 36
+ },
+ "mission_pearlgen_mou": {
+  "set": "missionset_pearlgen_mou",
+  "type": "PearlGenerator",
+  "name": "Ordonite Up!",
+  "region": "game_region'mountains_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 34
+ },
+ "mission_pearlgen_sha": {
+  "set": "missionset_pearlgen_sha",
+  "type": "PearlGenerator",
+  "name": "Ordonite Up!",
+  "region": "game_region'shatteredlands_RegionD'",
+  "src": "Mission4",
+  "n_objectives": 36
+ },
+ "mission_repeatable_raid1": {
+  "set": "missionset_dlc_raid1",
+  "type": "Raid",
+  "name": "Bloomreaper: Time Attack",
+  "region": "game_region'Raid1'",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_repeatable_raid1_uvhm": {
+  "set": "missionset_dlc_raid1",
+  "type": "Raid",
+  "name": "Bloomreaper: Ultimate Vault Hunter",
+  "region": "game_region'Raid1'",
+  "src": "Mission4",
+  "n_objectives": 4
+ },
+ "mission_repeatable_raid2_uvhm": {
+  "set": "missionset_dlc_raid2",
+  "type": "Raid",
+  "name": "Subjugator and Thol: Ultimate Vault Hunter",
+  "region": "game_region'Raid2'",
+  "src": "Mission4",
+  "n_objectives": 4
+ },
+ "mission_side_dutybeyonddeath": {
+  "set": "missionset_side_cowbell",
+  "type": "DLC_SideMission",
+  "name": "Voices Carry",
+  "region": "game_region'Cowbell_WindsweptWastes'",
+  "src": "Mission4",
+  "n_objectives": 79
+ },
+ "mission_side_harmonica_microplastics": {
+  "set": "missionset_side_harmonica2",
+  "type": "DLC_SideMission",
+  "name": "The Tainted Truth",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 65
+ },
+ "mission_side_harmonica_novacancy": {
+  "set": "missionset_side_harmonica2",
+  "type": "DLC_SideMission",
+  "name": "The Rusty Butler",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 56
+ },
+ "mission_side_harmonica_novacancyepilogue": {
+  "set": "missionset_side_harmonica2",
+  "type": "DLC_MicroMission",
+  "name": "",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 5
+ },
+ "mission_side_harmonica_rescuerangers": {
+  "set": "missionset_side_harmonica1",
+  "type": "DLC_SideMission",
+  "name": "Rescue Rangers",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 34
+ },
+ "mission_side_harmonica_spatialawareness1": {
+  "set": "missionset_side_harmonica2",
+  "type": "DLC_SideMission",
+  "name": "Spatial Awareness",
+  "region": "game_region'Harmonica_VinechokedCanopy'",
+  "src": "Mission4",
+  "n_objectives": 19
+ },
+ "mission_side_harmonica_spatialawareness2": {
+  "set": "missionset_side_harmonica2",
+  "type": "DLC_SideMission",
+  "name": "The Parting of the Ways",
+  "region": "game_region'Harmonica_VinechokedCanopy'",
+  "src": "Mission4",
+  "n_objectives": 11
+ },
+ "mission_side_harmonica_spatialawarenessreward": {
+  "set": "missionset_side_harmonica2",
+  "type": "DLC_SideMission",
+  "name": "Old Friend",
+  "region": "game_region'Harmonica_VinechokedCanopy'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "mission_side_harmonica_tradingup": {
+  "set": "missionset_side_harmonica2",
+  "type": "DLC_SideMission",
+  "name": "Barter Up",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 40
+ },
+ "mission_side_invasive1": {
+  "set": "missionset_side_cowbell",
+  "type": "DLC_SideMission",
+  "name": "Symbiotic Security",
+  "region": "game_region'Cowbell_BloodstainedHollow'",
+  "src": "Mission4",
+  "n_objectives": 21
+ },
+ "mission_side_invasive2": {
+  "set": "missionset_side_cowbell",
+  "type": "DLC_SideMission",
+  "name": "Symbiotic Security Part 2",
+  "region": "game_region'Cowbell_BloodstainedHollow'",
+  "src": "Mission4",
+  "n_objectives": 9
+ },
+ "mission_side_invasiveinvis": {
+  "set": "missionset_side_cowbell",
+  "type": "SideMission",
+  "name": "Side_Invasive_INVIS",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "mission_side_romeoandromeo": {
+  "set": "missionset_side_cowbell",
+  "type": "DLC_SideMission",
+  "name": "Star-Crossed",
+  "region": "game_region'Cowbell_WindsweptWastes'",
+  "src": "Mission4",
+  "n_objectives": 60
+ },
+ "mission_side_safehaven": {
+  "set": "missionset_side_cowbell",
+  "type": "DLC_SideMission",
+  "name": "A Humble Abode",
+  "region": "game_region'Cowbell_BloodstainedHollow'",
+  "src": "Mission4",
+  "n_objectives": 28
+ },
+ "mission_side_sasaenginvasion": {
+  "set": "missionset_side_harmonica3",
+  "type": "DLC_SideMission",
+  "name": "Fandomination",
+  "region": "game_region'Harmonica_LavaField'",
+  "src": "Mission4",
+  "n_objectives": 56
+ },
+ "mission_side_summoningcircle": {
+  "set": "missionset_side_cowbell",
+  "type": "DLC_SideMission",
+  "name": "Summoner's Gift",
+  "region": "game_region'Cowbell_CrookedTeeth'",
+  "src": "Mission4",
+  "n_objectives": 46
+ },
+ "mission_side_unfinishedbusiness": {
+  "set": "missionset_side_cowbell",
+  "type": "DLC_SideMission",
+  "name": "Ghost Stories",
+  "region": "game_region'Cowbell_CrookedTeeth'",
+  "src": "Mission4",
+  "n_objectives": 38
+ },
+ "mission_side_verymerryunfestival": {
+  "set": "missionset_side_harmonica1",
+  "type": "DLC_SideMission",
+  "name": "A Festivus for the Electivus",
+  "region": "game_region'Harmonica_BagheeraRange'",
+  "src": "Mission4",
+  "n_objectives": 32
+ },
+ "mission_worldbossevent_creature_october": {
+  "set": "",
+  "type": "Event",
+  "name": "Rift Champion",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "mission_worldbossevent_default": {
+  "set": "",
+  "type": "Event",
+  "name": "Rift Champion",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 10
+ },
+ "mission_worldbossevent_default2": {
+  "set": "",
+  "type": "Event",
+  "name": "Rift Champion",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 10
+ },
+ "mission_worldbossevent_default3": {
+  "set": "",
+  "type": "Event",
+  "name": "Rift Champion",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 10
+ },
+ "mission_worldbossevent_order_october": {
+  "set": "",
+  "type": "Event",
+  "name": "Rift Champion",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "mission_worldbossevent_ripper_october": {
+  "set": "",
+  "type": "Event",
+  "name": "Rift Champion",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "zoneactivity_dlc1_bunker": {
+  "set": "missionset_zoneactivity_dlc1_bunker",
+  "type": "DahlBunker",
+  "name": "Bunker: Crisis Scar Weeping",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_dlc1_fuelsiphon1": {
+  "set": "missionset_zoneactivity_dlc1_fuelsiphon",
+  "type": "FuelSiphon",
+  "name": "Fuel Siphon: Thrombosis Purge",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_dlc1_fuelsiphon2": {
+  "set": "missionset_zoneactivity_dlc1_fuelsiphon",
+  "type": "FuelSiphon",
+  "name": "Fuel Siphon: The Gurgling Stent",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_grotto_jungle": {
+  "set": "missionset_harmonica_zoneactivity_grotto",
+  "type": "TedioreGrotto",
+  "name": "Occupied Sector: Akela Island",
+  "region": "game_region'Harmonica_BagheeraRange'",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "zoneactivity_grotto_lava": {
+  "set": "missionset_harmonica_zoneactivity_grotto",
+  "type": "TedioreGrotto",
+  "name": "Occupied Sector: Pyroclast Grotto",
+  "region": "game_region'Harmonica_LavaField'",
+  "src": "Mission4",
+  "n_objectives": 4
+ },
+ "zoneactivity_harmonica_treasurehunt": {
+  "set": "missionset_harmonica_zoneactivity_safehouse",
+  "type": "DLC_MicroMission",
+  "name": "ZoneActivity_Harmonica_TreasureHunt",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_intro_safehouse_horde": {
+  "set": "missionset_harmonica_zoneactivity_safehouse",
+  "type": "TikiBar",
+  "name": "Tiki Bar: The Surly Centipede",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_jungle_safehouse_horde": {
+  "set": "missionset_harmonica_zoneactivity_safehouse",
+  "type": "TikiBar",
+  "name": "Tiki Bar: The Sauced Snake",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_lava_safehouse_horde": {
+  "set": "missionset_harmonica_zoneactivity_safehouse",
+  "type": "TikiBar",
+  "name": "Tiki Bar: The Wrecked Ratch",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_lockdown_jungle": {
+  "set": "missionset_harmonica_zoneactivity_lockdown",
+  "type": "TedioreLockdown",
+  "name": "Tediore Lockdown: Shere Cliff",
+  "region": "game_region'Harmonica_BagheeraRange'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_lockdown_lava": {
+  "set": "missionset_harmonica_zoneactivity_lockdown",
+  "type": "TedioreLockdown",
+  "name": "Tediore Lockdown: Lapillus Bend",
+  "region": "game_region'Harmonica_LavaField'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "event_micro_joeandsue": {
+  "set": "missionset_micro_citya",
+  "type": "MicroMission",
+  "name": "Event_Micro_JoeAndSue",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "event_side_thepriceoffreedompart1": {
+  "set": "missionset_side_citya",
+  "type": "SideMission",
+  "name": "Event_Side_ThePriceOfFreedomPart1",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 7
+ },
+ "micro_backmccrackypt1": {
+  "set": "missionset_micro_mountainsa",
+  "type": "MicroMission",
+  "name": "Crack This Guy's Back",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 0
+ },
+ "micro_backmccrackypt2": {
+  "set": "",
+  "type": "",
+  "name": "Micro_BackMcCrackyPt2",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 5
+ },
+ "micro_backmccrackypt3": {
+  "set": "",
+  "type": "",
+  "name": "Micro_BackMcCrackyPt3",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "micro_grasslands_carriedawayending": {
+  "set": "missionset_micro_grasslandsb",
+  "type": "MicroMission",
+  "name": "CarriedAwayEnding",
+  "region": "game_region'Grasslands'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "micro_grasslands_faction03intro": {
+  "set": "missionset_micro_grasslandse",
+  "type": "MicroMission",
+  "name": "Micro_Grasslands_Faction03Intro",
+  "region": "game_region'Grasslands'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "mission_micro_backmccrackypt2": {
+  "set": "",
+  "type": "",
+  "name": "Crack This Guy's Back - Setting the Mood",
+  "region": "game_region'Mountains'",
+  "src": "Mission4",
+  "n_objectives": 8
+ },
+ "mission_micro_backmccrackypt3": {
+  "set": "",
+  "type": "",
+  "name": "Crack This Guy's Back - Advanced Maneuver",
+  "region": "game_region'Mountains'",
+  "src": "Mission4",
+  "n_objectives": 0
+ },
+ "mission_micro_heistrecruits_intro": {
+  "set": "missionset_micro_grasslandsb",
+  "type": "MicroMission",
+  "name": "Scoundrel Roundup: Shim",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "mission_side_murdermysterynpcspawnshattered": {
+  "set": "missionset_side_shatteredlandsb",
+  "type": "SideMission",
+  "name": "Murder Mystery",
+  "region": "game_region'shatteredlands'",
+  "src": "Mission4",
+  "n_objectives": 0
+ },
+ "mission_side_planetaryescape_intro": {
+  "set": "missionset_side_mountainsd",
+  "type": "SideMission",
+  "name": "Mission_Side_PlanetaryEscape_Intro",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "mission_side_thecureintro": {
+  "set": "missionset_side_grasslandsa",
+  "type": "SideMission",
+  "name": "Mission_Side_TheCureIntro",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_grasslands_silo1": {
+  "set": "missionset_zoneactivity_silo",
+  "type": "Silo",
+  "name": "Silo: The Stockroom",
+  "region": "game_region'grasslands_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_grasslands_silo2": {
+  "set": "missionset_zoneactivity_silo",
+  "type": "Silo",
+  "name": "Silo: The Kit Hole",
+  "region": "game_region'grasslands_RegionC'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_grasslands_silo3": {
+  "set": "missionset_zoneactivity_silo",
+  "type": "Silo",
+  "name": "Silo: Deep Seven",
+  "region": "game_region'grasslands_RegionD'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_mountains_crawler1": {
+  "set": "missionset_zoneactivity_crawler",
+  "type": "Crawler",
+  "name": "Crawler: The Great Work",
+  "region": "game_region'mountains_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_mountains_crawler2": {
+  "set": "missionset_zoneactivity_crawler",
+  "type": "Crawler",
+  "name": "Crawler: The Stonewarden",
+  "region": "game_region'mountains_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_mountains_crawler3": {
+  "set": "missionset_zoneactivity_crawler",
+  "type": "Crawler",
+  "name": "Crawler: Forgotten Cornerstone",
+  "region": "game_region'mountains_RegionC'",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_mountains_crawler4": {
+  "set": "missionset_zoneactivity_crawler",
+  "type": "Crawler",
+  "name": "Crawler: Eureka Stane",
+  "region": "game_region'mountains_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_mountains_silo1": {
+  "set": "missionset_zoneactivity_silo",
+  "type": "Silo",
+  "name": "Silo: Covered Charge",
+  "region": "game_region'mountains_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_mountains_silo2": {
+  "set": "missionset_zoneactivity_silo",
+  "type": "Silo",
+  "name": "Silo: The Reliquary",
+  "region": "game_region'mountains_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_mountains_silo3": {
+  "set": "missionset_zoneactivity_silo",
+  "type": "Silo",
+  "name": "Silo: Deathright",
+  "region": "game_region'mountains_RegionC'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_shatteredlands_silo1": {
+  "set": "missionset_zoneactivity_silo",
+  "type": "Silo",
+  "name": "Silo: Rustical Hurl",
+  "region": "game_region'shatteredlands_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_shatteredlands_silo2": {
+  "set": "missionset_zoneactivity_silo",
+  "type": "Silo",
+  "name": "Silo: Judgement's Lapse",
+  "region": "game_region'shatteredlands_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_shatteredlands_silo3": {
+  "set": "missionset_zoneactivity_silo",
+  "type": "Silo",
+  "name": "Silo: Site Unseen",
+  "region": "game_region'shatteredlands_RegionE'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_template_crawler": {
+  "set": "missionset_zoneactivity_crawler",
+  "type": "Crawler",
+  "name": "Crawler Template",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_template_drillsite": {
+  "set": "missionset_zoneactivity_drillsite",
+  "type": "DrillSite",
+  "name": "Drill Site:",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_template_mine": {
+  "set": "missionset_zoneactivity_mine",
+  "type": "Test",
+  "name": "Auger Mine: ",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "zoneactivity_template_orderbunker": {
+  "set": "missionset_zoneactivity_orderbunker",
+  "type": "OrderBunker",
+  "name": "Order Bunker: Template",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "zoneactivity_template_safehouse": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: Template",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_template_silo": {
+  "set": "missionset_zoneactivity_silo",
+  "type": "Silo",
+  "name": "Silo: Template",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "event_side_noescaperoom": {
+  "set": "missionset_side_citya",
+  "type": "SideMission",
+  "name": "",
+  "region": "game_region'city_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 0
+ },
+ "zoneactivity_city_mine1": {
+  "set": "missionset_zoneactivity_mine",
+  "type": "Mine",
+  "name": "Mine: The Toil of Spoiling Vis",
+  "region": "game_region'city_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "zoneactivity_city_orderbunker1": {
+  "set": "missionset_zoneactivity_orderbunker",
+  "type": "OrderBunker",
+  "name": "Bunker: Ironwall Resolve",
+  "region": "game_region'city_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 12
+ },
+ "zoneactivity_city_safehouse1": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: The Lockaway",
+  "region": "game_region'city_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_city_safehouse2": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: The Food Court",
+  "region": "game_region'city_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_city_safehouse3": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: Sumpview Falls",
+  "region": "game_region'city_RegionC'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_grasslands_crawler1": {
+  "set": "missionset_zoneactivity_crawler",
+  "type": "Crawler",
+  "name": "Crawler: Slugmetal Ditch",
+  "region": "game_region'grasslands_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_grasslands_crawler2": {
+  "set": "missionset_zoneactivity_crawler",
+  "type": "Crawler",
+  "name": "Crawler: The Roaming Pasture",
+  "region": "game_region'grasslands_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_grasslands_crawler3": {
+  "set": "missionset_zoneactivity_crawler",
+  "type": "Crawler",
+  "name": "Crawler: Pester's Grotto",
+  "region": "game_region'grasslands_RegionD'",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_grasslands_crawler4": {
+  "set": "missionset_zoneactivity_crawler",
+  "type": "Crawler",
+  "name": "Crawler: The Eminent Husk",
+  "region": "game_region'grasslands_RegionD'",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_grasslands_drillsite1": {
+  "set": "missionset_zoneactivity_drillsite",
+  "type": "DrillSite",
+  "name": "Drill Site: The Prospects",
+  "region": "game_region'grasslands_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_grasslands_drillsite2": {
+  "set": "missionset_zoneactivity_drillsite",
+  "type": "DrillSite",
+  "name": "Drill Site: The Pitted Stain",
+  "region": "game_region'grasslands_RegionD'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_grasslands_mine1": {
+  "set": "missionset_zoneactivity_mine",
+  "type": "Mine",
+  "name": "Mine: Timid Kyle's Neglected Opening",
+  "region": "game_region'grasslands_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "zoneactivity_grasslands_mine2": {
+  "set": "missionset_zoneactivity_mine",
+  "type": "Mine",
+  "name": "Mine: The Claim",
+  "region": "game_region'grasslands_RegionE'",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "zoneactivity_grasslands_orderbunker1": {
+  "set": "missionset_zoneactivity_orderbunker",
+  "type": "OrderBunker",
+  "name": "Bunker: Blacklime Bunker",
+  "region": "game_region'grasslands_RegionC'",
+  "src": "Mission4",
+  "n_objectives": 5
+ },
+ "zoneactivity_grasslands_orderbunker2": {
+  "set": "missionset_zoneactivity_orderbunker",
+  "type": "OrderBunker",
+  "name": "Bunker: Tipping Point",
+  "region": "game_region'grasslands_RegionD'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_grasslands_safehouse1": {
+  "set": "",
+  "type": "",
+  "name": "",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 0
+ },
+ "zoneactivity_grasslands_safehouse2": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: Shut-Eye Keep",
+  "region": "game_region'grasslands_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_grasslands_safehouse3": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: Someday Rise",
+  "region": "game_region'grasslands_RegionD'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_grasslands_safehouse4": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: Wyclef's Reprieve",
+  "region": "game_region'grasslands_RegionE'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_grasslands_safehousemain": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: Abandoned Post",
+  "region": "game_region'grasslands_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_mountains_drillsite1": {
+  "set": "missionset_zoneactivity_drillsite",
+  "type": "DrillSite",
+  "name": "Drill Site: The Old Scrape",
+  "region": "game_region'mountains_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_mountains_drillsite2": {
+  "set": "missionset_zoneactivity_drillsite",
+  "type": "DrillSite",
+  "name": "Drill Site: The Lowering March",
+  "region": "game_region'mountains_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_mountains_mine1": {
+  "set": "missionset_zoneactivity_mine",
+  "type": "Mine",
+  "name": "Mine: Whistler's Maw",
+  "region": "game_region'mountains_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "zoneactivity_mountains_mine2": {
+  "set": "missionset_zoneactivity_mine",
+  "type": "Mine",
+  "name": "Mine: Bittervein",
+  "region": "game_region'mountains_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "zoneactivity_mountains_orderbunker1": {
+  "set": "missionset_zoneactivity_orderbunker",
+  "type": "OrderBunker",
+  "name": "Bunker: The Wireworks",
+  "region": "game_region'mountains_RegionE'",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "zoneactivity_mountains_orderbunker2": {
+  "set": "missionset_zoneactivity_orderbunker",
+  "type": "OrderBunker",
+  "name": "Bunker: Craven's Nook",
+  "region": "game_region'mountains_RegionC'",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "zoneactivity_mountains_safehouse1": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: Grey Havenage",
+  "region": "game_region'mountains_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_mountains_safehouse2": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: Heritage Opus",
+  "region": "game_region'mountains_RegionC'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_mountains_safehouse3": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: The Nightcap",
+  "region": "game_region'mountains_RegionE'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_mountains_safehouse4": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: Snowy Wells",
+  "region": "game_region'mountains_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_shatteredlands_crawler1": {
+  "set": "missionset_zoneactivity_crawler",
+  "type": "Crawler",
+  "name": "Crawler: The Belle",
+  "region": "game_region'shatteredlands_RegionD'",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_shatteredlands_crawler2": {
+  "set": "missionset_zoneactivity_crawler",
+  "type": "Crawler",
+  "name": "Crawler: Wanton Tread",
+  "region": "game_region'shatteredlands_RegionE'",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_shatteredlands_crawler3": {
+  "set": "missionset_zoneactivity_crawler",
+  "type": "Crawler",
+  "name": "Crawler: Crumpled Lurch",
+  "region": "game_region'shatteredlands_RegionC'",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_shatteredlands_crawler4": {
+  "set": "missionset_zoneactivity_crawler",
+  "type": "Crawler",
+  "name": "Crawler: Ruined Sumplands",
+  "region": "game_region'shatteredlands_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "zoneactivity_shatteredlands_drillsite1": {
+  "set": "missionset_zoneactivity_drillsite",
+  "type": "DrillSite",
+  "name": "Drill Site: Saw's Clench",
+  "region": "game_region'shatteredlands_RegionC'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_shatteredlands_drillsite2": {
+  "set": "missionset_zoneactivity_drillsite",
+  "type": "DrillSite",
+  "name": "Drill Site: Tendercage",
+  "region": "game_region'shatteredlands_RegionD'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "zoneactivity_shatteredlands_mine1": {
+  "set": "missionset_zoneactivity_mine",
+  "type": "Mine",
+  "name": "Mine: Embossed Fault",
+  "region": "game_region'shatteredlands_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "zoneactivity_shatteredlands_mine2": {
+  "set": "missionset_zoneactivity_mine",
+  "type": "Mine",
+  "name": "Mine: Trinket Crevass",
+  "region": "game_region'shatteredlands_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "zoneactivity_shatteredlands_orderbunker1": {
+  "set": "missionset_zoneactivity_orderbunker",
+  "type": "OrderBunker",
+  "name": "Bunker: The Crawlcroft",
+  "region": "game_region'shatteredlands_RegionA'",
+  "src": "Mission4",
+  "n_objectives": 3
+ },
+ "zoneactivity_shatteredlands_safehouse1": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: The Lowrise",
+  "region": "game_region'shatteredlands_RegionC'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_shatteredlands_safehouse2": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: Makeshift Chalet",
+  "region": "game_region'shatteredlands_RegionD'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "zoneactivity_shatteredlands_safehouse3": {
+  "set": "missionset_zoneactivity_safehouse",
+  "type": "Safehouse",
+  "name": "Safehouse: Wildhorn's Beard",
+  "region": "game_region'shatteredlands_RegionB'",
+  "src": "Mission4",
+  "n_objectives": 6
+ },
+ "grasslands_side_claptrapofpandora_invis_postmission": {
+  "set": "missionset_side_grasslandsa",
+  "type": "SideMission",
+  "name": "Grasslands_Side_ClaptrapOfPandora_Invis_PostMission",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "grasslands_side_claptrapofpandora_invis_respawn": {
+  "set": "missionset_side_grasslandsa",
+  "type": "SideMission",
+  "name": "Grasslands_Side_ClaptrapOfPandora_Invis_Respawn",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "micro_grasslands_faction01intro": {
+  "set": "missionset_micro_grasslandse",
+  "type": "MicroMission",
+  "name": "Micro_Grasslands_Faction01Intro",
+  "region": "game_region'grasslands'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "micro_grasslands_faction02outro": {
+  "set": "missionset_micro_grasslandse",
+  "type": "MicroMission",
+  "name": "Micro_Grasslands_Faction02Outro",
+  "region": "game_region'Grasslands'",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "mission_side_castingcall_kickoff": {
+  "set": "missionset_side_shatteredlandsa",
+  "type": "SideMission",
+  "name": "Mission_Side_CastingCall_KickOff",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 2
+ },
+ "mission_side_planetaryescape_conmancorpseachievement": {
+  "set": "missionset_side_mountainsd",
+  "type": "SideMission",
+  "name": "Mission_Side_PlanetaryEscape_ConmanCorpseAchievement",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "mission_side_planetaryescape_intro2": {
+  "set": "missionset_side_mountainsd",
+  "type": "SideMission",
+  "name": "Mission_Side_PlanetaryEscape_Intro",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "mission_side_planetaryescape_intro3": {
+  "set": "missionset_side_mountainsd",
+  "type": "SideMission",
+  "name": "Mission_Side_PlanetaryEscape_Intro",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "mission_side_planetaryescape_intro4": {
+  "set": "missionset_side_mountainsd",
+  "type": "SideMission",
+  "name": "Mission_Side_PlanetaryEscape_Intro",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "mission_side_planetaryescape_intro5": {
+  "set": "missionset_side_mountainsd",
+  "type": "SideMission",
+  "name": "Mission_Side_PlanetaryEscape_Intro",
+  "region": "",
+  "src": "Mission4",
+  "n_objectives": 1
+ },
+ "mission_dlc_viola": {
+  "set": "missionset_dlc_viola",
+  "type": "DLC_SideMission",
+  "name": "The Rift Crisis",
+  "region": "game_region'Viola'",
+  "src": "Mission4",
+  "n_objectives": 141
+ },
+ "city_sm_72x50_lurksbeneath_a": {
+  "set": "",
+  "type": "",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "city_sm_ab_25x25_lootbait_a": {
+  "set": "",
+  "type": "",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "city_sm_rb_15x15_combat_a": {
+  "set": "",
+  "type": "",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "contract_test_mission": {
+  "set": "",
+  "type": "Contract",
+  "name": "Contract_Test_Mission",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_dynamicevents_aircargo_attackedambush": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_AirCargo_AttackedAmbush",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_dynamicevents_aircargo_factionfight": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_AirCargo_FactionFight",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_dynamicevents_airship_guarded": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Airship_Guarded",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dynamicevents_ambient_order_v1": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Ambient_Order_V1",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_ambient_order_v2": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Ambient_Order_V2",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_dynamicevents_ambient_order_v3": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Ambient_Order_V3",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_dynamicevents_ambient_ripper_v1": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Ambient_Ripper_V1",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_arrowpuzzle": {
+  "set": "",
+  "type": "",
+  "name": "Mission_DynamiteEvents_ArrowPuzzle",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_dynamicevents_caravan_combat": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Caravan_Combat",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_caravan_default": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Caravan_Default",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_caravan_encounter": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvent_Caravan_Encounter",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_caravan_ripper": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Caravan_Ripper",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_dynamicevents_combatnpc": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_CombatNPC",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_creature_bat": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Creature_Badass_Bat",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_deconpc": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_DecoNPC",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_fight_ordernpc_mulstamp": {
+  "set": "",
+  "type": "Event",
+  "name": "Reinforcements",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 10
+ },
+ "mission_dynamicevents_fight_ordernpc_v1": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Fight_OrderNPC_V1",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_dynamicevents_fight_orderripper_v1": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Fight_OrderRipper_V1",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_dynamicevents_fishing": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Fishing",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_dynamicevents_rescuenpc": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_RescueNPC",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_dynamicevents_treasurebox": {
+  "set": "",
+  "type": "",
+  "name": "Mission_DynamicEvents_TreasureBox",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_dynamicevents_vehicleonfire": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DE_VehicleOnFire",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_vehicleonfire_ambush": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_VehicleOnFire_Ambush",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_vehicleonfire_combat": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_VehicleOnFire_Combat",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_aircargo": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Event_AirCargo",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_event_dogfight": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "DebugOnly:DogFight Event",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_event_elpis_fall": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "DebugOnly: Elpis Fall",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_event_elpisfall3": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "DebugOnly: Elpis Fall",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 4
+ },
+ "mission_event_guardedcaravan_beast_ripper": {
+  "set": "",
+  "type": "Event",
+  "name": "Mission_Event_GuardedCaravan",
+  "region": "game_region'none'",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_event_guardedcaravan_order": {
+  "set": "",
+  "type": "Event",
+  "name": "Mission_Event_GuardedCaravan",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_helpnpc_ambush": {
+  "set": "",
+  "type": "",
+  "name": "HelpNPC_Ambush",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_event_helpnpc_hostage": {
+  "set": "",
+  "type": "",
+  "name": "HelpNPC_Hostage",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_event_helpnpc_jumppuzzle": {
+  "set": "",
+  "type": "",
+  "name": "HelpNPC_JumpPuzzle",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_event_helpnpc_searchitem": {
+  "set": "",
+  "type": "",
+  "name": "HelpNPC_SearchItem",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_event_migration_npc_electi": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_npc_electi_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_npc_farmers": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_npc_farmers_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_npc_grazers": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_npc_grazers_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_npc_survivalist": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_npc_survivalist_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_npc_transhuman": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_npc_transhuman_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_ripper_beastrider": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_ripper_beastrider_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_ripper_catrider": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_ripper_catrider_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_ripper_pangolinrider": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_ripper_pangolinrider_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_bats_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_bats_small": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_beasts_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_beasts_small": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_cats_medium": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_cats_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_cats_small": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_creeps_medium": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_creeps_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_creeps_small": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_pangolin_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_pangolin_small": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_threshers_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_threshers_small": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_eventtracker": {
+  "set": "missionset_oak2test",
+  "type": "",
+  "name": "EventTracker",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_eventtracker_reliccurse": {
+  "set": "missionset_oak2test",
+  "type": "",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_npcmoments_gra_ow_legendofvaulthunter": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Legend of the Vault Hunters",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_mou_ow_battlefieldromance": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_ow_callisloyalty": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Callis' Loyalty",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_ow_electimoletalk": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Electi Mole Talk",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_worldevent_colosseum_v2": {
+  "set": "",
+  "type": "Colosseum",
+  "name": "The Goredello",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 110
+ },
+ "mission_worldevent_enterairship_interior_base": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_worldevent_enterairship_interior_wave1": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_worldevent_enterairship_interior_wave1_lighting_alarm": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_worldevent_enterairship_interior_wave1_lighting_normal": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_worldevent_enterairship_interior_wave2": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_worldevent_enterairship_interior_wave2_lighting_alarm": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_worldevent_enterairship_interior_wave2_lighting_normal": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_worldevent_enterairship_interior_wave2a": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 5
+ },
+ "mission_worldevent_enterairship_interior_wave3": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_worldevent_enterairship_interior_wave3_lighting_alarm": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_worldevent_enterairship_interior_wave3_lighting_normal": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_worldevent_enterairship_interior_wave3a": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 9
+ },
+ "mission_worldevent_enterairship_interior_wave4": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_worldevent_enterairship_interior_wave4_lighting_alarm": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_worldevent_enterairship_interior_wave4_lighting_normal": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_worldevent_meteor_lighting_powered": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_worldevent_meteor_lighting_unpowered": {
+  "set": "",
+  "type": "Event",
+  "name": "World Event: Sabotage Order Base",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "missionexample_ripperseggspawner": {
+  "set": "developerstests_missionset",
+  "type": "",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_de_bioarmorchest": {
+  "set": "",
+  "type": "SideMission",
+  "name": "Mission_DE_BioArmorChest",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_de_dlc1_dahl": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DE_DLC1_Dahl",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_de_dlc1_dressings": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Addons_Random",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_de_dlc1_scav": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DE_DLC1_Scav",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_de_fooddelivery": {
+  "set": "",
+  "type": "SideMission",
+  "name": "Mission_DE_FoodDelivery",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 5
+ },
+ "mission_de_pairedbattery": {
+  "set": "",
+  "type": "SideMission",
+  "name": "Mission_DE_PairedBattery",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_dlc1_elpisfall_large": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "DebugOnly: Elpis Fall",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 4
+ },
+ "mission_dlc1_elpisfall_single": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "DebugOnly: Elpis Fall",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_dlc1_lostsoul_childsnatcher": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Lost Soul - The Child Snatcher",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dlc1_lostsoul_confrontation": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Lost Soul - The Confrontation",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dlc1_lostsoul_ghosthunted": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Lost Soul - Ghost Hunted",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dlc1_lostsoul_ghoststory1": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Lost Soul - Ghost Story 1",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dlc1_lostsoul_ghoststory2": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Lost Soul - Ghost Story 2",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dlc1_lostsoul_ghoststory3": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Lost Soul - Ghost Story 3",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dlc1_lostsoul_hauntedhaunting": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Lost Soul - Haunted Haunting",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dlc1_lostsoul_predator": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Lost Soul - Predator Becomes Prey",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dlc1_lostsoul_slipped": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Lost Soul - Slipped Into The Dead Dimension",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dlc1_lostsoul_workinglate": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Lost Soul - Working Late",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dlc2_ambientstamp_small_spawnswhenfaraway_cats": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_ambientstamp_small_spawnswhenfaraway_creep": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_ambientstamp_small_spawnswhenfaraway_electi": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_ambientstamp_small_spawnswhenfaraway_mech": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_ambientstamp_small_spawnswhenfaraway_pangolin": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_ambientstamp_small_spawnswhenfaraway_ripper": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_ambientstamp_small_spawnswhenfaraway_tediore": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_ambientstamp_small_spawnswhennearby_creep": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_dlc2_ambientstamp_small_spawnswhennearby_tediore": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_dlc2_digidimension_debug": {
+  "set": "",
+  "type": "DigispaceBoss",
+  "name": "Tediore Digi-Rifts",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 16
+ },
+ "mission_dlc2_digidimension_test": {
+  "set": "",
+  "type": "",
+  "name": "Tediore Digi-Rifts",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 16
+ },
+ "mission_dlc2_dressingstamps": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_migration_cats": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_migration_cats_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_migration_creeps": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_migration_creeps_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_migration_mech": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_migration_mech_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_migration_pangos": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_migration_pangos_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_migration_rippers": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_migration_rippers_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_migration_tediore": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc2_migration_tediore_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dlc_storysofar": {
+  "set": "missionset_dlc_storysofar",
+  "type": "MicroMission",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 7
+ },
+ "mission_dlc_tuba_hardcore": {
+  "set": "missionset_dlc_tuba",
+  "type": "Takedown_Hardcore",
+  "name": "The Shape of Slaughter: Hardcore Takedown at Hadron Abyss",
+  "region": "game_region'Tuba'",
+  "src": "Mission6",
+  "n_objectives": 105
+ },
+ "mission_dlc_tuba_timerbase": {
+  "set": "missionset_dlc_tuba",
+  "type": "Takedown_Timer",
+  "name": "The Shape of Slaughter: Mayhem Takedown at Hadron Abyss",
+  "region": "game_region'Tuba'",
+  "src": "Mission6",
+  "n_objectives": 79
+ },
+ "mission_dynamicevent_multistamp_pumpjack_combat": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 6
+ },
+ "mission_dynamicevent_multistamp_pumpjack_creatures": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 6
+ },
+ "mission_dynamicevent_multistamp_pumpjack_electi": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 5
+ },
+ "mission_dynamicevent_multistamp_pumpjack_gunk": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dynamicevent_multistamp_pumpjack_heist": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dynamicevent_multistamp_pumpjack_mech": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 9
+ },
+ "mission_dynamicevent_multistamp_pumpjack_scientists": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 5
+ },
+ "mission_dynamicevents_addons_random": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Addons_Random",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_addons_random_order": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Addons_Random",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_addons_random_ripper": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Addons_Random",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_creature_beast": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Creature_Beast",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_creature_creep": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Creature_Creep",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_creature_kraggon": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Creature_Badass_Bat",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_creature_pangolin": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Creature_Pangolin",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_creature_threshers": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Creature_Threshers",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_creaturecage_default": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_CreatureCage_Default",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_creaturecage_order": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_CreatureCage_Order",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_creaturecage_ripper": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_CreatureCage_Ripper",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_driller_elemental": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Driller_Elemental",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dynamicevents_driller_grapple": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Driller_Grapple",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dynamicevents_driller_grapplegrenade": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Driller_GrappleGrenade",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dynamicevents_driller_grappleturret": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Driller_GrappleTurret",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_dynamicevents_driller_slam": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Driller_Slam",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_driller_slamambush": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Driller_SlamAmbush",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_droppod_carryable": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Droppod_Carryable",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_droppod_carryableambush": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Droppod_CarryableAmbush",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_dynamicevents_droppod_easyhack": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Droppod_EasyHack",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_droppod_hacking": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Droppod_Hacking",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_droppod_puzzle": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Droppod_Puzzle",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 5
+ },
+ "mission_dynamicevents_droppod_slam": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Droppod_Slam",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_droppod_slamwithorder": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Droppod_SlamWithOrder",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_fishingsite_deco02": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_FishingSite_Default",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_dynamicevents_fishingsite_default": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_FishingSite_Default",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_dynamicevents_icefishing": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Mission_DynamicEvents_Fishing",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_event_migration_ripper_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_ripper_small": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_ripper_t1": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_ripper_t2": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_migration_ripper_t3": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_order_rare": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_order_small": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_order_t1": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_order_t2": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_event_patrol_order_t3": {
+  "set": "",
+  "type": "Event",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_migrationevent_dlc1_dahl": {
+  "set": "",
+  "type": "Event",
+  "name": "MigrationEvent_DLC1_Dahl",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_migrationevent_dlc1_kraggon": {
+  "set": "",
+  "type": "Event",
+  "name": "MigrationEvent_DLC1_Dahl",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_migrationevent_dlc1_scav": {
+  "set": "",
+  "type": "Event",
+  "name": "MigrationEvent_DLC1_Dahl",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_multistamp_large": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_npcmoment_dlc2_hubconvo": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_npcmoment_dlc2_hubconvo2": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_npcmoment_dlc2_hubconvo3": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_npcmoment_speakeasy_nachosconvo": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Nachos Convo",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_npcmoments_city_fa_bachelorparty": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_city_fa_hecklingtheorder": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_city_fa_scarystories": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_city_fa_theoldresistance": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_city_ow_fiveyearplans": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_city_ow_losingthewall": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_city_ow_orderfamilyrejects": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_city_ow_propagandacomplaints": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_city_ow_spoiledforchoice": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_city_sh_beforethemoonfall": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_city_sh_escapepod": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_city_sh_quarantinedilemmas": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_general_enemybullynpc_order01": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moments - NPC to Enemy",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_npcmoments_general_enemychatter_psycho01": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moments - Enemy to Enemy",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_npcmoments_general_npcchatter01": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moments - NPC to NPC",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ },
+ "mission_npcmoments_gra_fa_claptrapchat": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Claptrap Chat",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_gra_fa_orderinterrogation": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Order Interrogation",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_gra_fa_orderprisonbreak": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Order Prison Break",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_gra_fa_stolenmachineparts": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Stolen Machine Parts",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_gra_fa_talltales": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Tall Tales",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_gra_hub_aboutrush": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "About Rush",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_gra_hub_legendofsal": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Legend Of Chuzz",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_gra_ow_dinnerconversation": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Dinner Conversation",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_gra_ow_inventorycheck": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Inventory Check",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_gra_ow_kidsthesedays": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "What's With Kids These Days",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_gra_ow_ordervsripper": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Order vs Ripper",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_gra_ow_ripperbreakup": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Ripper Break-Up",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_gra_ow_ripperfuneral": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Ripper Funeral",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_gra_ow_rockandroll": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Rock and Roll",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_gra_ow_synthdetainsgrazer": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Synth Detains Grazer",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 6
+ },
+ "mission_npcmoments_gra_ow_synthshootingconvo": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Synth Shooting Conversation",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_gra_sh_augbounders": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Augbounders",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_gra_sh_electidefector": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Electi Defector",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_hub_outbounderlosinghope": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "Outbounders Losing Hope",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_mou_fa_adoptionday": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_mou_fa_augerflirting": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_mou_fa_legendarybasketballman": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_mou_fa_newmoviehype": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_mou_fa_vaulthunterwannabe": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_mou_hub_augerdiscussion": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Auger Discussion",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_mou_hub_augership": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_mou_hub_outboundersareweird": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_mou_ow_backfromvacation": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_mou_ow_barreloffun": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_mou_ow_didyouhearaboutjanice": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_mou_ow_grapplingtalk": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_mou_ow_performancereview": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_mou_ow_rip-tirement": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_mou_ow_runfromthesynth": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_mou_ow_unlikelyfriendships": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_mou_ow_whowasthatrobot": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_mou_sh_augmentationchat": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_mou_sh_chattyaugergossip": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_npcmoments_sha_fa_electibeingmocked": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Electi Being Mocked",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_fa_electifriend": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Electi Friend",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_fa_electirebels": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Electi Rebels",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_fa_housediscussion": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - House Discussion",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_fa_ripperrobbery": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Ripper Robbery",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_hub_electichess": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Electi Chess",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_hub_ripperqueendefeated": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Ripper Queen Defeated",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_hub_threshertalk": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Thresher Talk",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_ow_mourningtheripperqueen": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Mourning the Ripper Queen",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_ow_orderdefection": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Order Defection",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_ow_psychoargument": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Psycho Argument",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_ow_ripperandorderstandoff": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Ripper And Order Standoff",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_ow_ripperexistentialconvo": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Ripper Existential Convo",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_ow_selfripping": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Self Ripping",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_ow_timeoffrequest": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Time Off Request",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_sh_bolttalk": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "NPC Moment - Electi Chess",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_npcmoments_sha_sh_electidistrust": {
+  "set": "",
+  "type": "",
+  "name": "NPC Moment - Electi Distrust",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 3
+ },
+ "mission_worldevent_volcanoevent_manager": {
+  "set": "",
+  "type": "Volcano",
+  "name": "The Furious Earth",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 6
+ },
+ "mission_worldevent_volcanoevent_manager_test": {
+  "set": "",
+  "type": "Volcano",
+  "name": "The Furious Earth",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 6
+ },
+ "mission_worldevent_volcanoevent_uitimer": {
+  "set": "",
+  "type": "Volcano",
+  "name": "The Furious Earth",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 2
+ },
+ "mission_dynamicevents_creature_cat": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 1
+ },
+ "mission_dynamicevents_creaturefight_order_cat": {
+  "set": "",
+  "type": "DynamicEvent",
+  "name": "",
+  "region": "",
+  "src": "Mission6",
+  "n_objectives": 0
+ }
+}
