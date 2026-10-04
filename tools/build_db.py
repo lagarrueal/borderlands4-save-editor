@@ -573,6 +573,96 @@ def build_bases(d):
     return {k: v for k, v in out.items() if v}
 
 
+def mission_type(key):
+    k = key.lower()
+    for pre, t in (("mission_main", "Main"), ("mission_side", "Side"), ("contract", "Contract"), ("micro", "Micro"),
+                   ("mission_dlc", "DLC"), ("zoneactivity", "Activity"), ("mission_zoneactivity", "Activity")):
+        if k.startswith(pre):
+            return t
+    if "_side_" in k:
+        return "Side"
+    return "Other"
+
+
+def build_missions(d):
+    out = {}
+    for chunk, _, e in entries(d, "Mission"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        if not v:
+            continue
+        name = text((v.get("ux_display") or {}).get("text")) if isinstance(v.get("ux_display"), dict) else None
+        nobj = 0
+        for os_ in as_list(v.get("objective_sets")):
+            nobj += len(json.dumps(os_).split('"objective":')) - 1
+        out[e["key"].lower()] = {
+            "set": (ref(v.get("missionset")) or "").lower() if v.get("missionset") else "",
+            "type": mission_type(e["key"]),
+            "name": name or "",
+            "n_objectives": nobj,
+            "src": f"Mission{chunk}",
+        }
+    return out
+
+
+def build_cosmetics(d):
+    out = {}
+    for chunk, _, e in entries(d, "GbxActorPart"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        u = ref(v.get("unlockable"))
+        if not u or "." not in u:
+            continue
+        out[u] = {"group": u.split(".")[0], "kind": "unlockable", "source": f"GbxActorPart{chunk}", "entry": e["key"],
+                  "part": v.get("gbxactorpart"), "name": text(v.get("description"))}
+    for chunk, _, e in entries(d, "inv_custom"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        u = ref(v.get("unlockable"))
+        if not u or "." not in u:
+            continue
+        out[u] = {"group": u.split(".")[0], "kind": "weapon_skin", "source": f"inv_custom{chunk}", "entry": e["key"],
+                  "part": v.get("inv_custom"), "name": text(v.get("displayname") or v.get("uiname"))}
+    for chunk, _, e in entries(d, "GbxActor"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        u = ref(v.get("unlockedby"))
+        if not u or "." not in u:
+            continue
+        out.setdefault(u, {"group": u.split(".")[0], "kind": "vehicle", "source": f"GbxActor{chunk}", "entry": e["key"],
+                           "part": None, "name": u.split(".", 1)[1].replace("_", " ")})
+    for chunk, _, e in entries(d, "hover_drive"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        for fld, suffix in (("unlockedby", ""), ("unlockedbycharacter", "_character")):
+            u = ref(v.get(fld))
+            if not u or "." not in u:
+                continue
+            g = u.split(".")[0] + suffix
+            out.setdefault(u if not suffix else u + "#character", {"group": g, "kind": "hoverdrive", "source": f"hover_drive{chunk}",
+                           "entry": e["key"], "part": v.get("hover_drive"), "name": u.split(".", 1)[1].replace("_", " ")})
+    return out
+
+
+def build_sdu(d):
+    out = []
+    for _, _, e in entries(d, "progress_graph"):
+        if e["key"].lower() != "sdu_upgrades":
+            continue
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        nodes = (v.get("nodes") or {}).get("pairs") or {}
+        for pair in nodes.values():
+            if not isinstance(pair, dict):
+                continue
+            val = pair.get("value") or {}
+            if not isinstance(val, dict) or not val.get("maxprogresspoints"):
+                continue  # per-character slot rewards (no token cost)
+            eff = []
+            for m in as_list((val.get("itemdata") or {}).get("attributemodifiers")):
+                if isinstance(m, dict):
+                    eff.append(f"{ref(m.get('attribute'))} {m.get('modifiertype')} {(m.get('attributeinit') or {}).get('constant', '')}")
+            cond = val.get("condition") or {}
+            out.append({"name": pair.get("key"), "cost": int(float(val["maxprogresspoints"])),
+                        "requires": cond.get("noderefname") if isinstance(cond, dict) else None, "effect": "; ".join(eff)})
+    order = lambda n: (n["name"].rsplit("_", 1)[0], n["name"])
+    return sorted(out, key=order)
+
+
 def main():
     names = build_names(INSTALLED)
     uistats = build_uistats(INSTALLED)
@@ -599,8 +689,10 @@ def main():
         f = SEED / name
         if f.exists():
             seed[name.split(".")[0]] = json.load(open(f, encoding="utf-8"))
-    sdu = []
+    sdu = build_sdu(INSTALLED)
     f = SEED / "sdu_nodes.tsv"
+    if sdu:
+        f = Path("/nonexistent")
     if f.exists():
         for line in open(f, encoding="utf-8"):
             if line.startswith("#") or not line.strip():
@@ -626,8 +718,8 @@ def main():
         "names": {k: v["t"] for k, v in names.items()},
         "categories": [cats[k] for k in sorted(cats)],
         "parts": [parts[k] for k in sorted(parts, key=lambda s: tuple(map(int, s.split(":"))))],
-        "cosmetics": seed.get("cosmetics_catalogue", {}),
-        "missions": seed.get("missions_catalogue", {}),
+        "cosmetics": build_cosmetics(INSTALLED) or seed.get("cosmetics_catalogue", {}),
+        "missions": build_missions(INSTALLED) or seed.get("missions_catalogue", {}),
         "progress_graphs": seed.get("progress_graphs", {}),
         "sdu": sdu,
         "tables": build_tables(INSTALLED),
