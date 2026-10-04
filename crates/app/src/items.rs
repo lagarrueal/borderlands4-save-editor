@@ -120,20 +120,11 @@ pub fn inventory(app: &mut App, ui: &mut egui::Ui, view: View) {
     }
 
     // capacity line
-    let prof_doc = app.sess.as_ref().and_then(|s| s.doc(Which::Profile));
-    let sdu: Vec<(String, i64)> = prof_doc
-        .map(|p| {
-            let mut n = p.clone();
-            save::Profile(&mut n).sdu_nodes()
-        })
-        .unwrap_or_default();
-    let bonus = |prefix: &str, adds: &[u32]| -> u32 {
-        (1..=adds.len()).filter(|i| sdu.iter().any(|(n, _)| n == &format!("{prefix}_{i:02}"))).map(|i| adds[i - 1]).sum()
-    };
+    let (bp_cap, bank_cap) = app.capacities();
     ui.horizontal(|ui| {
         match view {
             View::Backpack => {
-                let cap = 16 + bonus("Backpack", &[4, 4, 6, 6, 6, 8, 8, 12]);
+                let cap = bp_cap;
                 let used = all.iter().filter(|i| i.container == Container::Backpack && i.flags != Some(1)).count() as u32;
                 let col = if used > cap { Color32::from_rgb(255, 80, 80) } else { Color32::from_gray(200) };
                 ui.label(RichText::new(format!("Backpack {used}/{cap} (equipped items are free)")).color(col));
@@ -142,7 +133,7 @@ pub fn inventory(app: &mut App, ui: &mut egui::Ui, view: View) {
                 }
             }
             View::Bank => {
-                let cap = 25 + bonus("Bank", &[25, 50, 50, 50, 50, 50, 100, 100]);
+                let cap = bank_cap;
                 let used = list.len() as u32;
                 ui.label(format!("Bank {used}/{cap}"));
             }
@@ -511,7 +502,7 @@ fn item_editor(app: &mut App, ui: &mut egui::Ui, it: &InvItem, which: Which, equ
     serial_box(app, ui, it, which);
     ui.add_space(4.0);
     ui.horizontal(|ui| {
-        if ui.button("Duplicate").on_hover_text("Copy this item into the backpack (or bank)").clicked() {
+        if ui.button("Duplicate").on_hover_text("Copy this item into the backpack (or bank)").clicked() && app.has_room(which) {
             let s = it.serial.clone();
             if which == Which::Profile {
                 app.edit(Which::Profile, |d| {
@@ -524,7 +515,7 @@ fn item_editor(app: &mut App, ui: &mut egui::Ui, it: &InvItem, which: Which, equ
             }
             app.info("Item duplicated");
         }
-        if it.container == Container::LostLoot && ui.button("Move to backpack").clicked() {
+        if it.container == Container::LostLoot && ui.button("Move to backpack").clicked() && app.has_room(Which::Character) {
             let it2 = it.clone();
             app.edit(Which::Character, |d| {
                 save::remove_item(d, &it2);
@@ -535,7 +526,8 @@ fn item_editor(app: &mut App, ui: &mut egui::Ui, it: &InvItem, which: Which, equ
         let has_both = app.sess.as_ref().map(|s| s.character.is_some() && s.profile.is_some()).unwrap_or(false);
         if has_both && matches!(it.container, Container::Backpack | Container::Bank) {
             let to_bank = which == Which::Character;
-            if ui.button(if to_bank { "Move to bank" } else { "Move to backpack" }).clicked() {
+            let target = if to_bank { Which::Profile } else { Which::Character };
+            if ui.button(if to_bank { "Move to bank" } else { "Move to backpack" }).clicked() && app.has_room(target) {
                 let it2 = it.clone();
                 app.edit_both(|c, p| {
                     if to_bank {
@@ -723,6 +715,9 @@ fn add_item_panel(app: &mut App, ui: &mut egui::Ui, view: View) {
 }
 
 fn add_serial(app: &mut App, which: Which, serial: &str) {
+    if !app.has_room(which) {
+        return;
+    }
     let s = serial.to_string();
     if which == Which::Profile {
         app.edit(Which::Profile, |d| {

@@ -250,7 +250,6 @@ pub fn decode_tokens(serial: &str) -> Result<(Vec<Tok>, usize), SerialError> {
     }
     let mut toks = Vec::new();
     while r.left() >= 2 {
-        let start = r.p;
         let Some(p2) = r.bits(2) else { break };
         match p2 {
             0b00 => {
@@ -270,10 +269,8 @@ pub fn decode_tokens(serial: &str) -> Result<(Vec<Tok>, usize), SerialError> {
                 };
                 match tok {
                     Some(t) => toks.push(t),
-                    None => {
-                        r.p = start;
-                        break;
-                    }
+                    // trailing padding that does not form a token ends the stream
+                    None => break,
                 }
             }
         }

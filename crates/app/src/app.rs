@@ -9,7 +9,6 @@ use bl4core::yaml::Node;
 use eframe::egui::{self, Color32, RichText};
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
-use std::time::Instant;
 
 #[derive(Default)]
 pub struct StartOptions {
@@ -75,11 +74,9 @@ pub struct SaveEntry {
     pub path: PathBuf,
     pub label: String,
     pub detail: String,
-    pub kind: SaveKind,
 }
 
 pub struct Session {
-    pub dir: PathBuf,
     pub character: Option<SaveFile>,
     pub profile: Option<SaveFile>,
     pub char_dirty: bool,
@@ -126,7 +123,7 @@ pub struct App {
     pub tab: Tab,
     pub steam_id: String,
     pub game_running: bool,
-    last_check: Instant,
+    running_flag: std::sync::Arc<std::sync::atomic::AtomicBool>,
     pub log: Vec<(Level, String)>,
     pub items: ItemsState,
     pub pages: PagesState,
@@ -162,7 +159,19 @@ impl App {
             tab: Tab::Character,
             steam_id: opts.steam_id.clone().unwrap_or_default(),
             game_running: save::game_running(),
-            last_check: Instant::now(),
+            running_flag: {
+                let flag = std::sync::Arc::new(std::sync::atomic::AtomicBool::new(save::game_running()));
+                let f2 = flag.clone();
+                let ctx2 = ctx.clone();
+                std::thread::spawn(move || loop {
+                    std::thread::sleep(std::time::Duration::from_secs(3));
+                    let now = save::game_running();
+                    if f2.swap(now, std::sync::atomic::Ordering::Relaxed) != now {
+                        ctx2.request_repaint();
+                    }
+                });
+                flag
+            },
             log: vec![],
             items: ItemsState::default(),
             pages: PagesState::default(),
@@ -231,10 +240,10 @@ impl App {
         });
         for p in files {
             let stem = p.file_stem().and_then(|s| s.to_str()).unwrap_or("").to_string();
-            let (label, detail, kind) = match SaveFile::open(&p, self.steam_id()) {
+            let (label, detail) = match SaveFile::open(&p, self.steam_id()) {
                 Ok(mut sf) => {
                     if sf.kind == SaveKind::Profile {
-                        ("Profile".to_string(), "bank, SDUs, cosmetics".to_string(), SaveKind::Profile)
+                        ("Profile".to_string(), "bank, SDUs, cosmetics".to_string())
                     } else {
                         let c = save::Character(&mut sf.doc);
                         let lvl = c.xp("Character").map(|x| x.0).unwrap_or(0);
@@ -243,13 +252,12 @@ impl App {
                         (
                             format!("{} - {}", stem, c.name()),
                             format!("{class} L{lvl}{}", if uvh_max > 0 { format!(" UVH{uvh_max}") } else { String::new() }),
-                            SaveKind::Character,
                         )
                     }
                 }
-                Err(e) => (stem.clone(), format!("unreadable: {e}"), SaveKind::Character),
+                Err(e) => (stem.clone(), format!("unreadable: {e}")),
             };
-            self.saves.push(SaveEntry { path: p, label, detail, kind });
+            self.saves.push(SaveEntry { path: p, label, detail });
         }
     }
 
@@ -311,7 +319,8 @@ impl App {
         self.tab = if character.is_some() { Tab::Character } else { Tab::Bank };
         self.items = ItemsState::default();
         self.pages = PagesState::default();
-        self.sess = Some(Session { dir, character, profile, char_dirty: false, prof_dirty: false, undo: vec![], redo: vec![] });
+        let _ = dir;
+        self.sess = Some(Session { character, profile, char_dirty: false, prof_dirty: false, undo: vec![], redo: vec![] });
     }
 
     /// Apply an edit to one document with undo support.
@@ -367,6 +376,29 @@ impl App {
                 s.undo.push(cur);
             }
         }
+    }
+
+    /// (backpack, bank) capacity for the open saves.
+    pub fn capacities(&self) -> (u32, u32) {
+        let prof = self.sess.as_ref().and_then(|s| s.doc(Which::Profile));
+        let bp = *self.db.containers.get("backpack").unwrap_or(&16);
+        let bank = *self.db.containers.get("bank").unwrap_or(&25);
+        (save::backpack_capacity(bp, prof), save::bank_capacity(bank, prof))
+    }
+
+    /// Refuse to add past capacity: the game deletes the overflow on load.
+    pub fn has_room(&mut self, w: Which) -> bool {
+        let (bp, bank) = self.capacities();
+        let Some(doc) = self.sess.as_ref().and_then(|s| s.doc(w)) else { return false };
+        let (used, cap, what) = match w {
+            Which::Character => (save::backpack_used(doc) as u32, bp, "Backpack"),
+            Which::Profile => (save::bank_used(doc) as u32, bank, "Bank"),
+        };
+        if used >= cap {
+            self.error(format!("{what} is full ({used}/{cap}). The game deletes items over capacity when it loads the save; free a slot or buy SDUs first."));
+            return false;
+        }
+        true
     }
 
     /// Items in the open saves that the game would reject.
@@ -657,10 +689,7 @@ impl App {
 
 impl eframe::App for App {
     fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
-        if self.last_check.elapsed().as_secs() >= 3 {
-            self.game_running = save::game_running();
-            self.last_check = Instant::now();
-        }
+        self.game_running = self.running_flag.load(std::sync::atomic::Ordering::Relaxed);
         egui::Panel::top("top").show(ui, |ui| self.top_bar(ui));
         egui::Panel::bottom("status").show(ui, |ui| self.status_bar(ui));
         egui::Panel::left("saves").resizable(true).default_size(230.0).show(ui, |ui| self.save_list(ui));
@@ -706,8 +735,7 @@ impl eframe::App for App {
             });
         }
         self.handle_screenshot(ui);
-        // keep polling the game state even when idle
-        ui.ctx().request_repaint_after(std::time::Duration::from_secs(3));
+
     }
 }
 

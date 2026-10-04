@@ -706,6 +706,29 @@ pub fn set_state_flags(doc: &mut Node, item: &InvItem, flags: i64) {
     }
 }
 
+/// Capacity bonus of the purchased SDU levels of one group (Backpack, Bank).
+pub fn sdu_bonus(profile: Option<&Node>, prefix: &str) -> u32 {
+    let adds: &[u32] = match prefix {
+        "Backpack" => &[4, 4, 6, 6, 6, 8, 8, 12],
+        "Bank" => &[25, 50, 50, 50, 50, 50, 100, 100],
+        _ => return 0,
+    };
+    let Some(p) = profile else { return 0 };
+    let mut n = p.clone();
+    let bought = Profile(&mut n).sdu_nodes();
+    (1..=adds.len()).filter(|i| bought.iter().any(|(b, _)| b == &format!("{prefix}_{i:02}"))).map(|i| adds[i - 1]).sum()
+}
+
+/// Backpack capacity: base 16 (inventory_container) + SDUs. Equipped items are free.
+pub fn backpack_capacity(base: u32, profile: Option<&Node>) -> u32 {
+    base + sdu_bonus(profile, "Backpack")
+}
+
+/// Bank capacity: base 25 + SDUs.
+pub fn bank_capacity(base: u32, profile: Option<&Node>) -> u32 {
+    base + sdu_bonus(profile, "Bank")
+}
+
 /// Count of backpack items that use capacity (equipped ones are free).
 pub fn backpack_used(doc: &Node) -> usize {
     list_items(doc).iter().filter(|i| i.container == Container::Backpack && i.flags != Some(1)).count()
