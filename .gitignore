@@ -3,3 +3,4 @@
 /research/ncs_extract
 *.sav
 *.bak
+/build
