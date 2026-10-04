@@ -58,6 +58,19 @@ fn main() {
             for i in &info.issues {
                 println!("    [{:?}] {}", i.sev, i.msg);
             }
+            if args.iter().any(|a| a == "--stats") {
+                for (k, v) in bl4core::stats::card(&db, &d, &info) {
+                    println!("    STAT {k}: {v}");
+                }
+                if args.iter().any(|a| a == "--attrs") {
+                    for (n, v, srcs) in bl4core::stats::all_attributes(&db, &d, &info) {
+                        println!("      {n} = {v:.4}");
+                        for s in srcs {
+                            println!("          {s}");
+                        }
+                    }
+                }
+            }
         }
         for i in &info.issues {
             let key: String = format!("{:?}: {}", i.sev, i.msg.split(|c: char| c.is_ascii_digit()).next().unwrap_or(""));

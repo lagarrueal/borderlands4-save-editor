@@ -124,8 +124,12 @@ pub struct Part {
     #[serde(default)]
     pub beh: Option<serde_json::Value>,
     #[serde(default)]
+    pub asp: Option<serde_json::Value>,
+    #[serde(default)]
     pub r#mod: bool,
 }
+
+pub type Table = HashMap<String, HashMap<String, serde_json::Value>>;
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct Cosmetic {
@@ -188,6 +192,16 @@ struct RawDb {
     progress_graphs: HashMap<String, serde_json::Value>,
     #[serde(default)]
     sdu: Vec<SduNode>,
+    #[serde(default)]
+    tables: HashMap<String, Table>,
+    #[serde(default)]
+    attributes: HashMap<String, serde_json::Value>,
+    #[serde(default)]
+    aspects: HashMap<String, serde_json::Value>,
+    #[serde(default)]
+    bases: HashMap<String, serde_json::Value>,
+    #[serde(default)]
+    containers: HashMap<String, u32>,
 }
 
 pub struct Db {
@@ -203,6 +217,16 @@ pub struct Db {
     pub missions: HashMap<String, MissionInfo>,
     pub progress_graphs: HashMap<String, serde_json::Value>,
     pub sdu: Vec<SduNode>,
+    /// game data tables: table -> row -> column -> value
+    pub tables: HashMap<String, Table>,
+    /// attribute definitions (balance formulas) by name
+    pub attributes: HashMap<String, serde_json::Value>,
+    /// inventory aspect templates by name
+    pub aspects: HashMap<String, serde_json::Value>,
+    /// aspects of item types and their base types
+    pub bases: HashMap<String, serde_json::Value>,
+    /// base capacities (backpack, bank)
+    pub containers: HashMap<String, u32>,
     /// where the data came from (embedded or a file path)
     pub origin: String,
 }
@@ -244,6 +268,11 @@ impl Db {
             missions: r.missions,
             progress_graphs: r.progress_graphs,
             sdu: r.sdu,
+            tables: r.tables,
+            attributes: r.attributes,
+            aspects: r.aspects,
+            bases: r.bases,
+            containers: r.containers,
             origin: origin.to_string(),
         })
     }

@@ -422,11 +422,85 @@ def build_items(d, names, uistats, firmware):
             for k in ("fx", "tpl", "mods", "beh", "name_row"):
                 if k in asp:
                     p[k] = asp[k]
+            pas = [ref(x.get("parent")).lower() for x in as_list(dv.get("aspects")) if isinstance(x, dict) and x.get("parent")]
+            if pas:
+                p["asp"] = sorted(set(pas))
             k2 = f"{cid}:{idx}"
             if k2 in parts and parts[k2]["k"] != key:
                 p["conflict"] = parts[k2]["k"]
             parts[k2] = p
     return cats, parts
+
+
+COL_GUID = re.compile(r"_\d+_[0-9a-f]{32}$", re.I)
+
+
+def norm_col(c):
+    return COL_GUID.sub("", c.lower())
+
+
+def build_tables(d):
+    """All gbx_ue_data_tables as {table: {row: {column: value}}} (lower case,
+    GUID suffixes stripped from column names)."""
+    out = {}
+    for _, _, e in entries(d, "gbx_ue_data_table"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        rows = {}
+        for r in v.get("data") or []:
+            if not isinstance(r, dict) or not r.get("row_name"):
+                continue
+            cols = {}
+            for k, val in (r.get("row_value") or {}).items():
+                if isinstance(val, str):
+                    try:
+                        cols[norm_col(k)] = float(val)
+                    except ValueError:
+                        cols[norm_col(k)] = val
+            rows[r["row_name"].lower()] = cols
+        out[e["key"].lower()] = rows
+    return out
+
+
+def build_attributes(d):
+    out = {}
+    for _, _, e in entries(d, "attribute"):
+        if isinstance(e["value"], dict):
+            out[e["key"].lower()] = e["value"]
+    return out
+
+
+def build_aspect_defs(d):
+    """inv_aspect definitions (templates parts point at with `parent`)."""
+    out = {}
+    for _, _, e in entries(d, "Resident", "inv_aspect"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        a = compact_aspects({"aspects": [dict(v, parent=None)]})
+        rec = {k: a[k] for k in ("fx", "beh", "mods") if k in a}
+        if v.get("parent"):
+            rec["parent"] = ref(v["parent"]).lower()
+        out[e["key"].lower()] = rec
+    return out
+
+
+def build_bases(d):
+    """Aspects of every inv entry by key, so stats can walk the base-type chain."""
+    out = {}
+    for _, _, e in entries(d, "inv"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        if not v:
+            continue
+        a = compact_aspects(v)
+        rec = out.setdefault(e["key"].lower(), {})
+        if v.get("basetype"):
+            rec["base"] = ref(v["basetype"]).lower()
+        for k in ("fx", "tpl", "beh", "mods"):
+            if k in a:
+                rec[k] = rec.get(k, []) + a[k] if isinstance(a[k], list) else a[k]
+        # parent aspect names (template aspects without own data)
+        pas = [ref(x.get("parent")).lower() for x in as_list(v.get("aspects")) if isinstance(x, dict) and x.get("parent")]
+        if pas:
+            rec["asp"] = sorted(set(rec.get("asp", []) + pas))
+    return {k: v for k, v in out.items() if v}
 
 
 def main():
@@ -465,6 +539,12 @@ def main():
                 sdu.append({"name": cols[0], "cost": int(cols[1]), "requires": cols[2] if len(cols) > 2 and cols[2] != "{}" else None,
                             "effect": cols[3] if len(cols) > 3 else ""})
 
+    containers = {}
+    for _, _, e in entries(INSTALLED, "inventory_container"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        for si in as_list(v.get("slotinfo")):
+            if isinstance(si, dict) and si.get("numslots"):
+                containers[e["key"].lower()] = int(si["numslots"])
     db = {
         "meta": {
             "sources": {k: v["pak"] for k, v in srcs.items() if k.split("_c")[0].lower() in ("inv", "inv_name_part", "ui_stat")},
@@ -479,6 +559,11 @@ def main():
         "missions": seed.get("missions_catalogue", {}),
         "progress_graphs": seed.get("progress_graphs", {}),
         "sdu": sdu,
+        "tables": build_tables(INSTALLED),
+        "attributes": build_attributes(INSTALLED),
+        "aspects": build_aspect_defs(INSTALLED),
+        "bases": build_bases(INSTALLED),
+        "containers": containers,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     raw = json.dumps(db, separators=(",", ":"), ensure_ascii=False).encode("utf-8")

@@ -340,6 +340,7 @@ fn item_editor(app: &mut App, ui: &mut egui::Ui, it: &InvItem, which: Which, equ
         let stats = crate::pages::item_stats(&app.db, &serial, &info);
         if !stats.is_empty() {
             ui.separator();
+            ui.label(RichText::new("Stats (computed from game data; before skills and buffs)").weak().small());
             egui::Grid::new("stats").num_columns(2).spacing([16.0, 2.0]).show(ui, |ui| {
                 for (k, v) in stats {
                     ui.label(RichText::new(k).weak());
@@ -402,6 +403,7 @@ fn item_editor(app: &mut App, ui: &mut egui::Ui, it: &InvItem, which: Which, equ
     ui.add_space(6.0);
     ui.label(RichText::new("Parts").strong().size(16.0));
     let refs = serial.part_refs();
+    let effects = bl4core::stats::part_effects(&app.db, &serial, &info);
     let mut action: Option<Box<dyn FnOnce(&mut Serial)>> = None;
     egui::Grid::new("parts").num_columns(4).striped(true).spacing([10.0, 3.0]).show(ui, |ui| {
         for (n, p) in info.parts.iter().enumerate() {
@@ -426,7 +428,12 @@ fn item_editor(app: &mut App, ui: &mut egui::Ui, it: &InvItem, which: Which, equ
                     }));
                 }
             }
-            ui.label(RichText::new(format!("{}:{}", p.r.cat, p.r.idx)).weak().small());
+            let fx = effects.get(&p.key).cloned().unwrap_or_default();
+            let id_lbl = ui.label(RichText::new(format!("{}:{}", p.r.cat, p.r.idx)).weak().small());
+            if !fx.is_empty() {
+                id_lbl.on_hover_text(fx.join("
+"));
+            }
             if ui.small_button("✖").on_hover_text("Remove this part").clicked() {
                 action = Some(Box::new(move |s: &mut Serial| {
                     s.remove_part(n);
