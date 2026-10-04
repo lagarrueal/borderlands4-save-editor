@@ -524,8 +524,16 @@ fn item_editor(app: &mut App, ui: &mut egui::Ui, it: &InvItem, which: Which, equ
             }
             app.info("Item duplicated");
         }
+        if it.container == Container::LostLoot && ui.button("Move to backpack").clicked() {
+            let it2 = it.clone();
+            app.edit(Which::Character, |d| {
+                save::remove_item(d, &it2);
+                save::add_backpack_item(d, &it2.serial);
+            });
+            app.items.sel = None;
+        }
         let has_both = app.sess.as_ref().map(|s| s.character.is_some() && s.profile.is_some()).unwrap_or(false);
-        if has_both && it.container != Container::Equipped {
+        if has_both && matches!(it.container, Container::Backpack | Container::Bank) {
             let to_bank = which == Which::Character;
             if ui.button(if to_bank { "Move to bank" } else { "Move to backpack" }).clicked() {
                 let it2 = it.clone();

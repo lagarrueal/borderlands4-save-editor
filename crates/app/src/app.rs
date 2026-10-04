@@ -136,6 +136,8 @@ pub struct App {
     frame_no: u32,
     no_backup: bool,
     confirm_discard: Option<PathBuf>,
+    /// items the game would reject, waiting for the user's decision before saving
+    confirm_invalid: Option<Vec<String>>,
 }
 
 impl App {
@@ -169,6 +171,7 @@ impl App {
             frame_no: 0,
             no_backup: opts.no_backup,
             confirm_discard: None,
+            confirm_invalid: None,
         };
         let db_note = format!(
             "Game data: {} item types, {} parts ({}){}",
@@ -366,6 +369,38 @@ impl App {
         }
     }
 
+    /// Items in the open saves that the game would reject.
+    fn rejected_items(&self) -> Vec<String> {
+        let mut out = vec![];
+        let Some(s) = self.sess.as_ref() else { return out };
+        for doc in [s.character.as_ref().map(|c| &c.doc), s.profile.as_ref().map(|p| &p.doc)].into_iter().flatten() {
+            for it in save::list_items(doc) {
+                let bad = match bl4core::serial::Serial::decode(&it.serial) {
+                    Ok(sr) => bl4core::item::analyze(&self.db, &sr)
+                        .issues
+                        .into_iter()
+                        .find(|i| i.sev == bl4core::item::Severity::Error)
+                        .map(|i| i.msg),
+                    Err(e) => Some(e.to_string()),
+                };
+                if let Some(m) = bad {
+                    out.push(format!("{} slot {}: {m}", it.container.label(), it.slot));
+                }
+            }
+        }
+        out
+    }
+
+    /// Save, asking first if some items would be rejected by the game.
+    pub fn request_save(&mut self) {
+        let bad = self.rejected_items();
+        if bad.is_empty() {
+            self.save_all();
+        } else {
+            self.confirm_invalid = Some(bad);
+        }
+    }
+
     pub fn save_all(&mut self) {
         self.game_running = save::game_running();
         if self.game_running {
@@ -440,7 +475,7 @@ impl App {
             let can_save = self.sess.is_some() && !self.game_running;
             let save_btn = ui.add_enabled(can_save, egui::Button::new(if self.any_dirty() { "Save *" } else { "Save" }));
             if save_btn.clicked() || (can_save && ui.input(|i| i.modifiers.ctrl && i.key_pressed(egui::Key::S))) {
-                self.save_all();
+                self.request_save();
             }
             let has_undo = self.sess.as_ref().map(|s| !s.undo.is_empty()).unwrap_or(false);
             let has_redo = self.sess.as_ref().map(|s| !s.redo.is_empty()).unwrap_or(false);
@@ -644,6 +679,28 @@ impl eframe::App for App {
                     }
                     if ui.button("Cancel").clicked() {
                         self.confirm_discard = None;
+                    }
+                });
+            });
+        }
+        if let Some(bad) = self.confirm_invalid.clone() {
+            egui::Window::new("Items the game will reject").collapsible(false).resizable(true).show(ui.ctx(), |ui| {
+                ui.label(format!(
+                    "{} item(s) are invalid. On load the game moves such items to 'unknown items' (they disappear from your inventory):",
+                    bad.len()
+                ));
+                egui::ScrollArea::vertical().max_height(220.0).show(ui, |ui| {
+                    for b in &bad {
+                        ui.label(RichText::new(b).color(Color32::from_rgb(255, 110, 110)));
+                    }
+                });
+                ui.horizontal(|ui| {
+                    if ui.button("Cancel (fix them first)").clicked() {
+                        self.confirm_invalid = None;
+                    }
+                    if ui.button("Save anyway").clicked() {
+                        self.confirm_invalid = None;
+                        self.save_all();
                     }
                 });
             });
