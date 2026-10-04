@@ -31,7 +31,7 @@ TABLES = [
     "Manufacturer", "Rarity", "gbx_ue_data_table", "attribute", "Firmware",
     "GbxActorPart", "GbxActor", "hover_drive", "Mission", "missionset", "progress_graph",
     "challenge", "xp_progression", "profile_skip_reward_def", "display_data",
-    "unlockable", "usable_consumer", "inv_stat", "Capital", "Resident", "ItemPoolList", "itempool", "inventory_container",
+    "unlockable", "usable_consumer", "inv_stat", "Capital", "Resident", "ItemPoolList", "itempool", "inventory_container", "Map",
 ]
 
 DEFAULT_BL4 = HERE.parent.parent / "third_party" / "bl4" / "target" / "release" / "bl4.exe"

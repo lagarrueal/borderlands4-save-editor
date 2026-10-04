@@ -663,6 +663,30 @@ def build_sdu(d):
     return sorted(out, key=order)
 
 
+def build_stations(d):
+    """Checkpoint names `Map_P.Station` for fast-travel and respawn stations."""
+    out = []
+    for _, _, e in entries(d, "Map"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        mapname = v.get("map") if isinstance(v.get("map"), str) else None
+        for de in e.get("dep_entries", []):
+            if de.get("dep_table_name") != "station":
+                continue
+            dv = de["value"] if isinstance(de["value"], dict) else {}
+            ty = (ref(dv.get("typedef")) or "").lower()
+            if ty not in ("fast_travel", "respawn"):
+                continue
+            st = dv.get("station") or de["key"]
+            m = mapname
+            if not m and isinstance(dv.get("dest"), str) and "." in ref(dv["dest"]):
+                m = ref(dv["dest"]).split(".")[0]
+            if not m:
+                m = e["key"][:-2].title().replace(" ", "") + "_P" if e["key"].endswith("_p") else e["key"]
+            out.append({"cp": f"{m}.{st}", "type": ty})
+    uniq = {x["cp"]: x for x in out}
+    return sorted(uniq.values(), key=lambda x: (x["type"] != "fast_travel", x["cp"]))
+
+
 def main():
     names = build_names(INSTALLED)
     uistats = build_uistats(INSTALLED)
@@ -728,6 +752,7 @@ def main():
         "bases": build_bases(INSTALLED),
         "containers": containers,
         "uiargs": UI_ARGS,
+        "stations": build_stations(INSTALLED),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     raw = json.dumps(db, separators=(",", ":"), ensure_ascii=False).encode("utf-8")

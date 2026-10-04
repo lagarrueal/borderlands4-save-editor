@@ -204,6 +204,15 @@ struct RawDb {
     containers: HashMap<String, u32>,
     #[serde(default)]
     uiargs: HashMap<String, Vec<UiArg>>,
+    #[serde(default)]
+    stations: Vec<Station>,
+}
+
+/// A checkpoint the save can name in `state.checkpoint_name`.
+#[derive(Debug, Deserialize, Clone)]
+pub struct Station {
+    pub cp: String,
+    pub r#type: String,
 }
 
 /// A numeric placeholder in an item text line (`{mod}` -> attribute value).
@@ -248,6 +257,8 @@ pub struct Db {
     pub containers: HashMap<String, u32>,
     /// placeholder arguments of item text lines, keyed by the text
     pub uiargs: HashMap<String, Vec<UiArg>>,
+    /// fast-travel and respawn stations (`Map_P.Station`)
+    pub stations: Vec<Station>,
     /// where the data came from (embedded or a file path)
     pub origin: String,
 }
@@ -295,6 +306,7 @@ impl Db {
             bases: r.bases,
             containers: r.containers,
             uiargs: r.uiargs,
+            stations: r.stations,
             origin: origin.to_string(),
         })
     }

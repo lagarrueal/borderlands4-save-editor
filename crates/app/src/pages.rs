@@ -20,6 +20,7 @@ pub struct PagesState {
     cosmetic_filter: String,
     include_premium: bool,
     uvh_target: u32,
+    show_respawn: bool,
     name_buf: Option<String>,
 }
 
@@ -119,8 +120,24 @@ pub fn character(app: &mut App, ui: &mut egui::Ui) {
         ui.label("Character GUID");
         ui.label(RichText::new(doc.get("state.char_guid").and_then(|n| n.as_str()).unwrap_or("")).monospace().weak());
         ui.end_row();
-        ui.label("Checkpoint");
-        ui.label(doc.get("state.checkpoint_name").and_then(|n| n.as_str()).unwrap_or("-"));
+        ui.label("Checkpoint (spawn point)");
+        let cur = doc.get("state.checkpoint_name").and_then(|n| n.as_str()).unwrap_or("").to_string();
+        ui.horizontal(|ui| {
+            let mut chosen = None;
+            egui::ComboBox::from_id_salt("checkpoint").width(380.0).selected_text(if cur.is_empty() { "-" } else { cur.as_str() }).show_ui(ui, |ui| {
+                for st in app.db.stations.iter().filter(|s| app.pages.show_respawn || s.r#type == "fast_travel") {
+                    if ui.selectable_label(st.cp == cur, &st.cp).clicked() {
+                        chosen = Some(st.cp.clone());
+                    }
+                }
+            });
+            ui.checkbox(&mut app.pages.show_respawn, "include respawn points");
+            if let Some(c) = chosen {
+                if c != cur {
+                    app.edit(Which::Character, |d| d.set_scalar("state.checkpoint_name", c.clone()));
+                }
+            }
+        });
         ui.end_row();
     });
     ui.add_space(10.0);
