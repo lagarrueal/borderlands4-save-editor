@@ -202,6 +202,25 @@ struct RawDb {
     bases: HashMap<String, serde_json::Value>,
     #[serde(default)]
     containers: HashMap<String, u32>,
+    #[serde(default)]
+    uiargs: HashMap<String, Vec<UiArg>>,
+}
+
+/// A numeric placeholder in an item text line (`{mod}` -> attribute value).
+#[derive(Debug, Deserialize, Clone)]
+pub struct UiArg {
+    #[serde(default)]
+    pub k: Option<String>,
+    #[serde(default)]
+    pub a: Option<String>,
+    #[serde(default)]
+    pub pct: bool,
+    #[serde(default)]
+    pub plus: bool,
+    #[serde(default)]
+    pub fmt: Option<String>,
+    #[serde(default)]
+    pub c: Option<serde_json::Value>,
 }
 
 pub struct Db {
@@ -227,6 +246,8 @@ pub struct Db {
     pub bases: HashMap<String, serde_json::Value>,
     /// base capacities (backpack, bank)
     pub containers: HashMap<String, u32>,
+    /// placeholder arguments of item text lines, keyed by the text
+    pub uiargs: HashMap<String, Vec<UiArg>>,
     /// where the data came from (embedded or a file path)
     pub origin: String,
 }
@@ -273,6 +294,7 @@ impl Db {
             aspects: r.aspects,
             bases: r.bases,
             containers: r.containers,
+            uiargs: r.uiargs,
             origin: origin.to_string(),
         })
     }

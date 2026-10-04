@@ -334,7 +334,7 @@ fn item_editor(app: &mut App, ui: &mut egui::Ui, it: &InvItem, which: Which, equ
         if !info.text.is_empty() {
             ui.separator();
             for t in &info.text {
-                markup(ui, t);
+                markup(ui, &bl4core::stats::render_text(&app.db, &serial, &info, t));
             }
         }
         let stats = crate::pages::item_stats(&app.db, &serial, &info);
@@ -444,7 +444,7 @@ fn item_editor(app: &mut App, ui: &mut egui::Ui, it: &InvItem, which: Which, equ
                 ui.label("");
                 ui.vertical(|ui| {
                     for t in &p.text {
-                        markup(ui, t);
+                        markup(ui, &bl4core::stats::render_text(&app.db, &serial, &info, t));
                     }
                 });
                 ui.end_row();

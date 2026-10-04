@@ -106,7 +106,12 @@ def build_names(d):
     return names
 
 
+UI_ARGS = {}
+
+
 def build_uistats(d):
+    """ui_stat key -> display text. Placeholder arguments ({mod}, {damage}, ...)
+    are recorded in UI_ARGS[text] so the editor can fill in numbers."""
     ui = {}
     for _, _, e in entries(d, "ui_stat"):
         v = e["value"] if isinstance(e["value"], dict) else {}
@@ -114,6 +119,28 @@ def build_uistats(d):
         t = text(sv.get("formattext")) if isinstance(sv, dict) else None
         if t:
             ui[e["key"].lower()] = t
+            args = []
+            am = sv.get("argsmap") if isinstance(sv, dict) else None
+            for pair in ((am or {}).get("pairs") or {}).values():
+                if not isinstance(pair, dict):
+                    continue
+                val = pair.get("value") or {}
+                if not isinstance(val, dict):
+                    continue
+                a = {"k": pair.get("key")}
+                if val.get("attributedef"):
+                    a["a"] = ref(val["attributedef"]).lower()
+                if str(val.get("bdisplayaspercentage", "")).lower() == "true":
+                    a["pct"] = True
+                if str(val.get("bdisplayplussign", "")).lower() == "true":
+                    a["plus"] = True
+                if str(val.get("buseformattext", "")).lower() == "true" and val.get("formattext"):
+                    a["fmt"] = text(val["formattext"])
+                if val.get("constant") is not None:
+                    a["c"] = val.get("constant")
+                args.append(a)
+            if args:
+                UI_ARGS[t] = args
     return ui
 
 
@@ -608,6 +635,7 @@ def main():
         "aspects": build_aspect_defs(INSTALLED),
         "bases": build_bases(INSTALLED),
         "containers": containers,
+        "uiargs": UI_ARGS,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     raw = json.dumps(db, separators=(",", ":"), ensure_ascii=False).encode("utf-8")

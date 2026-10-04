@@ -486,3 +486,34 @@ pub fn part_effects(db: &Db, s: &Serial, info: &ItemInfo) -> HashMap<String, Vec
     }
     out
 }
+
+/// Fill `{placeholders}` in an item text line with values computed for this item.
+pub fn render_text(db: &Db, s: &Serial, info: &ItemInfo, text: &str) -> String {
+    let Some(args) = db.uiargs.get(text) else { return text.to_string() };
+    let c = compute(db, s, info);
+    let mut ev = Eval::new(db, info.level.unwrap_or(1).max(1), info.rarity);
+    let mut out = text.to_string();
+    for a in args {
+        let Some(k) = &a.k else { continue };
+        let v = a
+            .a
+            .as_deref()
+            .and_then(|attr| c.value(attr).or_else(|| ev.attr(attr)))
+            .or_else(|| a.c.as_ref().and_then(num))
+            // a negative duration/amount means only a modifier resolved, not the value
+            .filter(|v| *v >= 0.0 || a.plus);
+        let shown = match v {
+            Some(v) => {
+                let n = if a.pct { format!("{:.0}%", v * 100.0) } else { fmt_num(v) };
+                let n = if a.plus && v >= 0.0 { format!("+{n}") } else { n };
+                match &a.fmt {
+                    Some(f) => f.replace("$VALUE$", &n),
+                    None => n,
+                }
+            }
+            None => "?".to_string(),
+        };
+        out = out.replace(&format!("{{{k}}}"), &shown);
+    }
+    out
+}
