@@ -458,7 +458,12 @@ impl App {
             }
             ui.separator();
             ui.label("Steam ID:");
-            ui.add(egui::TextEdit::singleline(&mut self.steam_id).desired_width(150.0).hint_text("from the save folder"));
+            let r = ui.add(egui::TextEdit::singleline(&mut self.steam_id).desired_width(150.0).hint_text("auto"));
+            if r.lost_focus() {
+                if let Some(d) = self.folder.clone() {
+                    self.set_folder(&d);
+                }
+            }
             if self.game_running {
                 ui.separator();
                 ui.label(

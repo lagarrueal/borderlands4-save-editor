@@ -137,6 +137,9 @@ pub fn part_label(db: &Db, p: &Part) -> String {
         return format!("Firmware: {}", title_case(&n));
     }
     if let Some(t) = &p.title {
+        if !p.passive.is_empty() {
+            return format!("{t} +{}", p.points.unwrap_or(1));
+        }
         return t.clone();
     }
     if let Some(t) = &p.prefix {
@@ -341,7 +344,7 @@ pub fn analyze(db: &Db, s: &Serial) -> ItemInfo {
     let mut best_title: Option<(&str, i32)> = None;
     let mut prefix: Option<&str> = None;
     for p in resolved.iter().flatten() {
-        if let Some(t) = &p.title {
+        if let (Some(t), true) = (&p.title, p.passive.is_empty()) {
             // legendary/unique names outrank barrel names
             let pri = if p.s == "inv_comp" || p.k.contains("legendary") || p.k.contains("unique") { 3 } else { 1 };
             if best_title.map(|b| pri > b.1).unwrap_or(true) {

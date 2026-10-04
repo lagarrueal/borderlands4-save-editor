@@ -322,7 +322,45 @@ def compact_aspects(v):
     return out
 
 
-def build_items(d, names, uistats, firmware):
+def build_skill_names(d):
+    """(graph, node key) -> skill display alias. Class skill graphs inherit
+    node keys ("Trunk - Row 2 - 1") from template graphs and name them by
+    pair id."""
+    graphs = {}
+    for _, _, e in entries(d, "progress_graph"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        g = graphs.setdefault(e["key"].lower(), {"parent": None, "pairs": {}})
+        if v.get("parent"):
+            g["parent"] = ref(v["parent"]).lower()
+        nodes = v.get("nodes") if isinstance(v.get("nodes"), dict) else {}
+        for pid, pair in (nodes.get("pairs") or {}).items():
+            if not isinstance(pair, dict):
+                continue
+            rec = g["pairs"].setdefault(pid, {})
+            if pair.get("key"):
+                rec["key"] = pair["key"]
+            val = pair.get("value") or {}
+            if isinstance(val, dict) and val.get("alias"):
+                rec["alias"] = val["alias"]
+    out = {}
+    for gname, g in graphs.items():
+        keys, aliases = {}, {}
+        cur, seen = gname, set()
+        while cur and cur in graphs and cur not in seen:
+            seen.add(cur)
+            for pid, rec in graphs[cur]["pairs"].items():
+                if "key" in rec:
+                    keys.setdefault(pid, rec["key"])
+                if "alias" in rec:
+                    aliases.setdefault(pid, rec["alias"])
+            cur = graphs[cur]["parent"]
+        m = {keys[pid]: aliases[pid] for pid in keys if pid in aliases}
+        if m:
+            out[gname] = m
+    return out
+
+
+def build_items(d, names, uistats, firmware, skills=None):
     cats = {}
     key_to_cat = {}
     allentries = []
@@ -409,6 +447,11 @@ def build_items(d, names, uistats, firmware):
                     pas = a["passives"]
                     p["passive"] = [{"graph": ref(x.get("progressgraph")), "node": x.get("nodename")} for x in as_list(pas) if isinstance(x, dict)]
                     p["points"] = int(a.get("points") or 1)
+                    if skills:
+                        sk = [skills.get((x["graph"] or "").lower(), {}).get(x["node"]) for x in p["passive"]]
+                        sk = [x for x in sk if x]
+                        if sk:
+                            p["title"] = " / ".join(sk)
             # resolved display strings
             tt = [names[t] for t in asp.get("title", []) if t in names]
             if tt:
@@ -508,7 +551,8 @@ def main():
     uistats = build_uistats(INSTALLED)
     mfrs = build_manufacturers(INSTALLED)
     firmware = build_firmware(INSTALLED)
-    cats, parts = build_items(INSTALLED, names, uistats, firmware)
+    skills = build_skill_names(INSTALLED)
+    cats, parts = build_items(INSTALLED, names, uistats, firmware, skills)
 
     # what mods add: compare with the vanilla build
     if (VANILLA / "json").exists():

@@ -205,7 +205,7 @@ pub fn progression(app: &mut App, ui: &mut egui::Ui) {
             ui.label(RichText::new("Ultimate Vault Hunter").strong().size(16.0));
             ui.label(format!("Unlocked: UVH {max} · Active: {}", if active == 0 { "off".to_string() } else { format!("UVH {active}") }));
             if !story {
-                ui.label(RichText::new("The story is not finished on this character: UVH normally needs it. Use Missions → Complete main story first (recommended).").color(Color32::from_rgb(255, 190, 60)));
+                ui.label(RichText::new("The story is not finished on this character: UVH normally needs it. Use Missions > Complete main story first (recommended).").color(Color32::from_rgb(255, 190, 60)));
             }
             if app.pages.uvh_target == 0 {
                 app.pages.uvh_target = max.max(1);
@@ -481,7 +481,11 @@ pub fn appearance(app: &mut App, ui: &mut egui::Ui) {
         });
         let mut by_group: BTreeMap<String, Vec<(String, String)>> = BTreeMap::new();
         for (id, cm) in &app.db.cosmetics {
-            by_group.entry(cm.group.to_lowercase()).or_default().push((id.clone(), cm.name.clone().unwrap_or_default()));
+            let g = cm.group.to_lowercase();
+            if g.ends_with("_character") {
+                continue; // per-character unlocks live in the character save
+            }
+            by_group.entry(g).or_default().push((id.clone(), cm.name.clone().unwrap_or_default()));
         }
         let premium = |id: &str| {
             let l = id.to_lowercase();

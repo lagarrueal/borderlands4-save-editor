@@ -43,10 +43,28 @@ impl SaveFile {
     /// Decrypt and parse. The Steam ID defaults to the one in the save path.
     pub fn open(path: &Path, steam_id: Option<u64>) -> Result<SaveFile, SaveError> {
         let data = std::fs::read(path)?;
-        let sid = steam_id
-            .or_else(|| crypto::steam_id_from_path(path))
-            .ok_or_else(|| SaveError::Msg("Steam ID unknown: the save is not inside a SaveGames\\<steamid> folder. Enter it in the Steam ID box.".into()))?;
-        let yaml_bytes = crypto::decrypt(&data, sid)?;
+        // candidates: explicit, from the path, then every Steam ID with BL4 saves on this PC
+        let mut cands: Vec<u64> = steam_id.into_iter().chain(crypto::steam_id_from_path(path)).collect();
+        for id in known_steam_ids() {
+            if !cands.contains(&id) {
+                cands.push(id);
+            }
+        }
+        if cands.is_empty() {
+            return Err(SaveError::Msg(
+                "Steam ID unknown: the save is not inside a SaveGames\\<steamid> folder. Enter it in the Steam ID box.".into(),
+            ));
+        }
+        let mut found = None;
+        for sid in &cands {
+            if let Ok(y) = crypto::decrypt(&data, *sid) {
+                found = Some((*sid, y));
+                break;
+            }
+        }
+        let (sid, yaml_bytes) = found.ok_or_else(|| {
+            SaveError::Msg("Cannot decrypt: wrong Steam ID (enter the Steam ID that owns this save) or not a BL4 save.".into())
+        })?;
         let text = String::from_utf8(yaml_bytes).map_err(|_| SaveError::Utf8)?;
         let doc = yaml::parse(&text)?;
         let kind = if doc.get("domains").is_some() || path.file_stem().map(|s| s == "profile").unwrap_or(false) {
@@ -156,6 +174,19 @@ pub fn game_running() -> bool {
     {
         false
     }
+}
+
+/// Steam IDs that have Borderlands 4 saves on this PC.
+pub fn known_steam_ids() -> Vec<u64> {
+    let mut out = vec![];
+    for d in default_save_dirs() {
+        if let Some(id) = crypto::steam_id_from_path(&d.join("x.sav")) {
+            if !out.contains(&id) {
+                out.push(id);
+            }
+        }
+    }
+    out
 }
 
 /// Default save folder: Documents\My Games\Borderlands 4\Saved\SaveGames\<id>\Profiles\client
