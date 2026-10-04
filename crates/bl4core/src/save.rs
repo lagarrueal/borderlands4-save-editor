@@ -706,6 +706,34 @@ pub fn set_state_flags(doc: &mut Node, item: &InvItem, flags: i64) {
     }
 }
 
+/// Set every item of `container` to `level` (equipped copies follow their
+/// backpack twin). Items without a standard level field are skipped.
+/// Returns (changed, skipped).
+pub fn scale_items(doc: &mut Node, container: Container, level: u32) -> (usize, usize) {
+    let (mut changed, mut skipped) = (0, 0);
+    let items: Vec<InvItem> = list_items(doc).into_iter().filter(|i| i.container == container).collect();
+    for it in items {
+        let Ok(mut s) = crate::serial::Serial::decode(&it.serial) else {
+            skipped += 1;
+            continue;
+        };
+        if s.level() == Some(level) {
+            continue;
+        }
+        if !s.set_level(level) {
+            skipped += 1;
+            continue;
+        }
+        // the item may have been renamed by an earlier twin update
+        let cur = list_items(doc).into_iter().find(|x| x.path == it.path);
+        if let Some(cur) = cur {
+            set_item_serial(doc, &cur, &s.encode());
+            changed += 1;
+        }
+    }
+    (changed, skipped)
+}
+
 /// Capacity bonus of the purchased SDU levels of one group (Backpack, Bank).
 pub fn sdu_bonus(profile: Option<&Node>, prefix: &str) -> u32 {
     let adds: &[u32] = match prefix {

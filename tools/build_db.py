@@ -117,6 +117,8 @@ def build_uistats(d):
         v = e["value"] if isinstance(e["value"], dict) else {}
         sv = v.get("statvalue") or v.get("statlabel") or {}
         t = text(sv.get("formattext")) if isinstance(sv, dict) else None
+        if t and ref(v.get("displaygroup") or "") == "RedText":
+            t = f"[redtext]{t}[/redtext]"
         if t:
             ui[e["key"].lower()] = t
             args = []
@@ -413,6 +415,9 @@ def build_items(d, names, uistats, firmware, skills=None):
             ui = [ref(u).lower() for u in as_list(v.get("uistats"))]
             if ui:
                 asp["ui"] = ui + asp.get("ui", [])
+                lines = [uistats[u] for u in ui if u in uistats]
+                if lines:
+                    c["text"] = lines
             if asp:
                 c["asp"] = asp
             key_to_cat[e["key"].lower()] = cid

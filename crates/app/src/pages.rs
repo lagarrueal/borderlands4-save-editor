@@ -123,14 +123,14 @@ pub fn character(app: &mut App, ui: &mut egui::Ui) {
         ui.label("Checkpoint (spawn point)");
         let cur = doc.get("state.checkpoint_name").and_then(|n| n.as_str()).unwrap_or("").to_string();
         ui.horizontal(|ui| {
-            let mut chosen = None;
-            egui::ComboBox::from_id_salt("checkpoint").width(380.0).selected_text(if cur.is_empty() { "-" } else { cur.as_str() }).show_ui(ui, |ui| {
-                for st in app.db.stations.iter().filter(|s| app.pages.show_respawn || s.r#type == "fast_travel") {
-                    if ui.selectable_label(st.cp == cur, &st.cp).clicked() {
-                        chosen = Some(st.cp.clone());
-                    }
-                }
-            });
+            let opts: Vec<crate::widgets::Opt<String>> = app
+                .db
+                .stations
+                .iter()
+                .filter(|s| app.pages.show_respawn || s.r#type == "fast_travel")
+                .map(|st| crate::widgets::Opt::new(st.cp.clone(), st.cp.clone()).selected(st.cp == cur))
+                .collect();
+            let chosen = crate::widgets::search_combo(ui, "checkpoint", 380.0, if cur.is_empty() { "-" } else { cur.as_str() }, opts);
             ui.checkbox(&mut app.pages.show_respawn, "include respawn points");
             if let Some(c) = chosen {
                 if c != cur {
@@ -464,19 +464,13 @@ pub fn appearance(app: &mut App, ui: &mut egui::Ui) {
                         .as_ref()
                         .map(|p| opts.iter().find(|o| &o.0 == p).map(|o| o.1.clone()).unwrap_or(p.clone()))
                         .unwrap_or_else(|| "default".into());
-                    let mut chosen: Option<Option<String>> = None;
-                    egui::ComboBox::from_id_salt(("cos", &group, &slot)).width(300.0).selected_text(cur_lbl).show_ui(ui, |ui| {
-                        if ui.selectable_label(cur.is_none(), "default").clicked() {
-                            chosen = Some(None);
-                        }
-                        for (part, name, id) in &opts {
-                            let ok = is_unlocked(id);
-                            let label = format!("{}{}", if name.is_empty() { part } else { name }, if ok { "" } else { "  (locked)" });
-                            if ui.add_enabled(ok, egui::Button::selectable(cur.as_ref() == Some(part), label)).clicked() {
-                                chosen = Some(Some(part.clone()));
-                            }
-                        }
-                    });
+                    let mut copts: Vec<crate::widgets::Opt<Option<String>>> = vec![crate::widgets::Opt::new(None, "default").selected(cur.is_none())];
+                    for (part, name, id) in &opts {
+                        let ok = is_unlocked(id);
+                        let label = format!("{}{}", if name.is_empty() { part } else { name }, if ok { "" } else { "  (locked)" });
+                        copts.push(crate::widgets::Opt::new(Some(part.clone()), label).extra(part.clone()).selected(cur.as_ref() == Some(part)).enabled(ok));
+                    }
+                    let chosen = crate::widgets::search_combo(ui, ("cos", &group, &slot), 300.0, cur_lbl, copts);
                     if let Some(ch) = chosen {
                         let (g2, s2) = (group.clone(), slot_key.clone());
                         app.edit(Which::Character, |d| Character(d).set_cosmetic(&g2, &s2, ch.as_deref()));

@@ -71,6 +71,9 @@ pub struct Category {
     pub comps: HashMap<String, Comp>,
     #[serde(default)]
     pub asp: Option<serde_json::Value>,
+    /// item-type text lines (manufacturer perk)
+    #[serde(default)]
+    pub text: Vec<String>,
     #[serde(default)]
     pub r#mod: bool,
 }

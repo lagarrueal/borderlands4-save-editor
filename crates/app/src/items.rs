@@ -5,6 +5,7 @@ use bl4core::db::{kind_label, Db};
 use bl4core::item::{self, ItemInfo, Rarity, Severity};
 use bl4core::save::{self, Container, InvItem};
 use bl4core::serial::{PartRef, Serial};
+use crate::widgets::{search_combo, Opt};
 use eframe::egui::{self, Color32, RichText};
 use std::collections::HashMap;
 use std::rc::Rc;
@@ -36,7 +37,6 @@ pub struct ItemsState {
     new_cat: Option<u32>,
     new_comp: String,
     new_level: u32,
-    part_filter: String,
 }
 
 impl ItemsState {
@@ -144,6 +144,19 @@ pub fn inventory(app: &mut App, ui: &mut egui::Ui, view: View) {
         ui.separator();
         ui.label("Filter:");
         ui.add(egui::TextEdit::singleline(&mut app.items.filter).desired_width(160.0));
+        if let Some(lvl) = app.character_level() {
+            if view != View::LostLoot {
+                ui.separator();
+                let what = if view == View::Bank { "bank" } else { "backpack" };
+                if ui.button(format!("Scale all to level {lvl}")).on_hover_text(format!("Set every {what} item (equipped ones too) to your character level")).clicked() {
+                    let (w, c) = if view == View::Bank { (Which::Profile, Container::Bank) } else { (Which::Character, Container::Backpack) };
+                    let mut res = (0, 0);
+                    app.edit(w, |d| res = save::scale_items(d, c, lvl));
+                    app.items.invalidate();
+                    app.info(format!("{} items set to level {lvl}{}", res.0, if res.1 > 0 { format!(" ({} without a level field skipped)", res.1) } else { String::new() }));
+                }
+            }
+        }
     });
     ui.separator();
 
@@ -233,39 +246,59 @@ fn image(ui: &mut egui::Ui, icon: Option<(&'static [u8], String)>, size: egui::V
     }
 }
 
-fn markup(ui: &mut egui::Ui, text: &str) {
-    // [secondary]..[/secondary], [rarity_legendary].. -> colored segments
+/// Render the game's rich text: [secondary]..[/secondary] blue,
+/// [rarity_legendary].. gold, [redtext].. red italic (flavour text).
+pub fn markup(ui: &mut egui::Ui, text: &str) {
+    let base = Color32::from_gray(210);
     let mut job = egui::text::LayoutJob::default();
-    let mut color = Color32::from_gray(210);
+    let mut stack: Vec<String> = vec![];
+    let fmt = |stack: &Vec<String>| {
+        let mut f = egui::TextFormat { color: base, ..Default::default() };
+        for t in stack {
+            if t == "redtext" {
+                f.color = Color32::from_rgb(235, 60, 60);
+                f.italics = true;
+            } else if t.contains("legendary") {
+                f.color = Color32::from_rgb(255, 200, 40);
+            } else if t.contains("secondary") || t.contains("primary") {
+                f.color = Color32::from_rgb(120, 200, 255);
+            }
+        }
+        f
+    };
     let mut rest = text;
     while !rest.is_empty() {
-        if let Some(start) = rest.find('[') {
-            if start > 0 {
-                job.append(&rest[..start], 0.0, egui::TextFormat { color, ..Default::default() });
+        match rest.find('[') {
+            Some(start) => {
+                if start > 0 {
+                    job.append(&rest[..start], 0.0, fmt(&stack));
+                }
+                match rest[start..].find(']') {
+                    Some(end) => {
+                        let tag = &rest[start + 1..start + end];
+                        if let Some(closing) = tag.strip_prefix('/') {
+                            if let Some(i) = stack.iter().rposition(|t| t == closing) {
+                                stack.remove(i);
+                            }
+                        } else if !tag.contains(' ') && tag.len() < 40 {
+                            stack.push(tag.to_string());
+                        } else {
+                            job.append(&rest[start..start + end + 1], 0.0, fmt(&stack));
+                        }
+                        rest = &rest[start + end + 1..];
+                    }
+                    None => {
+                        job.append(&rest[start..], 0.0, fmt(&stack));
+                        break;
+                    }
+                }
             }
-            if let Some(end) = rest[start..].find(']') {
-                let tag = &rest[start + 1..start + end];
-                color = if tag.starts_with('/') {
-                    Color32::from_gray(210)
-                } else if tag.contains("legendary") {
-                    Color32::from_rgb(255, 120, 60)
-                } else if tag.contains("secondary") || tag.contains("primary") {
-                    Color32::from_rgb(120, 200, 255)
-                } else {
-                    color
-                };
-                rest = &rest[start + end + 1..];
-                continue;
+            None => {
+                job.append(rest, 0.0, fmt(&stack));
+                break;
             }
-            job.append(&rest[start..], 0.0, egui::TextFormat { color, ..Default::default() });
-            break;
-        } else {
-            job.append(rest, 0.0, egui::TextFormat { color, ..Default::default() });
-            break;
         }
     }
-    let first = text.split(", ").count();
-    let _ = first;
     ui.label(job);
 }
 
@@ -374,6 +407,14 @@ fn item_editor(app: &mut App, ui: &mut egui::Ui, it: &InvItem, which: Which, equ
                     apply_serial(app, it, which, &s.encode());
                 }
             }
+            if let Some(cl) = app.character_level() {
+                if ui.add_enabled(cl != l, egui::Button::new(format!("Scale to character level ({cl})"))).clicked() {
+                    let mut s = serial.clone();
+                    if s.set_level(cl) {
+                        apply_serial(app, it, which, &s.encode());
+                    }
+                }
+            }
         }
         let sf = it.state_flags.unwrap_or(1);
         let mut fav = sf & 2 != 0;
@@ -401,17 +442,11 @@ fn item_editor(app: &mut App, ui: &mut egui::Ui, it: &InvItem, which: Which, equ
             let _ = refs.get(n);
             ui.label(RichText::new(&p.slot).weak());
             let cur_label = format!("{}  ({})", p.label, p.key);
-            let id = ui.id().with(("part", n, &it.path));
-            let mut chosen: Option<PartRef> = None;
-            egui::ComboBox::from_id_salt(id).width(360.0).selected_text(cur_label).show_ui(ui, |ui| {
-                for cand in candidates(&app.db, p.r.cat, &p.slot) {
-                    let cp = app.db.part(cand).unwrap();
-                    let lbl = format!("{}  ({}){}", item::part_label(&app.db, cp), cp.k, if cp.r#mod { " [mod]" } else { "" });
-                    if ui.selectable_label(cand == p.r, lbl).clicked() {
-                        chosen = Some(cand);
-                    }
-                }
-            });
+            let opts: Vec<Opt<PartRef>> = candidates(&app.db, p.r.cat, &p.slot)
+                .into_iter()
+                .map(|cand| part_opt(&app.db, cand).selected(cand == p.r))
+                .collect();
+            let chosen = search_combo(ui, ("part", n, &it.path), 360.0, cur_label, opts);
             if let Some(c) = chosen {
                 if c != p.r {
                     action = Some(Box::new(move |s: &mut Serial| {
@@ -454,16 +489,12 @@ fn item_editor(app: &mut App, ui: &mut egui::Ui, it: &InvItem, which: Which, equ
     ui.horizontal(|ui| {
         ui.label("Add part:");
         let slots = slot_options(&app.db, info.category, &info.kind);
-        egui::ComboBox::from_id_salt("add_slot")
-            .selected_text(if app.items.add_slot.is_empty() { "slot…".to_string() } else { app.items.add_slot.clone() })
-            .show_ui(ui, |ui| {
-                for (c, s) in &slots {
-                    if ui.selectable_label(app.items.add_slot == *s, format!("{s} ({c})")).clicked() {
-                        app.items.add_slot = s.clone();
-                        app.items.add_part = None;
-                    }
-                }
-            });
+        let slot_opts: Vec<Opt<String>> = slots.iter().map(|(c, s)| Opt::new(s.clone(), format!("{s} ({c})")).selected(app.items.add_slot == *s)).collect();
+        let slot_lbl = if app.items.add_slot.is_empty() { "slot…".to_string() } else { app.items.add_slot.clone() };
+        if let Some(sl) = search_combo(ui, "add_slot", 170.0, slot_lbl, slot_opts) {
+            app.items.add_slot = sl;
+            app.items.add_part = None;
+        }
         let cands: Vec<PartRef> = slots
             .iter()
             .filter(|(_, s)| *s == app.items.add_slot)
@@ -475,20 +506,10 @@ fn item_editor(app: &mut App, ui: &mut egui::Ui, it: &InvItem, which: Which, equ
             .and_then(|r| app.db.part(r))
             .map(|p| format!("{} ({})", item::part_label(&app.db, p), p.k))
             .unwrap_or_else(|| "part…".into());
-        egui::ComboBox::from_id_salt("add_part").width(320.0).selected_text(sel_lbl).show_ui(ui, |ui| {
-            ui.add(egui::TextEdit::singleline(&mut app.items.part_filter).hint_text("search"));
-            let f = app.items.part_filter.to_lowercase();
-            for c in cands {
-                let p = app.db.part(c).unwrap();
-                let lbl = format!("{} ({})", item::part_label(&app.db, p), p.k);
-                if !f.is_empty() && !lbl.to_lowercase().contains(&f) {
-                    continue;
-                }
-                if ui.selectable_label(app.items.add_part == Some(c), lbl).clicked() {
-                    app.items.add_part = Some(c);
-                }
-            }
-        });
+        let part_opts: Vec<Opt<PartRef>> = cands.into_iter().map(|c| part_opt(&app.db, c).selected(app.items.add_part == Some(c))).collect();
+        if let Some(c) = search_combo(ui, "add_part", 340.0, sel_lbl, part_opts) {
+            app.items.add_part = Some(c);
+        }
         if ui.add_enabled(app.items.add_part.is_some(), egui::Button::new("Add")).clicked() {
             if let Some(r) = app.items.add_part {
                 let mut s = serial.clone();
@@ -579,6 +600,14 @@ fn apply_serial(app: &mut App, it: &InvItem, which: Which, new_serial: &str) {
     app.items.serial_for.clear();
 }
 
+/// A dropdown entry for a part: label, key, and its effect text for searching.
+fn part_opt(db: &Db, r: PartRef) -> Opt<PartRef> {
+    let p = db.part(r).unwrap();
+    let lbl = format!("{}  ({}){}", item::part_label(db, p), p.k, if p.r#mod { " [mod]" } else { "" });
+    let extra: Vec<String> = p.text.iter().map(|t| item::plain(t)).chain(p.desc.clone()).collect();
+    Opt::new(r, lbl).extra(extra.join(" "))
+}
+
 /// Parts that can go into `slot` of category `cat`.
 pub fn candidates(db: &Db, cat: u32, slot: &str) -> Vec<PartRef> {
     let mut v: Vec<PartRef> = db
@@ -658,14 +687,17 @@ fn add_item_panel(app: &mut App, ui: &mut egui::Ui, view: View) {
             .map(|c| format!("{} ({})", c.name.clone().unwrap_or_default(), kind_label(&c.kind)))
             .unwrap_or_else(|| "item type…".into());
         let mut new_cat = app.items.new_cat;
-        egui::ComboBox::from_id_salt("new_cat").width(260.0).selected_text(lbl).show_ui(ui, |ui| {
-            for c in cats {
-                let l = format!("{} ({})", c.name.clone().unwrap_or_else(|| c.key.clone()), kind_label(&c.kind));
-                if ui.selectable_label(new_cat == Some(c.id), l).clicked() {
-                    new_cat = Some(c.id);
-                }
-            }
-        });
+        let cat_opts: Vec<Opt<u32>> = cats
+            .iter()
+            .map(|c| {
+                Opt::new(c.id, format!("{} ({})", c.name.clone().unwrap_or_else(|| c.key.clone()), kind_label(&c.kind)))
+                    .extra(c.key.clone())
+                    .selected(new_cat == Some(c.id))
+            })
+            .collect();
+        if let Some(c) = search_combo(ui, "new_cat", 260.0, lbl, cat_opts) {
+            new_cat = Some(c);
+        }
         if new_cat != app.items.new_cat {
             app.items.new_cat = new_cat;
             app.items.new_comp.clear();
@@ -685,14 +717,13 @@ fn add_item_panel(app: &mut App, ui: &mut egui::Ui, view: View) {
                 .unwrap_or_default();
             comps.sort();
             let cl = if app.items.new_comp.is_empty() { "rarity…".to_string() } else { app.items.new_comp.clone() };
-            egui::ComboBox::from_id_salt("new_comp").width(280.0).selected_text(cl).show_ui(ui, |ui| {
-                for (k, l) in &comps {
-                    let txt = if l != k { format!("{k} - {l}") } else { k.clone() };
-                    if ui.selectable_label(app.items.new_comp == *k, txt).clicked() {
-                        app.items.new_comp = k.clone();
-                    }
-                }
-            });
+            let comp_opts: Vec<Opt<String>> = comps
+                .iter()
+                .map(|(k, l)| Opt::new(k.clone(), if l != k { format!("{l} ({k})") } else { k.clone() }).selected(app.items.new_comp == *k))
+                .collect();
+            if let Some(k) = search_combo(ui, "new_comp", 300.0, cl, comp_opts) {
+                app.items.new_comp = k;
+            }
         }
         if app.items.new_level == 0 {
             app.items.new_level = item::MAX_LEVEL;

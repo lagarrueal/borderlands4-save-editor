@@ -5,6 +5,7 @@ mod app;
 mod icons;
 mod items;
 mod pages;
+mod widgets;
 
 fn main() -> eframe::Result<()> {
     let args: Vec<String> = std::env::args().collect();

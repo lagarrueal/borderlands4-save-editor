@@ -290,7 +290,11 @@ pub fn analyze(db: &Db, s: &Serial) -> ItemInfo {
         .enumerate()
         .filter_map(|(n, p)| p.filter(|p| p.s == "inv_comp" && p.c == cat_id).map(|p| (n, p)))
         .collect();
-    let rarity = comps.first().map(|(_, p)| Rarity::from_comp(&p.k)).unwrap_or(Rarity::Unknown);
+    let mut rarity = comps.first().map(|(_, p)| Rarity::from_comp(&p.k)).unwrap_or(Rarity::Unknown);
+    // pearlescents are legendary comps plus pearl parts (pearl_elem / pearl_stat)
+    if resolved.iter().flatten().any(|p| p.s.starts_with("pearl")) {
+        rarity = Rarity::Pearlescent;
+    }
     if cat.is_some() && comps.is_empty() && kind != "other" {
         issues.push(Issue { sev: Severity::Warning, msg: "No rarity component".into(), part: None });
     }
@@ -368,19 +372,17 @@ pub fn analyze(db: &Db, s: &Serial) -> ItemInfo {
         .flatten()
         .filter_map(|p| element_of(&p.k).map(|s| s.to_string()))
         .collect();
-    let mut text = vec![];
-    if let Some(c) = cat {
-        if let Some(ui) = c.asp.as_ref().and_then(|a| a.get("ui")).and_then(|u| u.as_array()) {
-            let _ = ui; // manufacturer perk lines are resolved by the build script into names only
+    // card order: part effects, the manufacturer perk, red flavour text last
+    let mut text: Vec<String> = vec![];
+    let mut red: Vec<String> = vec![];
+    let lines = resolved.iter().flatten().flat_map(|p| p.text.iter()).chain(cat.into_iter().flat_map(|c| c.text.iter()));
+    for t in lines {
+        let dst = if t.starts_with("[redtext]") { &mut red } else { &mut text };
+        if !dst.contains(t) {
+            dst.push(t.clone());
         }
     }
-    for p in resolved.iter().flatten() {
-        for t in &p.text {
-            if !text.contains(t) {
-                text.push(t.clone());
-            }
-        }
-    }
+    text.extend(red);
     issues.sort_by(|a, b| b.sev.cmp(&a.sev));
     ItemInfo {
         category: cat_id,

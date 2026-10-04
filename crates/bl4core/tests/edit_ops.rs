@@ -156,3 +156,21 @@ fn built_items_decode_and_have_no_errors() {
     }
     assert!(bad.is_empty());
 }
+
+#[test]
+fn scale_backpack_to_level() {
+    let Some(p) = copy("11.sav", "scale") else { return };
+    let mut sf = SaveFile::open(&p, Some(SID)).unwrap();
+    let (changed, _skipped) = save::scale_items(&mut sf.doc, Container::Backpack, 37);
+    assert!(changed > 0);
+    for it in save::list_items(&sf.doc) {
+        if matches!(it.container, Container::Backpack | Container::Equipped) {
+            let s = Serial::decode(&it.serial).unwrap();
+            if let Some(l) = s.level() {
+                assert_eq!(l, 37, "{:?} {}", it.container, it.slot);
+            }
+        }
+    }
+    let inv = save::check_invariants(&sf.doc, SaveKind::Character);
+    assert!(inv.is_empty(), "{inv:?}");
+}

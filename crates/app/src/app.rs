@@ -378,6 +378,19 @@ impl App {
         }
     }
 
+    /// Level of the open character, if any.
+    pub fn character_level(&self) -> Option<u32> {
+        let doc = self.sess.as_ref()?.doc(Which::Character)?;
+        doc.get("state.experience")?
+            .as_seq()?
+            .items
+            .iter()
+            .find(|e| e.get("type").and_then(|t| t.as_str()) == Some("Character"))?
+            .get("level")?
+            .as_i64()
+            .map(|l| l as u32)
+    }
+
     /// (backpack, bank) capacity for the open saves.
     pub fn capacities(&self) -> (u32, u32) {
         let prof = self.sess.as_ref().and_then(|s| s.doc(Which::Profile));
