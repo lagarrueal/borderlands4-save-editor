@@ -925,3 +925,42 @@ mod tests {
         assert_eq!(civil_from_days(20730), (2026, 10, 4));
     }
 }
+
+// ====================================================================== helpers used by the GUI
+
+/// Complete the main story the way the game's own "skip story" does:
+/// every main set completed, the story globals set, UVH 1 missions done.
+pub fn complete_story(doc: &mut Node, set_missions: &std::collections::HashMap<String, Vec<String>>) {
+    for set in MAIN_STORY {
+        let ms = set_missions.get(*set).cloned().unwrap_or_default();
+        complete_set(doc, set, &ms);
+    }
+    for g in STORY_GLOBALS {
+        doc.set_scalar(&format!("globals.{g}"), "TRUE");
+    }
+    // tracked missions would point at finished missions
+    if let Some(Node::Map(m)) = doc.get_mut("missions") {
+        m.remove("tracked_missions");
+    }
+}
+
+/// Which equip slot a cosmetic part goes into, e.g.
+/// `Cosmetics_DarkSiren_Head07_Demon` -> (`character`, `Cosmetics_DarkSiren_Head`).
+pub fn cosmetic_slot(part: &str) -> Option<(&'static str, String)> {
+    let p = part;
+    if p.starts_with("Cosmetics_Vehicle") {
+        return Some(("vehicle", "Cosmetics_Vehicle".into()));
+    }
+    let rest = p.strip_prefix("Cosmetics_")?;
+    let (owner, tail) = rest.split_once('_')?;
+    let kind: String = tail.chars().take_while(|c| c.is_ascii_alphabetic()).collect();
+    let kind = match kind.as_str() {
+        k if k.starts_with("Skin") => "Skin",
+        k if k.starts_with("Head") => "Head",
+        k if k.starts_with("Body") => "Body",
+        k if k.starts_with("Attachment") => "Attachment",
+        _ => return None,
+    };
+    let group = if owner.eq_ignore_ascii_case("echo4") { "echo4" } else { "character" };
+    Some((group, format!("Cosmetics_{owner}_{kind}")))
+}

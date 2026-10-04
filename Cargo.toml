@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["crates/bl4core"]
+members = ["crates/bl4core", "crates/app"]
 
 [workspace.package]
 version = "0.1.0"

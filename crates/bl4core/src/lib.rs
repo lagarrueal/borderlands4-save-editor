@@ -6,4 +6,5 @@ pub mod db;
 pub mod item;
 pub mod save;
 pub mod serial;
+pub mod stats;
 pub mod yaml;

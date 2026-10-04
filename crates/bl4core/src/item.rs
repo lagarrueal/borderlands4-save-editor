@@ -445,3 +445,68 @@ fn check_tags(resolved: &[Option<&Part>], issues: &mut Vec<Issue>) {
         }
     }
 }
+
+/// Build a new item of category `cat` with rarity component `comp` from
+/// scratch: the comp's listed parts first, then one part for each slot the
+/// comp requires. Returns the serial; validate it with `analyze`.
+pub fn build_item(db: &Db, cat: u32, comp: &str, level: u32, seed: u64) -> Option<Serial> {
+    use crate::serial::Tok;
+    let c = db.category(cat)?;
+    let weapon = c.kind == "weapon";
+    let mut toks = vec![
+        if weapon { Tok::Int(cat as u64) } else { Tok::bit(cat as u64) },
+        Tok::Soft,
+        Tok::Int(0),
+        Tok::Soft,
+        Tok::Int(1),
+        Tok::Soft,
+        Tok::Int(level as u64),
+        Tok::Sep,
+        Tok::Int(2),
+        Tok::Soft,
+        Tok::Int(seed),
+        Tok::Sep,
+        Tok::Sep,
+    ];
+    toks.push(Tok::Sep);
+    toks.push(Tok::Sep);
+    let mut s = Serial { toks, byte_len: 0 };
+    let comp_ref = *db.part_by_key.get(&(cat, comp.to_lowercase()))?;
+    s.add_part(comp_ref);
+    let rules = c.comps.get(&comp.to_lowercase()).cloned().unwrap_or_default();
+    let parts = db.cat_parts.get(&cat).cloned().unwrap_or_default();
+    // slots with explicit part lists or a required count
+    let mut slots: Vec<String> = c.parttypes.clone();
+    for k in rules.slots.keys() {
+        if !slots.contains(k) {
+            slots.push(k.clone());
+        }
+    }
+    const DEFAULT_ONE: &[&str] = &["body", "barrel", "magazine", "grip", "scope", "class_mod_body", "payload", "primary_augment"];
+    for slot in &slots {
+        let rule = rules.slots.get(slot);
+        let want = rule
+            .and_then(|r| r.min)
+            .unwrap_or(if DEFAULT_ONE.contains(&slot.as_str()) || rule.map(|r| !r.parts.is_empty()).unwrap_or(false) { 1 } else { 0 });
+        let mut picked = 0;
+        let listed: Vec<&String> = rule.map(|r| r.parts.iter().collect()).unwrap_or_default();
+        let candidates: Vec<PartRef> = if !listed.is_empty() {
+            listed.iter().filter_map(|k| db.part_by_key.get(&(cat, k.to_lowercase())).copied()).collect()
+        } else {
+            parts
+                .iter()
+                .copied()
+                .filter(|r| db.part(*r).map(|p| &p.s == slot && p.st == "Active" && !p.k.contains("unique") && !p.k.contains("legendary")).unwrap_or(false))
+                .collect()
+        };
+        for r in candidates {
+            if picked >= want {
+                break;
+            }
+            s.add_part(r);
+            picked += 1;
+        }
+    }
+    let enc = s.encode();
+    Serial::decode(&enc).ok()
+}

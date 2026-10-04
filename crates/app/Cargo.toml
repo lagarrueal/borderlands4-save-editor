@@ -1,0 +1,15 @@
+[package]
+name = "bl4-save-editor"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "BL4SaveEditor"
+path = "src/main.rs"
+
+[dependencies]
+bl4core = { path = "../bl4core" }
+eframe = { version = "0.36", default-features = false, features = ["default_fonts", "glow", "accesskit"] }
+egui_extras = { version = "0.36", features = ["image"] }
+image = { version = "0.25", default-features = false, features = ["png"] }
+rfd = "0.15"
