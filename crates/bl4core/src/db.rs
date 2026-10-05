@@ -81,6 +81,15 @@ pub struct Category {
     pub r#mod: bool,
 }
 
+/// An experience progression (`xp_progression`): level cap and curve.
+#[derive(Debug, Deserialize, Clone, Default)]
+pub struct XpProgression {
+    pub levelcap: u32,
+    /// curve segments: {maxlevel, power, offset, multiplier}
+    #[serde(default)]
+    pub functions: Vec<HashMap<String, f64>>,
+}
+
 /// A weapon naming strategy (`inv_name_strategy`, OakWeaponNamingStrategy).
 #[derive(Debug, Deserialize, Clone, Default)]
 pub struct NamingStrategy {
@@ -103,6 +112,10 @@ pub struct NamingStrategy {
     /// Tediore payload prefix table (`ted_payloadprefix_table`)
     #[serde(default)]
     pub payload: Option<String>,
+    /// heavy weapons (OakHeavyWeaponNamingStrategy): body-mod prefix table
+    /// (`torgueheavyweaponnamingbodyprefix`)
+    #[serde(default)]
+    pub body: Option<String>,
 }
 
 #[derive(Debug, Deserialize, Clone)]
@@ -153,6 +166,9 @@ pub struct Part {
     pub mods: Option<serde_json::Value>,
     #[serde(default)]
     pub beh: Option<serde_json::Value>,
+    /// charge behaviours ([{cls, t: ChargeTime, n: MaxChargeStack, mode, rm}])
+    #[serde(default)]
+    pub chg: Option<serde_json::Value>,
     #[serde(default)]
     pub asp: Option<serde_json::Value>,
     /// InventoryNamingAspect.bDisablePrefixes: the item gets no name prefix
@@ -246,6 +262,8 @@ struct RawDb {
     naming: HashMap<String, NamingStrategy>,
     #[serde(default)]
     naming_attrs: HashMap<String, String>,
+    #[serde(default)]
+    xp: HashMap<String, XpProgression>,
 }
 
 /// A checkpoint the save can name in `state.checkpoint_name`.
@@ -303,6 +321,8 @@ pub struct Db {
     pub naming: HashMap<String, NamingStrategy>,
     /// naming attribute -> attribute it reads (`CritDamage` -> `weapon_damage_modifier_add_critical_hit`)
     pub naming_attrs: HashMap<String, String>,
+    /// experience progressions by key (`oak2_characterxp_progression`)
+    pub xp: HashMap<String, XpProgression>,
     /// where the data came from (embedded or a file path)
     pub origin: String,
 }
@@ -353,6 +373,7 @@ impl Db {
             stations: r.stations,
             naming: r.naming,
             naming_attrs: r.naming_attrs,
+            xp: r.xp,
             origin: origin.to_string(),
         })
     }

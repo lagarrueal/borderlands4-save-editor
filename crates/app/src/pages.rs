@@ -141,7 +141,7 @@ pub fn character(app: &mut App, ui: &mut egui::Ui) {
         ui.end_row();
     });
     ui.add_space(10.0);
-    ui.label(RichText::new("Level edits write the level, the matching minimum XP and skill points together, exactly as the game stores them. Max character level is 60.").weak());
+    ui.label(RichText::new(format!("Level edits write the level, the matching minimum XP and skill points together, exactly as the game stores them. Max character level is {}.", save::MAX_CHAR_LEVEL)).weak());
 }
 
 // ====================================================================== currency

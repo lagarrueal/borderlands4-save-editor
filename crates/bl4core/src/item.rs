@@ -105,7 +105,8 @@ impl Rarity {
     }
 }
 
-pub const MAX_LEVEL: u32 = 60;
+/// Highest item level: items drop up to the character level cap.
+pub const MAX_LEVEL: u32 = crate::save::MAX_CHAR_LEVEL;
 
 const ELEMENTS: &[(&str, &str)] = &[
     ("fire", "Incendiary"),
@@ -399,7 +400,7 @@ pub fn analyze(db: &Db, s: &Serial) -> ItemInfo {
     };
     // weapon name prefix ("Watching" Gomie, "Cooking Ambushing" Maggie): it
     // depends on the computed attributes and the licensed parts
-    if info.kind == "weapon" {
+    if info.kind == "weapon" || info.kind == "heavy" {
         let c = crate::stats::compute(db, s, &info);
         if let Some(p) = crate::stats::weapon_prefix(db, s, &info, &c) {
             info.name = format!("{p} {}", info.name);

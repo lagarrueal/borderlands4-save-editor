@@ -48,6 +48,10 @@ pub struct Eval<'a> {
     rarity_row: &'static str,
     depth: u32,
     cache: HashMap<String, Option<f64>>,
+    /// Heavy weapons: a part's template aspect without a row of its own uses
+    /// the template's row, and a template cell the part's row omits reads the
+    /// row struct's default (see `compute`).
+    own_rows: bool,
 }
 
 impl<'a> Eval<'a> {
@@ -60,7 +64,7 @@ impl<'a> Eval<'a> {
             Rarity::Pearlescent => "pearl",
             _ => "common",
         };
-        Eval { db, level: level as f64, rarity_row, depth: 0, cache: HashMap::new() }
+        Eval { db, level: level as f64, rarity_row, depth: 0, cache: HashMap::new(), own_rows: false }
     }
 
     pub fn cell(&self, dt: &str, row: &str, col: Option<&str>) -> Option<f64> {
@@ -194,31 +198,53 @@ pub struct Computed {
     pub base: BTreeMap<String, f64>,
 }
 
+/// Modifier stages of one attribute: base (fire behaviour value or last
+/// OverrideBaseValue), PreAdd sum, ScaleAdd factor, ScaleMultiply product,
+/// PostAdd sum.
+struct Stages {
+    base: Option<f64>,
+    pre: f64,
+    scale: f64,
+    mul: f64,
+    post: f64,
+}
+
 impl Computed {
-    /// Aggregate one attribute:
-    /// ((base + PreAdd) * (1 + ScaleAdd + ScaleSimple) * prod(ScaleMultiply)) + PostAdd
-    pub fn value(&self, attr: &str) -> Option<f64> {
-        let mut base = self.base.get(attr).copied();
-        let mut pre = 0.0;
-        let mut add = 0.0;
-        let mut mul = 1.0;
-        let mut post = 0.0;
-        let mut any = base.is_some();
+    /// ScaleAdd factor: (1 + sum of positive values and of stat-point values)
+    /// / (1 + sum of |negative values| of attribute effects).
+    ///
+    /// A negative ScaleAdd authored on an attribute effect divides: the data
+    /// holds ScaleAdd -1 .. -4 (Vamoose/Abyss magazine -1, Chuck reload -2,
+    /// Rainmaker heat -3, Quickdraw equip -1) that would zero or negate the
+    /// stat if summed, and the Vamoose card shows magazine 10 -> 5 and reload
+    /// 2.87 x 0.901 / 1.5 = 1.7s. Stat-point modifiers (negated bZeroIsBetter
+    /// stats) stay in the linear sum: the Gomie, Plasma Coil and Maggie cards
+    /// (accuracy) and the Vamoose reload (x 0.901, not / 1.099) need that.
+    fn stages(&self, attr: &str) -> Option<Stages> {
+        let mut s = Stages { base: self.base.get(attr).copied(), pre: 0.0, scale: 1.0, mul: 1.0, post: 0.0 };
+        let (mut add, mut div) = (0.0, 0.0);
+        let mut any = s.base.is_some();
         for e in self.effects.iter().filter(|e| e.attr.eq_ignore_ascii_case(attr)) {
             any = true;
             match e.op.as_str() {
-                "OverrideBaseValue" => base = Some(e.val),
-                "PreAdd" | "Add" => pre += e.val,
+                "OverrideBaseValue" => s.base = Some(e.val),
+                "PreAdd" | "Add" => s.pre += e.val,
+                "ScaleAdd" | "ScaleSimple" if e.val < 0.0 && !e.src.contains(" (stat ") => div -= e.val,
                 "ScaleAdd" | "ScaleSimple" => add += e.val,
-                "ScaleMultiply" => mul *= e.val,
-                "PostAdd" => post += e.val,
+                "ScaleMultiply" => s.mul *= e.val,
+                "PostAdd" => s.post += e.val,
                 _ => {}
             }
         }
-        if !any {
-            return None;
-        }
-        Some((base.unwrap_or(0.0) + pre) * (1.0 + add) * mul + post)
+        s.scale = (1.0 + add) / (1.0 + div);
+        any.then_some(s)
+    }
+
+    /// Aggregate one attribute:
+    /// ((base + PreAdd) * ScaleAdd factor * prod(ScaleMultiply)) + PostAdd
+    pub fn value(&self, attr: &str) -> Option<f64> {
+        let s = self.stages(attr)?;
+        Some((s.base.unwrap_or(0.0) + s.pre) * s.scale * s.mul + s.post)
     }
 }
 
@@ -235,6 +261,12 @@ fn mode_ok(e: &Value) -> bool {
 pub fn compute(db: &Db, s: &Serial, info: &ItemInfo) -> Computed {
     let level = info.level.unwrap_or(1).max(1);
     let mut ev = Eval::new(db, level, info.rarity);
+    // Heavy weapon parts (verified on Sprezzatura, Gamma Void): part_barrel_javelin
+    // lists hw_cooldown_attr bare, so its Cooldown is the template's own row
+    // (Gadget_HW_Barrels.TOR_Barrel_01 = 50); Unique_HW_Barrels.MAL_GammaVoid has
+    // no MagazineSize_Value, so MaxLoadedAmmo is Struct default 1. Weapons keep
+    // the older rules (their names and cards are verified with them).
+    ev.own_rows = info.kind == "heavy";
     let mut out = Computed::default();
 
     // base-type chain
@@ -264,6 +296,10 @@ pub fn compute(db: &Db, s: &Serial, info: &ItemInfo) -> Computed {
             });
             add_source(&mut ev, db, &mut out, &v, &p.k, false);
         }
+    }
+    // heavy weapons' charge (Ripper/Maliwan heavies) is not checked on a card yet
+    if info.kind == "weapon" {
+        add_charge(&mut ev, db, s, &mut out);
     }
     // Part stat modifiers ("Damage mod", "Reload speed mod", "Fire rate mod",
     // pearl stat parts, ...): each part gives points to a stat tag, and the
@@ -298,6 +334,42 @@ pub fn compute(db: &Db, s: &Serial, info: &ItemInfo) -> Computed {
         }
     }
     out
+}
+
+/// Primary-mode Ripper charge behaviour (WeaponBehavior_Charge: "charge
+/// before Full Auto firing", Ripper barrels and the Ripper-licensed magazine)
+/// as base values of weapon_charge_time / weapon_max_charge_stack (the last
+/// part's wins; a part with bRemoveFromUseModes takes it away). Order's
+/// WeaponBehavior_OrderCharge is left out: its class defaults are unknown.
+/// ChargeTime: the part's value, a data-table cell the table omits reads the
+/// row struct's default (Struct_Weapon_Charge.ChargeTime_Value 1.0); with no
+/// table at all (Vamoose: none set; Abyss: row/column without a table) it is
+/// 1.0, the value both cards need (INFERRED class default). MaxChargeStack
+/// defaults to 1 (INFERRED: the cards need weapon_is_single_charge true).
+fn add_charge(ev: &mut Eval, db: &Db, s: &Serial, out: &mut Computed) {
+    let mut charges = vec![];
+    let mut removed = false;
+    for p in s.parts().into_iter().filter_map(|r| db.part(r)) {
+        for c in p.chg.iter().filter_map(|v| v.as_array()).flatten().filter(|c| mode_ok(c)) {
+            if c.get("cls").and_then(|x| x.as_str()) != Some("WeaponBehavior_Charge") {
+                continue;
+            }
+            if c.get("rm").and_then(|x| x.as_bool()).unwrap_or(false) {
+                removed = true;
+            } else {
+                charges.push(c);
+            }
+        }
+    }
+    let Some(c) = charges.last().filter(|_| !removed) else { return };
+    let omitted = |ev: &Eval, v: &Value| {
+        let (dt, col) = (v.get("dt")?.as_str()?, v.get("col")?.as_str()?);
+        Some(ev.struct_default(dt, col)? * v.get("ps").and_then(num).unwrap_or(1.0))
+    };
+    let time = c.get("t").and_then(|t| ev.compact(t).or_else(|| omitted(ev, t))).unwrap_or(1.0);
+    let stack = c.get("n").and_then(|n| ev.compact(n).or_else(|| omitted(ev, n))).unwrap_or(1.0);
+    out.base.insert("weapon_charge_time".into(), time);
+    out.base.insert("weapon_max_charge_stack".into(), stack);
 }
 
 /// A part's stat modifiers: its own, or those of a stat template aspect
@@ -379,9 +451,20 @@ impl Computed {
         (r >= 0.1).then_some(r)
     }
 
+    /// weapon_compare_charge_time: the charge-up before a magazine when the
+    /// charge behaviour holds a single charge (weapon_is_single_charge =
+    /// MaxChargeStack == 1), else 0.
+    pub fn card_charge_time(&self) -> f64 {
+        match self.value("weapon_max_charge_stack") {
+            Some(n) if ((n - 1e-6).ceil() - 1.0).abs() < 1e-6 => self.value("weapon_charge_time").unwrap_or(0.0).max(0.0),
+            _ => 0.0,
+        }
+    }
+
     /// Card DPS, the game's weapon_dps_estimate:
-    /// damage x pellets x shots / (shots / burst-aware fire rate + reload),
-    /// shots = magazine / ammo cost per shot (or shots to overheat).
+    /// damage x pellets x shots / (shots / burst-aware fire rate + reload
+    /// + charge time), shots = magazine / ammo cost per shot (or shots to
+    /// overheat).
     pub fn card_dps(&self) -> Option<f64> {
         let dmg = self.value("weapon_damage")?;
         let pellets = self.value("weapon_projectile_per_shot").unwrap_or(1.0).max(1.0).round();
@@ -392,7 +475,7 @@ impl Computed {
         if fr <= 0.0 || shots <= 0.0 {
             return None;
         }
-        Some(dmg * pellets * shots / (shots / fr + reload))
+        Some(dmg * pellets * shots / (shots / fr + reload + self.card_charge_time()))
     }
 }
 
@@ -429,7 +512,16 @@ fn add_source(ev: &mut Eval, db: &Db, out: &mut Computed, src: &Value, label: &s
                                 }
                             }
                         }
-                        if let (Some(a), Some(v)) = (e2.get("a").and_then(|x| x.as_str()), ev.compact(&e2)) {
+                        // a cell the part's row omits holds the row struct's default
+                        // (Gamma Void: no MagazineSize_Value -> MaxLoadedAmmo 1)
+                        let v = ev.compact(&e2).or_else(|| {
+                            if !ev.own_rows {
+                                return None;
+                            }
+                            let (dt, col) = (e2.get("dt")?.as_str()?, e2.get("col")?.as_str()?);
+                            Some(ev.struct_default(dt, col)? * e2.get("ps").and_then(num).unwrap_or(1.0))
+                        });
+                        if let (Some(a), Some(v)) = (e2.get("a").and_then(|x| x.as_str()), v) {
                             out.effects.push(Effect {
                                 attr: a.to_lowercase(),
                                 op: e2.get("op").and_then(|x| x.as_str()).unwrap_or("ScaleMultiply").to_string(),
@@ -469,8 +561,9 @@ fn add_source(ev: &mut Eval, db: &Db, out: &mut Computed, src: &Value, label: &s
             // row a part supplies; other aspects' cells are real values
             // (element damage scalar 0.8, manufacturer crit bonus, ...)
             let template = def.get("template").and_then(|x| x.as_bool()).unwrap_or(false);
+            let own_row = item_type || ev.own_rows;
             if let Some(fx) = def.get("fx").and_then(|x| x.as_array()) {
-                for e in fx.iter().filter(|e| mode_ok(e) && (!template || item_type || e.get("dt").is_none())) {
+                for e in fx.iter().filter(|e| mode_ok(e) && (!template || own_row || e.get("dt").is_none())) {
                     if let (Some(at), Some(v)) = (e.get("a").and_then(|x| x.as_str()), ev.compact(e)) {
                         out.effects.push(Effect {
                             attr: at.to_lowercase(),
@@ -542,6 +635,14 @@ pub fn card(db: &Db, s: &Serial, info: &ItemInfo) -> Vec<(String, String)> {
     let push = |out: &mut Vec<(String, String)>, l: &str, v: String| out.push((l.to_string(), v));
     match info.kind.as_str() {
         "weapon" | "heavy" => {
+            let heavy = info.kind == "heavy";
+            // heavy_weapon_gadget lists uistat_gadget_cooldown first:
+            // Gadget_Cooldown (CooldownTime), "$VALUE$s", default precision 0
+            if heavy {
+                if let Some(v) = c.based_value("gadget_cooldown").filter(|v| *v > 0.0) {
+                    push(&mut out, "Cooldown", format!("{:.0}s", v));
+                }
+            }
             if let Some(d) = c.value("weapon_damage") {
                 let pellets = c.value("weapon_projectile_per_shot").unwrap_or(1.0).max(1.0).round();
                 if pellets > 1.0 {
@@ -564,7 +665,14 @@ pub fn card(db: &Db, s: &Serial, info: &ItemInfo) -> Vec<(String, String)> {
             if let Some(v) = c.card_reload() {
                 push(&mut out, "Reload time", format!("{:.1}s", v));
             }
-            if let Some(v) = c.card_dps() {
+            if heavy {
+                // uistat_dps_estimate_heavy: weapon_dps_estimate_heavy =
+                // (Damage x MagSize) / (MagSize / FireRate), no reload term
+                let v = UiEval::new(db, info, &c).get("weapon_dps_estimate_heavy");
+                if v > 0.0 {
+                    push(&mut out, "DPS", thousands(v));
+                }
+            } else if let Some(v) = c.card_dps() {
                 push(&mut out, "DPS", thousands(v));
             }
             // element line: weapon_ui_elemental_dps = status damage x damage x
@@ -592,6 +700,12 @@ pub fn card(db: &Db, s: &Serial, info: &ItemInfo) -> Vec<(String, String)> {
             // format: whole, grouped)
             if let Some(v) = c.value("weapon_damage_radius").filter(|v| *v > 0.0) {
                 push(&mut out, "Splash radius", format!("{}cm", thousands(v)));
+            }
+            // uistat_ammo_per_shot ("Shot Cost", weapon and heavy uistats):
+            // weapon_shot_cost (WeaponBehavior_Fire.ShotAmmoCost, an int) as
+            // "$VALUE$/Shot", shown when it is greater than 1
+            if let Some(v) = c.value("weapon_shot_cost").map(f64::round).filter(|v| *v > 1.0) {
+                push(&mut out, "Shot cost", format!("{}/Shot", thousands(v)));
             }
         }
         "shield" | "grenade" | "repkit" => {
@@ -632,9 +746,9 @@ pub fn card(db: &Db, s: &Serial, info: &ItemInfo) -> Vec<(String, String)> {
         }
         _ => {}
     }
-    // sell value: within a few dollars of the card on weapons (wear rounding
-    // not fully known); not checked for other item kinds, so not shown there
-    if info.kind == "weapon" {
+    // sell value: within a few dollars of the card on weapons and heavy weapons
+    // (wear rounding not fully known); not checked for other item kinds
+    if info.kind == "weapon" || info.kind == "heavy" {
         if let Some(v) = item_value(db, s, info) {
             push(&mut out, "Value", format!("~${}", thousands(v.round())));
         }
@@ -1086,22 +1200,7 @@ impl Computed {
     /// Without a known base the ratio is still defined when only scale
     /// modifiers apply (ADS: weapon_zoom_duration).
     pub fn naming_ratio(&self, attr: &str) -> Option<f64> {
-        let mut base = self.base.get(attr).copied();
-        let (mut pre, mut add, mut mul, mut post, mut any) = (0.0, 0.0, 1.0, 0.0, base.is_some());
-        for e in self.effects.iter().filter(|e| e.attr.eq_ignore_ascii_case(attr)) {
-            any = true;
-            match e.op.as_str() {
-                "OverrideBaseValue" => base = Some(e.val),
-                "PreAdd" | "Add" => pre += e.val,
-                "ScaleAdd" | "ScaleSimple" => add += e.val,
-                "ScaleMultiply" => mul *= e.val,
-                "PostAdd" => post += e.val,
-                _ => {}
-            }
-        }
-        if !any {
-            return None;
-        }
+        let Stages { base, pre, scale, mul, post } = self.stages(attr)?;
         let b = match base {
             Some(b) => b,
             None if attr.starts_with("weapon_damage_modifier_") => 1.0,
@@ -1111,7 +1210,7 @@ impl Computed {
         if b.abs() < 1e-9 {
             return None;
         }
-        let mut v = (b + pre) * (1.0 + add) * mul + post;
+        let mut v = (b + pre) * scale * mul + post;
         if attr == "weapon_max_loaded_ammo" {
             v = (v - 1e-6).ceil(); // an int property
         }
@@ -1188,13 +1287,15 @@ pub fn licensed_prefix(db: &Db, s: &Serial, info: &ItemInfo) -> Option<String> {
     let ns = naming_strategy(db, info)?;
     let table = db.tables.get(ns.lic.as_deref()?)?;
     let tags: Vec<&str> = s.parts().into_iter().filter_map(|r| db.part(r)).flat_map(|p| p.add.iter().map(|t| t.as_str())).collect();
-    let row_key = table.keys().filter(|k| *k != "default").find(|k| tags.contains(&k.as_str())).map(|k| k.as_str()).unwrap_or("default");
+    // several tags can match (Goalkeeper: barrel hyp_shield + Jakobs barrel
+    // accessory); take the first in the item's part order so the name is
+    // stable (the game's own tie-break is not known)
+    let row_key = tags.iter().copied().find(|t| *t != "default" && table.contains_key(*t)).unwrap_or("default");
     let row = table.get(row_key)?;
-    let col = row
-        .keys()
-        .filter(|k| *k != "default" && *k != "use_payload_prefix")
-        .find(|k| tags.contains(&k.as_str()))
-        .map(|k| k.as_str())
+    let col = tags
+        .iter()
+        .copied()
+        .find(|t| *t != "default" && *t != "use_payload_prefix" && row.contains_key(*t))
         .unwrap_or("default");
     let cell = cell_text(row.get(col)?)?;
     let payload = row.get("use_payload_prefix").and_then(|v| v.as_str()).is_some_and(|v| v.eq_ignore_ascii_case("true"));
@@ -1222,11 +1323,40 @@ pub fn licensed_prefix(db: &Db, s: &Serial, info: &ItemInfo) -> Option<String> {
 /// ("Cooking Ambushing" Maggie, "Tossed Ambushing" Muki, "Watching" Gomie).
 /// None when a part's naming aspect sets bDisablePrefixes (Plasma Coil, ...).
 pub fn weapon_prefix(db: &Db, s: &Serial, info: &ItemInfo, c: &Computed) -> Option<String> {
-    if info.kind != "weapon" || s.parts().into_iter().any(|r| db.part(r).is_some_and(|p| p.noprefix)) {
+    if !(info.kind == "weapon" || info.kind == "heavy") || s.parts().into_iter().any(|r| db.part(r).is_some_and(|p| p.noprefix)) {
         return None;
+    }
+    if info.kind == "heavy" {
+        return heavy_prefix(db, s, info);
     }
     let words: Vec<String> = [licensed_prefix(db, s, info), stat_prefix(db, info, c)].into_iter().flatten().collect();
     (!words.is_empty()).then(|| words.join(" "))
+}
+
+/// Heavy weapon prefix (OakHeavyWeaponNamingStrategy.BodyPrefixModNameDataTable,
+/// e.g. TorgueHeavyWeaponNamingBodyPrefix): from the body accessories' tags
+/// (body_mod_a..d). One tag: its row, column SingleOrNoMod ("Eager" =
+/// body_mod_c). Several: the row is all tags but the last joined with '.',
+/// the column the last tag's letter ("Junk-Drunk" = body_mod_a.body_mod_b /
+/// ModC). No body accessory: no prefix (Gamma Void).
+pub fn heavy_prefix(db: &Db, s: &Serial, info: &ItemInfo) -> Option<String> {
+    let table = db.tables.get(naming_strategy(db, info)?.body.as_deref()?)?;
+    let mut mods: Vec<&str> = s
+        .parts()
+        .into_iter()
+        .filter_map(|r| db.part(r))
+        .flat_map(|p| p.add.iter().map(|t| t.as_str()))
+        .filter(|t| t.starts_with("body_mod_"))
+        .collect();
+    mods.sort();
+    mods.dedup();
+    let (last, rest) = mods.split_last()?;
+    let (row, col) = if rest.is_empty() {
+        (last.to_string(), "singleornomod".to_string())
+    } else {
+        (rest.join("."), format!("mod{}", last.trim_start_matches("body_mod_")))
+    };
+    cell_text(table.get(&row)?.get(&col)?)
 }
 
 // ------------------------------------------------------------------ value
@@ -1285,7 +1415,11 @@ pub fn item_value(db: &Db, s: &Serial, info: &ItemInfo) -> Option<f64> {
         }
     }
     let mut ev = Eval::new(db, info.level.unwrap_or(1).max(1), info.rarity);
-    ev.cache.insert("attr_calc_pricemod_wear_and_tear".into(), Some(wear_factor(db, s)));
+    // INFERRED: heavy weapons price with wear 0 (factor 1) although their rarity
+    // comps carry weapon_wear_epic: with the drawn wear Gamma Void would be
+    // $168,498, the card says $171,063 (wear 1: $171,065).
+    let wear = if info.kind == "heavy" { 1.0 } else { wear_factor(db, s) };
+    ev.cache.insert("attr_calc_pricemod_wear_and_tear".into(), Some(wear));
     let mut v = ev.compact(&mv?)?;
     for r in s.parts() {
         if let Some(m) = db.part(r).and_then(|p| p.mv.as_ref()) {

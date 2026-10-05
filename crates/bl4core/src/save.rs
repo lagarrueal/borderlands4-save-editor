@@ -231,8 +231,10 @@ pub fn min_xp(level: u32, mult: f64) -> i64 {
 
 pub const CHAR_XP_MULT: f64 = 60.0;
 pub const SPEC_XP_MULT: f64 = 80.0;
-pub const MAX_CHAR_LEVEL: u32 = 60;
-pub const MAX_SPEC_LEVEL: u32 = 700;
+/// Level caps from xp_progression (levelcap); tests/level_cap.rs checks them
+/// against the game database so a game patch that moves them fails the build.
+pub const MAX_CHAR_LEVEL: u32 = 70;
+pub const MAX_SPEC_LEVEL: u32 = 701;
 
 // ====================================================================== character
 

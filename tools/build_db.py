@@ -177,11 +177,16 @@ def build_naming(d):
     the stat-prefix thresholds and name parts, and the licensed-part prefix
     tables. -> {strategy key: {thr: [[attr, first, second]], single/double:
     {attr: [prefix, priority]}, combo: [[attr1, attr2, prefix, priority]],
-    lic: licensed-part prefix table, payload: Tediore payload prefix table}}"""
+    lic: licensed-part prefix table, payload: Tediore payload prefix table}}.
+    Heavy weapons (OakHeavyWeaponNamingStrategy) -> {body: body-mod prefix table}."""
     out = {}
     for _, _, e in entries(d, "inv_name_strategy"):
         v = e["value"] if isinstance(e["value"], dict) else {}
         ns = v.get("namingstrategy")
+        if isinstance(ns, dict) and "OakHeavyWeaponNamingStrategy" in str(ns.get("structtype", "")):
+            if ns.get("bodyprefixmodnamedatatable"):
+                out[e["key"].lower()] = {"body": ref(ns["bodyprefixmodnamedatatable"]).lower()}
+            continue
         if not isinstance(ns, dict) or "OakWeaponNamingStrategy" not in str(ns.get("structtype", "")):
             continue
 
@@ -339,6 +344,66 @@ def dt_ref(mv):
     return out or None
 
 
+_ASPECT_BEH = None
+
+
+def aspect_behaviors():
+    """Resident inv_aspect templates by key: (parent, behavior, usemodebitmask).
+    A part's use-mode behaviour inherits its template's values (borg_Charge
+    gives ChargeTime = Table_WeaponBorgCharge_Init.ChargeTime_Value; the
+    Ripper-licensed magazine only names the row)."""
+    global _ASPECT_BEH
+    if _ASPECT_BEH is None:
+        _ASPECT_BEH = {}
+        for _, _, e in entries(INSTALLED, "Resident", "inv_aspect"):
+            v = e["value"] if isinstance(e["value"], dict) else {}
+            beh = v.get("behavior") if isinstance(v.get("behavior"), dict) else {}
+            _ASPECT_BEH[e["key"].lower()] = (ref(v["parent"]).lower() if v.get("parent") else None, beh, v.get("usemodebitmask"))
+    return _ASPECT_BEH
+
+
+def charge_behavior(a, parent):
+    """WeaponBehaviorDef_Charge of an aspect (Ripper charge-up, Order charge):
+    {cls, t: ChargeTime, n: MaxChargeStack, mode, rm}, merged over the
+    template chain.
+    A value the chain leaves out stays out (the card code then uses the class
+    default)."""
+    defs = aspect_behaviors()
+    chain, name = [], (parent or "").lower()
+    while name and name in defs and len(chain) < 8:
+        chain.append(defs[name])
+        name = defs[name][0]
+    own = a.get("behavior") if isinstance(a.get("behavior"), dict) else {}
+    classes = [str(b.get("behaviorclass", "")) for _, b, _ in reversed(chain)] + [str(own.get("behaviorclass", ""))]
+    classes = [ref(c).rsplit(".", 1)[-1] for c in classes if c]
+    if not any("Charge" in c for c in classes):
+        return None
+    out = {"cls": classes[-1]}
+    mode = a.get("usemodebitmask") or next((m for _, _, m in chain if m), None)
+    if mode:
+        out["mode"] = mode
+    # bRemoveFromUseModes: the part takes that behaviour away (the Ripper
+    # magazine on an Order gun removes its order_charge)
+    if str(a.get("bremovefromusemodes", "")).lower() == "true":
+        out["rm"] = True
+        return out
+    merged = {}
+    for _, b, _ in reversed(chain):
+        deep_merge(merged, json.loads(json.dumps(b)))
+    deep_merge(merged, json.loads(json.dumps(own)))
+    for k, key in (("t", "chargetime"), ("n", "maxchargestack")):
+        val = merged.get(key)
+        r = dt_ref(val) if isinstance(val, dict) else None
+        if r is None and isinstance(val, str):
+            try:
+                r = {"k": float(val)}
+            except ValueError:
+                pass
+        if r:
+            out[k] = r
+    return out
+
+
 def compact_aspects(v):
     """Stat-relevant data of a part: attribute effects, data-table templates,
     stat modifiers, fire behaviour values, UI stat lines and naming."""
@@ -346,6 +411,7 @@ def compact_aspects(v):
     tpl = []
     mods = []
     beh = {}
+    chg = []
     ui = []
     title = []
     prefix = []
@@ -369,7 +435,8 @@ def compact_aspects(v):
                 continue
             # an omitted modifiertype is the enum default: EGbxAttributeModifierType
             # is {ScaleAdd, PreAdd, PostAdd, ScaleMultiply, OverrideBaseValue}
-            # (Borderlands4.exe), so 0 = ScaleAdd, i.e. x (1 + sum)
+            # (Borderlands4.exe), so 0 = ScaleAdd, i.e. x (1 + sum); a negative
+            # one divides (stats.rs Computed::stages)
             x = {"a": ref(ef.get("attributetomodify")), "op": ef.get("modifiertype") or "ScaleAdd"}
             mv = dt_ref(ef.get("modifiervalue"))
             if mv:
@@ -402,6 +469,9 @@ def compact_aspects(v):
                         except (TypeError, ValueError):
                             pass
             beh["_asp"] = parent
+        c = charge_behavior(a, parent)
+        if c is not None:
+            chg.append(c)
         for u in as_list(a.get("uistatstoinclude")):
             ui.append(ref(u).lower())
         for t in as_list(a.get("titlepartlist")):
@@ -422,6 +492,8 @@ def compact_aspects(v):
         out["mods"] = mods
     if beh:
         out["beh"] = beh
+    if chg:
+        out["chg"] = chg
     if ui:
         out["ui"] = ui
     if title:
@@ -578,7 +650,7 @@ def build_items(d, names, uistats, firmware, skills=None):
             lines = [uistats[u] for u in asp.get("ui", []) if u in uistats]
             if lines:
                 p["text"] = lines
-            for k in ("fx", "tpl", "mods", "beh", "name_row", "noprefix"):
+            for k in ("fx", "tpl", "mods", "beh", "chg", "name_row", "noprefix"):
                 if k in asp:
                     p[k] = asp[k]
             # item value: each part multiplies it (rarity comp 1.0..5.0,
@@ -851,6 +923,22 @@ def build_sdu(d):
     return sorted(out, key=order)
 
 
+def build_xp(d):
+    """Experience progressions (xp_progression): level cap and the piecewise
+    exponential curve, min XP(L) = floor(multiplier x (L^power + offset))."""
+    out = {}
+    for _, _, e in entries(d, "xp_progression"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        fns = []
+        for f in v.get("functions") or []:
+            if not isinstance(f, dict):
+                continue
+            fns.append({k: float(f[k]) for k in ("maxlevel", "power", "offset", "multiplier") if k in f})
+        if v.get("levelcap"):
+            out[e["key"].lower()] = {"levelcap": int(v["levelcap"]), "functions": fns}
+    return out
+
+
 def build_stations(d):
     """Checkpoint names `Map_P.Station` for fast-travel and respawn stations."""
     out = []
@@ -950,6 +1038,7 @@ def main():
         "naming": build_naming(INSTALLED),
         "naming_attrs": build_naming_attrs(INSTALLED),
         "stations": build_stations(INSTALLED),
+        "xp": build_xp(INSTALLED),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     raw = json.dumps(db, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
