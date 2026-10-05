@@ -19,6 +19,8 @@ fn watching_gomie_lvl42_pearl() {
     let (r, c) = card(&db, "@UgzR8/2}TPd%%=nziz-y34wa~/s7hsOQgu+RP_<CEQ0Y+nPy@{#u>$}");
     assert_eq!(r, Rarity::Pearlescent);
     assert_eq!(get(&c, "Damage"), "1,122");
+    assert_eq!(get(&c, "Accuracy"), "91%");
+    assert_eq!(get(&c, "Splash radius"), "-");
     assert_eq!(get(&c, "Fire rate"), "6.6/s");
     assert_eq!(get(&c, "Magazine"), "18");
     assert_eq!(get(&c, "Reload time"), "2.4s");
@@ -32,6 +34,8 @@ fn plasma_coil_lvl23_legendary() {
     let (r, c) = card(&db, "@Ugw$Yw3FZbO%(f5uhbq+2p?;{BsFtWs%/YctokI-^00");
     assert_eq!(r, Rarity::Legendary);
     assert_eq!(get(&c, "Damage"), "92");
+    assert_eq!(get(&c, "Accuracy"), "86%");
+    assert_eq!(get(&c, "Splash radius"), "35cm");
     assert_eq!(get(&c, "Fire rate"), "8.4/s");
     assert_eq!(get(&c, "Magazine"), "40");
     assert_eq!(get(&c, "Reload time"), "1.6s");
@@ -48,9 +52,28 @@ fn ambushing_maggie_lvl42_modded() {
     }
     let (_, c) = card(&db, "@UgbV{rFj^2{Xjjl_RG}Jms6?ekwL`5#r9+)Vb?OeP6zUXe7HTB/");
     assert_eq!(get(&c, "Damage"), "533 x 6");
+    assert_eq!(get(&c, "Accuracy"), "40%");
     assert_eq!(get(&c, "Fire rate"), "10.7/s");
     assert_eq!(get(&c, "Magazine"), "10");
     assert_eq!(get(&c, "Reload time"), "1.6s");
     assert_eq!(get(&c, "DPS"), "12,709");
     assert_eq!(get(&c, "Crit damage"), "+96%");
+}
+
+/// Same mod: "Looming Maggie", Lvl 24 card of 2026-09-30 (the same serial at
+/// levels 21-23 showed 125/136/148 x 6 and DPS 2,273/2,477/2,700, the rest equal).
+#[test]
+fn looming_maggie_lvl24_modded() {
+    let db = Db::embedded();
+    if !db.meta.mod_paks.iter().any(|p| p.contains("Maggie")) {
+        return;
+    }
+    let (_, c) = card(&db, "@UgbV{rFgOrlEJo02RG/))s70klokOKVtwXg#ZE6l`7OEuz");
+    assert_eq!(get(&c, "Damage"), "161 x 6");
+    assert_eq!(get(&c, "Accuracy"), "51%");
+    assert_eq!(get(&c, "Reload time"), "1.9s");
+    assert_eq!(get(&c, "Fire rate"), "10.7/s");
+    assert_eq!(get(&c, "Magazine"), "8");
+    assert_eq!(get(&c, "Crit damage"), "+58%");
+    assert_eq!(get(&c, "DPS"), "2,943");
 }

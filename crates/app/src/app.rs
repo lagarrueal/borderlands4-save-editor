@@ -539,7 +539,9 @@ impl App {
             }
             ui.separator();
             ui.label("Steam ID:");
-            let r = ui.add(egui::TextEdit::singleline(&mut self.steam_id).desired_width(150.0).hint_text("auto"));
+            let r = ui.add(egui::TextEdit::singleline(&mut self.steam_id).desired_width(150.0).hint_text("auto")
+                // keep the ID out of screenshots
+                .password(self.screenshot.is_some()));
             if r.lost_focus() {
                 if let Some(d) = self.folder.clone() {
                     self.set_folder(&d);

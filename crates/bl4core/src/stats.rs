@@ -150,6 +150,12 @@ impl<'a> Eval<'a> {
         base.map(|b| b * ps)
     }
 
+    /// The row struct's default for a column of `dt`: the value of a cell the
+    /// NCS table omits (build_db's `__default__` row).
+    pub fn struct_default(&self, dt: &str, col: &str) -> Option<f64> {
+        num(self.db.tables.get(&dt.to_lowercase())?.get("__default__")?.get(&norm_col(col))?)
+    }
+
     /// Resolve a compact value from the editor database (k / dt,row,col / attr / ps).
     pub fn compact(&mut self, e: &Value) -> Option<f64> {
         let mut base = None;
@@ -242,7 +248,7 @@ pub fn compute(db: &Db, s: &Serial, info: &ItemInfo) -> Computed {
     }
     chain.reverse(); // root first
     for (key, b) in &chain {
-        add_source(&mut ev, db, &mut out, b, &format!("type {key}"));
+        add_source(&mut ev, db, &mut out, b, &format!("type {key}"), true);
     }
     for r in s.parts() {
         if let Some(p) = db.part(r) {
@@ -252,7 +258,7 @@ pub fn compute(db: &Db, s: &Serial, info: &ItemInfo) -> Computed {
             let v = serde_json::json!({
                 "fx": p.fx, "tpl": p.tpl, "beh": beh, "asp": p.asp,
             });
-            add_source(&mut ev, db, &mut out, &v, &p.k);
+            add_source(&mut ev, db, &mut out, &v, &p.k, false);
         }
     }
     // Part stat modifiers ("Damage mod", "Reload speed mod", "Fire rate mod",
@@ -386,7 +392,12 @@ impl Computed {
     }
 }
 
-fn add_source(ev: &mut Eval, db: &Db, out: &mut Computed, src: &Value, label: &str) {
+/// `item_type`: `src` is an item type of the base chain. A type that lists a
+/// template aspect without overriding its row uses the template's own row
+/// (weapon_sr -> weapon_ui_acc_weights' "Sniper" row, dad_repair_kit ->
+/// repair_kit_manufacturer_attr_init's "Daedalus" row); parts keep skipping
+/// such placeholder cells.
+fn add_source(ev: &mut Eval, db: &Db, out: &mut Computed, src: &Value, label: &str, item_type: bool) {
     let mut templated = vec![];
     if let Some(tpl) = src.get("tpl").and_then(|x| x.as_array()) {
         for t in tpl {
@@ -455,7 +466,7 @@ fn add_source(ev: &mut Eval, db: &Db, out: &mut Computed, src: &Value, label: &s
             // (element damage scalar 0.8, manufacturer crit bonus, ...)
             let template = def.get("template").and_then(|x| x.as_bool()).unwrap_or(false);
             if let Some(fx) = def.get("fx").and_then(|x| x.as_array()) {
-                for e in fx.iter().filter(|e| mode_ok(e) && (!template || e.get("dt").is_none())) {
+                for e in fx.iter().filter(|e| mode_ok(e) && (!template || item_type || e.get("dt").is_none())) {
                     if let (Some(at), Some(v)) = (e.get("a").and_then(|x| x.as_str()), ev.compact(e)) {
                         out.effects.push(Effect {
                             attr: at.to_lowercase(),
@@ -477,8 +488,15 @@ fn add_source(ev: &mut Eval, db: &Db, out: &mut Computed, src: &Value, label: &s
             ("automaticburstcount", "weapon_burst_count"),
             ("burstfiredelay", "weapon_burst_fire_delay"),
             ("shotammocost", "weapon_shot_cost"),
+            ("accuracyimpulse", "weapon_accuracy_impulse"),
         ] {
-            if let Some(v) = beh.get(k).and_then(|v| ev.compact(v)) {
+            // a cell the table omits holds the row struct's default
+            // (Gomie: no AccImpulse_Value -> Struct_Weapon_Barrel_Init 0.2)
+            let omitted = |ev: &Eval, v: &Value| {
+                let (dt, col) = (v.get("dt")?.as_str()?, v.get("col")?.as_str()?);
+                Some(ev.struct_default(dt, col)? * v.get("ps").and_then(num).unwrap_or(1.0))
+            };
+            if let Some(v) = beh.get(k).and_then(|v| ev.compact(v).or_else(|| omitted(ev, v))) {
                 out.base.insert(attr.to_string(), v);
             }
         }
@@ -528,6 +546,11 @@ pub fn card(db: &Db, s: &Serial, info: &ItemInfo) -> Vec<(String, String)> {
                     push(&mut out, "Damage", thousands(d));
                 }
             }
+            // uistat_accuracy: weapon_accuracy_ui_compare as a whole percent
+            if c.based_value("weapon_spread").is_some() {
+                let v = UiEval::new(db, info, &c).get("weapon_accuracy_ui_compare");
+                push(&mut out, "Accuracy", format!("{:.0}%", v * 100.0));
+            }
             if let Some(v) = c.card_fire_rate() {
                 push(&mut out, "Fire rate", format!("{:.1}/s", v));
             }
@@ -556,13 +579,15 @@ pub fn card(db: &Db, s: &Serial, info: &ItemInfo) -> Vec<(String, String)> {
                     push(&mut out, el, format!("{} DMG/s | {:.0}% Chance", thousands(sdmg * d * factor / iv), chance * 100.0));
                 }
             }
-            if let Some(v) = c.value("weapon_spread") {
-                push(&mut out, "Spread", fmt_num(v));
-            }
             if let Some(v) = c.value("weapon_damage_modifier_add_critical_hit") {
                 if v.abs() > 1e-6 {
                     push(&mut out, "Crit damage", format!("{:+.0}%", v * 100.0));
                 }
+            }
+            // uistat_damage_radius: shown when > 0 as "{ArgA}cm" (default number
+            // format: whole, grouped)
+            if let Some(v) = c.value("weapon_damage_radius").filter(|v| *v > 0.0) {
+                push(&mut out, "Splash radius", format!("{}cm", thousands(v)));
             }
         }
         "shield" | "grenade" | "repkit" => {
@@ -680,4 +705,360 @@ pub fn render_text(db: &Db, s: &Serial, info: &ItemInfo, text: &str) -> String {
         out = out.replace(&format!("{{{k}}}"), &shown);
     }
     out
+}
+
+// ---------------------------------------------------------------------------
+// Item-card attributes evaluated from their game definitions.
+//
+// The card lines (ui_stat `uistat_*`) display attributes defined in
+// attribute_c* as GbxExpressionValueResolver formulas ("(A*(1-(B/C)))+...",
+// operators + - * / ^^ (power) < > <= >= == && || !, `attr(name)`, `bb(key)`,
+// named variables bound to an Attribute / DataTable cell / constant) and
+// GbxConditionalAttributeValueResolver (first true condition's value, else
+// `defaultvalue`). Their leaves are stored weapon properties
+// (PropertyValueResolver, InventoryStatsContainerValueResolver), read here
+// from the item's aggregated effects.
+//
+// Behaviour context: each attribute's WeaponAttributeContextResolver names
+// the behaviour it reads (WeaponBehavior_Fire, _Reload, _Sway...). Inside a
+// formula evaluated for one behaviour, a property of an unrelated behaviour
+// reads 0: weapon_accuracy_ui_compare (Fire) reads weapon_sway_ui_value =
+// weapon_sway_x_scale (Sway.WidthScale) * weapon_sway_y_scale (HeightScale)
+// as 0, so the sway term always counts its full weight. Measured on four
+// in-game cards: with the real sway (Maliwan SMG 1.6 x 0.9, Jakobs pistol
+// 0.4 x 0.3) Plasma Coil and Looming Maggie would show 77-85% and 49-50%
+// instead of 86% and 51%.
+// ---------------------------------------------------------------------------
+
+/// Class defaults of stored properties the card formulas read when no part
+/// sets them (WeaponBehavior_Fire.ShotAmmoCost = 1); anything else reads 0.
+const PROP_DEFAULTS: &[(&str, f64)] = &[("weapon_shot_cost", 1.0)];
+
+/// Gbx expression syntax tree.
+enum Ex {
+    Num(f64),
+    Var(String),
+    Attr(String),
+    Neg(Box<Ex>),
+    Not(Box<Ex>),
+    Bin(&'static str, Box<Ex>, Box<Ex>),
+}
+
+/// Operator tokens, longest first.
+const OPS: [&str; 16] = ["^^", "&&", "||", "==", "!=", "<=", ">=", "+", "-", "*", "/", "<", ">", "!", "(", ")"];
+
+fn tokenize(s: &str) -> Option<Vec<String>> {
+    let b = s.as_bytes();
+    let mut out = vec![];
+    let mut i = 0;
+    while i < b.len() {
+        let c = b[i];
+        if c.is_ascii_whitespace() {
+            i += 1;
+        } else if c.is_ascii_alphanumeric() || c == b'_' || c == b'.' {
+            let st = i;
+            while i < b.len() && (b[i].is_ascii_alphanumeric() || b[i] == b'_' || b[i] == b'.') {
+                i += 1;
+            }
+            out.push(s[st..i].to_string());
+        } else if let Some(op) = OPS.iter().find(|o| s[i..].starts_with(**o)) {
+            out.push(op.to_string());
+            i += op.len();
+        } else {
+            return None;
+        }
+    }
+    Some(out)
+}
+
+struct ExParser {
+    t: Vec<String>,
+    i: usize,
+}
+
+impl ExParser {
+    /// Binary operators by increasing precedence; unary ! - and ^^ bind tighter.
+    const LEVELS: [&'static [&'static str]; 5] = [&["||"], &["&&"], &["==", "!=", "<", ">", "<=", ">="], &["+", "-"], &["*", "/"]];
+
+    fn peek(&self) -> Option<&str> {
+        self.t.get(self.i).map(|s| s.as_str())
+    }
+
+    fn bump(&mut self) -> Option<String> {
+        self.i += 1;
+        self.t.get(self.i - 1).cloned()
+    }
+
+    fn bin(&mut self, level: usize) -> Option<Ex> {
+        if level == Self::LEVELS.len() {
+            return self.unary();
+        }
+        let mut l = self.bin(level + 1)?;
+        while let Some(op) = self.peek().and_then(|p| Self::LEVELS[level].iter().find(|o| **o == p).copied()) {
+            self.i += 1;
+            l = Ex::Bin(op, Box::new(l), Box::new(self.bin(level + 1)?));
+        }
+        Some(l)
+    }
+
+    fn unary(&mut self) -> Option<Ex> {
+        match self.peek() {
+            Some("-") => {
+                self.i += 1;
+                Some(Ex::Neg(Box::new(self.unary()?)))
+            }
+            Some("!") => {
+                self.i += 1;
+                Some(Ex::Not(Box::new(self.unary()?)))
+            }
+            _ => {
+                let base = self.primary()?;
+                if self.peek() == Some("^^") {
+                    self.i += 1;
+                    return Some(Ex::Bin("^^", Box::new(base), Box::new(self.unary()?)));
+                }
+                Some(base)
+            }
+        }
+    }
+
+    fn primary(&mut self) -> Option<Ex> {
+        let t = self.bump()?;
+        if t == "(" {
+            let e = self.bin(0)?;
+            return (self.bump()? == ")").then_some(e);
+        }
+        if let Ok(n) = t.parse::<f64>() {
+            return Some(Ex::Num(n));
+        }
+        if !t.starts_with(|c: char| c.is_ascii_alphabetic() || c == '_') {
+            return None;
+        }
+        if self.peek() == Some("(") {
+            self.i += 1;
+            let name = self.bump()?;
+            if self.bump()? != ")" {
+                return None;
+            }
+            return match t.to_lowercase().as_str() {
+                "attr" | "att" => Some(Ex::Attr(name)),
+                "bb" => Some(Ex::Num(0.0)), // AI blackboard: never set on items
+                _ => None,
+            };
+        }
+        match t.to_lowercase().as_str() {
+            "true" => Some(Ex::Num(1.0)),
+            "false" => Some(Ex::Num(0.0)),
+            _ => Some(Ex::Var(t)),
+        }
+    }
+}
+
+fn parse_expr(s: &str) -> Option<Ex> {
+    let mut p = ExParser { t: tokenize(s)?, i: 0 };
+    let e = p.bin(0)?;
+    (p.i == p.t.len()).then_some(e)
+}
+
+/// Last segment of a class reference
+/// ("Asset'/Script/GbxWeapon.WeaponBehavior_Fire'" -> "WeaponBehavior_Fire").
+fn class_name(s: &str) -> &str {
+    let s = unquote(s);
+    s.rsplit(['.', '/']).next().unwrap_or(s)
+}
+
+/// Evaluates card attributes of one item from their definitions.
+pub struct UiEval<'a> {
+    db: &'a Db,
+    c: &'a Computed,
+    ev: Eval<'a>,
+    cache: HashMap<String, Option<f64>>,
+    /// behaviour each enclosing attribute resolves to (innermost last)
+    ctx: Vec<String>,
+}
+
+impl<'a> UiEval<'a> {
+    pub fn new(db: &'a Db, info: &ItemInfo, c: &'a Computed) -> Self {
+        UiEval { db, c, ev: Eval::new(db, info.level.unwrap_or(1).max(1), info.rarity), cache: HashMap::new(), ctx: vec![] }
+    }
+
+    /// An attribute's card value (unresolvable reads 0).
+    pub fn get(&mut self, name: &str) -> f64 {
+        self.resolve(name).unwrap_or(0.0)
+    }
+
+    /// An attribute's card value; None when it does not resolve.
+    pub fn resolve(&mut self, name: &str) -> Option<f64> {
+        let k = name.to_lowercase();
+        let def = self.db.attributes.get(&k);
+        let beh = def
+            .and_then(|d| d.get("context"))
+            .and_then(|c| c.get("behaviortypetofurtherresolveto"))
+            .and_then(|x| x.as_str())
+            .map(class_name)
+            .unwrap_or("")
+            .to_string();
+        // a specific behaviour is not re-resolved to an unrelated one
+        // (a subclass, WeaponBehavior_FireProjectile of _Fire, is fine)
+        let outer = self.ctx.iter().rev().find(|b| !b.is_empty() && b.as_str() != "WeaponBehavior");
+        let reachable = beh.is_empty() || beh == "WeaponBehavior" || outer.map_or(true, |o| beh.starts_with(o.as_str()));
+        let key = if reachable { k.clone() } else { format!("{k}@unreachable") };
+        if let Some(v) = self.cache.get(&key) {
+            return *v;
+        }
+        self.cache.insert(key.clone(), None); // cycle guard
+        self.ctx.push(beh);
+        let v = self.compute(&k, def, reachable);
+        self.ctx.pop();
+        self.cache.insert(key, v);
+        v
+    }
+
+    fn compute(&mut self, k: &str, def: Option<&Value>, reachable: bool) -> Option<f64> {
+        let v = def.and_then(|d| d.get("value"));
+        let st = v.and_then(|v| v.get("structtype")).and_then(|x| x.as_str()).map(class_name).unwrap_or("");
+        let stored = st == "PropertyValueResolver" || st == "InventoryStatsContainerValueResolver";
+        if stored && !reachable {
+            return Some(0.0);
+        }
+        // Int properties (MaxLoadedAmmo, ProjectilesPerShot) after float modifiers
+        let int = v.and_then(|v| v.get("resolvedtype")).and_then(|x| x.as_str()) == Some("Int");
+        let int = |x: f64| if int { (x - 1e-6).ceil() } else { x };
+        if self.set(k) {
+            return self.c.value(k).map(int);
+        }
+        if stored {
+            // the same property under another attribute name
+            // (weapon_auto_burst_count = weapon_burst_count = Fire.AutomaticBurstCount)
+            if let Some(alias) = self.alias(k, def) {
+                return self.c.value(&alias).map(int);
+            }
+            return Some(PROP_DEFAULTS.iter().find(|(n, _)| *n == k).map_or(0.0, |(_, d)| *d));
+        }
+        let v = v?;
+        match st {
+            // true when the item's part of that slot type has the given part value
+            // (weapon_reload_four: Reload part value 4 = heat magazine)
+            "GbxCondition_WeaponPartValue" => {
+                let slot = v.get("type").and_then(|x| x.as_str())?.to_lowercase();
+                let want = v.get("value").and_then(num)?;
+                let have = self.c.value(&format!("weapon_part_{slot}_value"));
+                Some(have.is_some_and(|h| (h - want).abs() < 1e-6) as u8 as f64)
+            }
+            "GbxExpressionValueResolver" => self.expr(v.get("expression")?),
+            "GbxConditionalAttributeValueResolver" => {
+                for cv in v.get("conditionalvalues").and_then(|x| x.as_array()).into_iter().flatten() {
+                    if self.condition(cv.get("condition").unwrap_or(&Value::Null)) {
+                        return Some(self.slot(cv.get("value").unwrap_or(&Value::Null)));
+                    }
+                }
+                Some(v.get("defaultvalue").map_or(0.0, |d| self.slot(d)))
+            }
+            _ => self.ev.raw(v),
+        }
+    }
+
+    /// Whether the item's effects or fire behaviour set the attribute.
+    fn set(&self, k: &str) -> bool {
+        self.c.base.contains_key(k) || self.c.effects.iter().any(|e| e.attr == k)
+    }
+
+    /// An attribute the item sets that names the same property of the same behaviour.
+    fn alias(&self, k: &str, def: Option<&Value>) -> Option<String> {
+        fn prop(d: &Value) -> Option<(String, &str)> {
+            let p = d.get("value")?.get("property")?.get("propertypath")?.as_str()?.to_lowercase();
+            let ctx = d.get("context").and_then(|c| c.get("behaviortypetofurtherresolveto")).and_then(|x| x.as_str()).unwrap_or("");
+            Some((p, class_name(ctx)))
+        }
+        let want = prop(def?)?;
+        let names = self.c.base.keys().map(|s| s.as_str()).chain(self.c.effects.iter().map(|e| e.attr.as_str()));
+        names.filter(|n| *n != k).find(|n| self.db.attributes.get(*n).and_then(prop).as_ref() == Some(&want)).map(|s| s.to_string())
+    }
+
+    /// A value slot: {datatablevalue | attribute | constant, postscale}.
+    fn slot(&mut self, v: &Value) -> f64 {
+        let mut b = None;
+        if let Some(dv) = v.get("datatablevalue") {
+            if let Some(dt) = dv.get("datatable").and_then(|x| x.as_str()).map(unquote).filter(|d| !d.eq_ignore_ascii_case("none")) {
+                let row = dv.get("rowname").and_then(|x| x.as_str()).unwrap_or("");
+                let col = dv.get("columnname").and_then(|x| x.as_str()).filter(|c| !c.eq_ignore_ascii_case("none"));
+                b = self.ev.cell(dt, row, col);
+            }
+        }
+        if b.is_none() {
+            if let Some(a) = v.get("attribute").and_then(|x| x.as_str()).map(unquote).filter(|a| !a.eq_ignore_ascii_case("none")) {
+                b = Some(self.get(a));
+            }
+        }
+        b.or_else(|| v.get("constant").and_then(num)).unwrap_or(0.0) * v.get("postscale").and_then(num).unwrap_or(1.0)
+    }
+
+    fn condition(&mut self, c: &Value) -> bool {
+        if let Some(ex) = c.get("inlinestruct").and_then(|s| s.get("expression")) {
+            return self.expr(ex).is_some_and(|x| x != 0.0);
+        }
+        if let Some(a) = c.get("externalattribute").and_then(|x| x.as_str()) {
+            return self.get(unquote(a)) != 0.0;
+        }
+        false
+    }
+
+    /// GbxExpressionValueResolver: a formula string, or {formula, variables}.
+    fn expr(&mut self, ex: &Value) -> Option<f64> {
+        let text = ex.as_str().or_else(|| ex.get("formula").and_then(|f| f.as_str()))?;
+        let mut vars = HashMap::new();
+        let pairs = ex.get("variables").and_then(|v| v.get("variablevalues")).and_then(|v| v.get("pairs")).and_then(|p| p.as_object());
+        for p in pairs.into_iter().flat_map(|m| m.values()) {
+            if let (Some(k), Some(val)) = (p.get("key").and_then(|x| x.as_str()), p.get("value").and_then(|v| v.get("value"))) {
+                vars.insert(k.to_lowercase(), val.clone());
+            }
+        }
+        let tree = parse_expr(text)?;
+        Some(self.eval(&tree, &vars))
+    }
+
+    /// A formula variable: {type: Attribute | DataTable | Float | Int | Bool, value}.
+    fn var(&mut self, name: &str, vars: &HashMap<String, Value>) -> f64 {
+        let Some(val) = vars.get(&name.to_lowercase()) else { return self.get(name) };
+        let inner = val.get("value");
+        match val.get("type").and_then(|x| x.as_str()) {
+            Some("Attribute") => inner.and_then(|x| x.as_str()).map_or(0.0, |a| self.get(unquote(a))),
+            Some("DataTable") => inner
+                .and_then(|d| self.ev.cell(unquote(d.get("datatable")?.as_str()?), d.get("rowname")?.as_str()?, d.get("columnname").and_then(|x| x.as_str())))
+                .unwrap_or(0.0),
+            Some("Bool") => (inner.and_then(|x| x.as_str()) == Some("true")) as u8 as f64,
+            _ => inner.and_then(num).unwrap_or(0.0),
+        }
+    }
+
+    fn eval(&mut self, e: &Ex, vars: &HashMap<String, Value>) -> f64 {
+        let t = |c: bool| c as u8 as f64;
+        match e {
+            Ex::Num(n) => *n,
+            Ex::Var(v) => self.var(v, vars),
+            Ex::Attr(a) => self.get(a),
+            Ex::Neg(x) => -self.eval(x, vars),
+            Ex::Not(x) => t(self.eval(x, vars) == 0.0),
+            Ex::Bin(op, l, r) => {
+                let (a, b) = (self.eval(l, vars), self.eval(r, vars));
+                match *op {
+                    "+" => a + b,
+                    "-" => a - b,
+                    "*" => a * b,
+                    "/" if b != 0.0 => a / b,
+                    "/" => 0.0,
+                    "^^" => a.powf(b),
+                    "<" => t(a < b),
+                    ">" => t(a > b),
+                    "<=" => t(a <= b),
+                    ">=" => t(a >= b),
+                    "==" => t((a - b).abs() < 1e-9),
+                    "!=" => t((a - b).abs() >= 1e-9),
+                    "&&" => t(a != 0.0 && b != 0.0),
+                    "||" => t(a != 0.0 || b != 0.0),
+                    _ => 0.0,
+                }
+            }
+        }
+    }
 }

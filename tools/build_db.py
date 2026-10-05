@@ -520,9 +520,20 @@ def norm_col(c):
     return COL_GUID.sub("", c.lower())
 
 
+STRUCT_DEFAULTS = Path(__file__).resolve().parent / "struct_defaults.json"
+
+
 def build_tables(d):
     """All gbx_ue_data_tables as {table: {row: {column: value}}} (lower case,
-    GUID suffixes stripped from column names)."""
+    GUID suffixes stripped from column names).
+
+    NCS stores only the cells that differ from the row struct's default value
+    (of the 334 struct-typed tables that omit cells, 328 never hold a cell
+    equal to its default), so every table whose row struct is known also gets
+    a `__default__` row with the struct's defaults (struct_defaults.json, read
+    from the cooked Struct_*.uasset UserDefinedStructs), e.g.
+    Struct_Weapon_Barrel_Init.AccImpulse_Value = 0.2."""
+    sdef = json.load(open(STRUCT_DEFAULTS, encoding="utf-8")) if STRUCT_DEFAULTS.exists() else {}
     out = {}
     for _, _, e in entries(d, "gbx_ue_data_table"):
         v = e["value"] if isinstance(e["value"], dict) else {}
@@ -541,6 +552,9 @@ def build_tables(d):
                     except ValueError:
                         cols[norm_col(k)] = val
             rows[r["row_name"].lower()] = cols
+        struct = (v.get("row_struct") or "").split(".")[-1].rstrip("'").lower()
+        if struct in sdef:
+            rows["__default__"] = sdef[struct]
         out[e["key"].lower()] = rows
     return out
 
