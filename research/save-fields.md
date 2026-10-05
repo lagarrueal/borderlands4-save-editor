@@ -52,9 +52,9 @@ Every claim below is marked **[measured]** (run or diffed here), **[game data]**
 
 ```bash
 # decrypt (identical to testdata/yaml for all files)
-third_party/bl4/target/release/bl4.exe save X.sav -s 76561198112570585 decrypt -o X.yaml
+third_party/bl4/target/release/bl4.exe save X.sav -s <steamid> decrypt -o X.yaml
 # upstream round trip (backup is forced on: `-b/--backup` takes no value, so `--backup=false` is an error)
-bl4.exe save 11.rt.sav -s 76561198112570585 set state.currencies.cash 24507508   # writes 11.rt.sav.bak + .bak.json
+bl4.exe save 11.rt.sav -s <steamid> set state.currencies.cash 24507508   # writes 11.rt.sav.bak + .bak.json
 bl4.exe save 10.ms2.sav -s ... missions set missionset_main_grasslands2a -y
 bl4.exe save 11.sav -s ... missions list main|side|all
 bl4.exe ncs show research/ncs_extract/base/<table>.ncs --json > table.json   # works on the compressed NCS too
@@ -71,7 +71,7 @@ PyYAML needs a constructor for the custom tag (`yaml.SafeLoader.add_constructor(
 
 | Layer | Detail |
 |---|---|
-| Key | `BASE_KEY` (32 bytes, `third_party/bl4/src/bl4/src/crypto.rs`). The first 8 bytes are XORed with the Steam ID as a u64 little-endian. Steam ID here: `76561198112570585`. It is also the save folder name. |
+| Key | `BASE_KEY` (32 bytes, `third_party/bl4/src/bl4/src/crypto.rs`). The first 8 bytes are XORed with the Steam ID as a u64 little-endian. Steam ID here: `<steamid>`. It is also the save folder name. |
 | Cipher | AES-256-ECB over the whole file. The size is always a multiple of 16. |
 | Padding | PKCS7. All 16 game files have valid PKCS7 (pad 1..16). |
 | Compression | zlib, header `78 9C`, **level 6** (Python `zlib.compress(y, 6)` reproduces it exactly). |

@@ -5,7 +5,14 @@ use bl4core::save::{self, Character, Container, Profile, SaveFile, SaveKind};
 use bl4core::serial::Serial;
 use std::path::PathBuf;
 
-const SID: u64 = 76561198112570585;
+/// Steam ID of the test saves: BL4_STEAM_ID, else the first one with BL4 saves on this PC.
+fn sid() -> u64 {
+    std::env::var("BL4_STEAM_ID")
+        .ok()
+        .and_then(|s| s.parse().ok())
+        .or_else(|| bl4core::save::known_steam_ids().into_iter().next())
+        .unwrap_or(0)
+}
 
 fn copy(name: &str, tag: &str) -> Option<PathBuf> {
     let src = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../testdata/saves").join(name);
@@ -20,14 +27,14 @@ fn copy(name: &str, tag: &str) -> Option<PathBuf> {
 }
 
 fn reopen(p: &PathBuf) -> SaveFile {
-    SaveFile::open(p, Some(SID)).unwrap()
+    SaveFile::open(p, Some(sid())).unwrap()
 }
 
 #[test]
 fn character_edits_roundtrip() {
     let Some(p) = copy("11.sav", "char") else { return };
     let db = Db::embedded();
-    let mut sf = SaveFile::open(&p, Some(SID)).unwrap();
+    let mut sf = SaveFile::open(&p, Some(sid())).unwrap();
     let inv0 = save::check_invariants(&sf.doc, SaveKind::Character);
     assert!(inv0.is_empty(), "{inv0:?}");
     let backup = sf.make_backup().unwrap();
@@ -91,7 +98,7 @@ fn character_edits_roundtrip() {
 fn profile_edits_roundtrip() {
     let Some(p) = copy("profile.sav", "prof") else { return };
     let db = Db::embedded();
-    let mut sf = SaveFile::open(&p, Some(SID)).unwrap();
+    let mut sf = SaveFile::open(&p, Some(sid())).unwrap();
     assert_eq!(sf.kind, SaveKind::Profile);
     {
         let mut pr = Profile(&mut sf.doc);
@@ -120,7 +127,7 @@ fn profile_edits_roundtrip() {
 fn unmodified_save_writes_identical_bytes() {
     let Some(p) = copy("11.sav", "ident") else { return };
     let before = std::fs::read(&p).unwrap();
-    let mut sf = SaveFile::open(&p, Some(SID)).unwrap();
+    let mut sf = SaveFile::open(&p, Some(sid())).unwrap();
     assert!(!sf.is_modified());
     sf.write().unwrap();
     assert_eq!(std::fs::read(&p).unwrap(), before);
@@ -160,7 +167,7 @@ fn built_items_decode_and_have_no_errors() {
 #[test]
 fn scale_backpack_to_level() {
     let Some(p) = copy("11.sav", "scale") else { return };
-    let mut sf = SaveFile::open(&p, Some(SID)).unwrap();
+    let mut sf = SaveFile::open(&p, Some(sid())).unwrap();
     let (changed, _skipped) = save::scale_items(&mut sf.doc, Container::Backpack, 37);
     assert!(changed > 0);
     for it in save::list_items(&sf.doc) {

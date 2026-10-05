@@ -10,7 +10,7 @@ fn main() {
     let mut serials = BTreeSet::new();
     for a in args.iter().filter(|a| !a.starts_with("--")) {
         let text = if a.ends_with(".sav") {
-            let sid = bl4core::crypto::steam_id_from_path(std::path::Path::new(a)).unwrap_or(76561198112570585);
+            let sid = bl4core::crypto::steam_id_from_path(std::path::Path::new(a)).or_else(|| bl4core::save::known_steam_ids().into_iter().next()).unwrap_or(0);
             String::from_utf8(bl4core::crypto::decrypt(&std::fs::read(a).unwrap(), sid).unwrap()).unwrap()
         } else {
             std::fs::read_to_string(a).unwrap()

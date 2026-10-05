@@ -255,14 +255,100 @@ pub fn compute(db: &Db, s: &Serial, info: &ItemInfo) -> Computed {
             add_source(&mut ev, db, &mut out, &v, &p.k);
         }
     }
-    // rarity damage scale (Rarity_Balance.Damage_Scale_Level), read by the
-    // weapon_damage_scale_per_level attribute
-    if matches!(info.kind.as_str(), "weapon" | "heavy") {
-        if let Some(v) = ev.attr("weapon_damage_scale_per_level") {
-            out.effects.push(Effect { attr: "weapon_damage".into(), op: "ScaleMultiply".into(), val: v, src: "rarity".into() });
+    // Part stat modifiers ("Damage mod", "Reload speed mod", "Fire rate mod",
+    // pearl stat parts, ...): each part gives points to a stat tag, and the
+    // item type's inv_stat definition turns them into attribute modifiers:
+    //   points x StatToAttributeModifierScalar (Weapon_Stats[row].Default)
+    //          x BaseMultiplier (Weapon_Stats[row].<Manufacturer>, 1 if empty)
+    //          x Rarity_Balance[rarity].Stat_Scale (Rarity.StatMultiplierColumnName)
+    // negated for bZeroIsBetter stats (reload time, burst delay, ...), applied
+    // with the entry's modifier type (ScaleAdd unless PreAdd/...).
+    // This is where rarity scales damage (Stat_Scale on the damage points);
+    // Rarity_Balance.Damage_Scale_Level is not applied on top of it.
+    let statdefs = chain.iter().rev().find_map(|(_, b)| b.get("statdefs").and_then(|x| x.as_array()).cloned());
+    if let Some(defs) = statdefs {
+        let stat_scale = ev.cell("rarity_balance", ev.rarity_row, Some("stat_scale")).unwrap_or(1.0);
+        for r in s.parts() {
+            let Some(p) = db.part(r) else { continue };
+            for m in part_stat_mods(db, p).into_iter().filter(mode_ok) {
+                let Some(tag) = m.get("stat").and_then(|x| x.as_str()) else { continue };
+                let Some(points) = ev.compact(&m) else { continue };
+                for d in defs.iter().filter(|d| d.get("stat").and_then(|x| x.as_str()).is_some_and(|t| t.eq_ignore_ascii_case(tag))) {
+                    let Some(attr) = d.get("a").and_then(|x| x.as_str()) else { continue };
+                    let Some(scalar) = d.get("sc").and_then(|x| ev.compact(x)) else { continue };
+                    let mult = d.get("bm").and_then(|x| ev.compact(x)).unwrap_or(1.0);
+                    let mut val = points * scalar * mult * stat_scale;
+                    if d.get("neg").and_then(|x| x.as_bool()).unwrap_or(false) {
+                        val = -val;
+                    }
+                    let op = d.get("op").and_then(|x| x.as_str()).unwrap_or("ScaleAdd");
+                    out.effects.push(Effect { attr: attr.to_string(), op: op.to_string(), val, src: format!("{} (stat {tag} {points:+})", p.k) });
+                }
+            }
         }
     }
     out
+}
+
+/// A part's stat modifiers: its own, or those of a stat template aspect
+/// (the "Mag size mod" parts point at `stat_mod_mag_size`).
+fn part_stat_mods(db: &Db, p: &crate::db::Part) -> Vec<Value> {
+    let mut out: Vec<Value> = p.mods.as_ref().and_then(|m| m.as_array()).cloned().unwrap_or_default();
+    if out.is_empty() {
+        for a in p.asp.as_ref().and_then(|a| a.as_array()).into_iter().flatten().filter_map(|x| x.as_str()) {
+            if let Some(m) = db.aspects.get(&a.to_lowercase()).and_then(|d| d.get("mods")).and_then(|m| m.as_array()) {
+                out.extend(m.iter().cloned());
+            }
+        }
+    }
+    out
+}
+
+impl Computed {
+    /// `value`, but only when something gives the attribute a base (a fire
+    /// behaviour value or an OverrideBaseValue): stat modifiers alone do not
+    /// make a stat (e.g. "Reload speed mod" on a Borg recharging magazine,
+    /// which has no reload time).
+    pub fn based_value(&self, attr: &str) -> Option<f64> {
+        let has = self.base.contains_key(attr) || self.effects.iter().any(|e| e.op == "OverrideBaseValue" && e.attr.eq_ignore_ascii_case(attr));
+        if has {
+            self.value(attr)
+        } else {
+            None
+        }
+    }
+
+    /// Fire rate as the item card shows it: a burst weapon fires
+    /// AutomaticBurstCount shots at FireRate, then waits BurstFireDelay.
+    pub fn card_fire_rate(&self) -> Option<f64> {
+        let fr = self.based_value("weapon_fire_rate")?;
+        let n = self.value("weapon_burst_count").unwrap_or(1.0).round();
+        let d = self.value("weapon_burst_fire_delay").unwrap_or(0.0);
+        if n > 1.0 && d > 0.0 && fr > 0.0 {
+            Some(n / (n / fr + d))
+        } else {
+            Some(fr)
+        }
+    }
+
+    /// Magazine size (MaxLoadedAmmo is an int, the stat rounds up).
+    pub fn card_magazine(&self) -> Option<f64> {
+        self.based_value("weapon_max_loaded_ammo").map(|v| (v - 1e-6).ceil())
+    }
+
+    /// Sustained DPS as the card shows it: one magazine at the card fire rate,
+    /// then a reload.
+    pub fn card_dps(&self) -> Option<f64> {
+        let dmg = self.value("weapon_damage")?;
+        let pellets = self.value("weapon_projectile_per_shot").unwrap_or(1.0).max(1.0).round();
+        let fr = self.card_fire_rate()?;
+        let mag = self.card_magazine()?;
+        let reload = self.based_value("weapon_reload_time").unwrap_or(0.0);
+        if fr <= 0.0 || mag <= 0.0 {
+            return None;
+        }
+        Some(dmg * pellets * mag / (mag / fr + reload))
+    }
 }
 
 fn add_source(ev: &mut Eval, db: &Db, out: &mut Computed, src: &Value, label: &str) {
@@ -329,8 +415,12 @@ fn add_source(ev: &mut Eval, db: &Db, out: &mut Computed, src: &Value, label: &s
                 continue;
             }
             let Some(def) = db.aspects.get(&a.to_lowercase()) else { continue };
+            // a template aspect's data-table cells are placeholders for the
+            // row a part supplies; other aspects' cells are real values
+            // (element damage scalar 0.8, manufacturer crit bonus, ...)
+            let template = def.get("template").and_then(|x| x.as_bool()).unwrap_or(false);
             if let Some(fx) = def.get("fx").and_then(|x| x.as_array()) {
-                for e in fx.iter().filter(|e| mode_ok(e) && e.get("dt").is_none()) {
+                for e in fx.iter().filter(|e| mode_ok(e) && (!template || e.get("dt").is_none())) {
                     if let (Some(at), Some(v)) = (e.get("a").and_then(|x| x.as_str()), ev.compact(e)) {
                         out.effects.push(Effect {
                             attr: at.to_lowercase(),
@@ -350,11 +440,30 @@ fn add_source(ev: &mut Eval, db: &Db, out: &mut Computed, src: &Value, label: &s
             ("spread", "weapon_spread"),
             ("projectilespershot", "weapon_projectile_per_shot"),
             ("automaticburstcount", "weapon_burst_count"),
+            ("burstfiredelay", "weapon_burst_fire_delay"),
         ] {
             if let Some(v) = beh.get(k).and_then(|v| ev.compact(v)) {
                 out.base.insert(attr.to_string(), v);
             }
         }
+    }
+}
+
+/// Whole number with thousands separators, as the item card prints it.
+pub fn thousands(v: f64) -> String {
+    let n = v.round() as i64;
+    let s = n.abs().to_string();
+    let mut out = String::new();
+    for (i, ch) in s.chars().enumerate() {
+        if i > 0 && (s.len() - i) % 3 == 0 {
+            out.push(',');
+        }
+        out.push(ch);
+    }
+    if n < 0 {
+        format!("-{out}")
+    } else {
+        out
     }
 }
 
@@ -378,26 +487,29 @@ pub fn card(db: &Db, s: &Serial, info: &ItemInfo) -> Vec<(String, String)> {
             if let Some(d) = c.value("weapon_damage") {
                 let pellets = c.value("weapon_projectile_per_shot").unwrap_or(1.0).max(1.0).round();
                 if pellets > 1.0 {
-                    push(&mut out, "Damage", format!("{} x{}", fmt_num(d), pellets));
+                    push(&mut out, "Damage", format!("{} x {}", thousands(d), pellets));
                 } else {
-                    push(&mut out, "Damage", fmt_num(d));
+                    push(&mut out, "Damage", thousands(d));
                 }
             }
-            if let Some(v) = c.value("weapon_fire_rate") {
-                push(&mut out, "Fire rate", format!("{}/s", fmt_num(v)));
+            if let Some(v) = c.card_fire_rate() {
+                push(&mut out, "Fire rate", format!("{:.1}/s", v));
             }
-            if let Some(v) = c.value("weapon_max_loaded_ammo") {
-                push(&mut out, "Magazine", format!("{:.0}", v.round()));
+            if let Some(v) = c.card_magazine() {
+                push(&mut out, "Magazine", format!("{:.0}", v));
             }
-            if let Some(v) = c.value("weapon_reload_time") {
-                push(&mut out, "Reload time", format!("{}s", fmt_num(v)));
+            if let Some(v) = c.based_value("weapon_reload_time") {
+                push(&mut out, "Reload time", format!("{:.1}s", v));
+            }
+            if let Some(v) = c.card_dps() {
+                push(&mut out, "DPS", thousands(v));
             }
             if let Some(v) = c.value("weapon_spread") {
                 push(&mut out, "Spread", fmt_num(v));
             }
             if let Some(v) = c.value("weapon_damage_modifier_add_critical_hit") {
                 if v.abs() > 1e-6 {
-                    push(&mut out, "Crit damage bonus", format!("+{:.0}%", v * 100.0));
+                    push(&mut out, "Crit damage", format!("{:+.0}%", v * 100.0));
                 }
             }
         }
@@ -406,7 +518,7 @@ pub fn card(db: &Db, s: &Serial, info: &ItemInfo) -> Vec<(String, String)> {
             // tables hold deltas whose exact stacking is not verified, so they
             // are listed per part instead of folded in.
             let base_only = Computed {
-                effects: c.effects.iter().filter(|e| e.src.starts_with("type ") || e.src == "rarity").cloned().collect(),
+                effects: c.effects.iter().filter(|e| e.src.starts_with("type ")).cloned().collect(),
                 base: c.base.clone(),
             };
             let lines: &[(&str, &str, &str)] = match info.kind.as_str() {
@@ -464,7 +576,7 @@ pub fn part_effects(db: &Db, s: &Serial, info: &ItemInfo) -> HashMap<String, Vec
     let mut out: HashMap<String, Vec<String>> = HashMap::new();
     for e in &c.effects {
         let key = e.src.split(" (").next().unwrap_or(&e.src).to_string();
-        if key.starts_with("type ") || key == "rarity" {
+        if key.starts_with("type ") {
             continue;
         }
         let what = e.attr.trim_start_matches("weapon_").replace('_', " ");

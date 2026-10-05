@@ -1,0 +1,1 @@
+Offline Gibbed-style save editor for Borderlands 4: edit items (parts, level, stats, validity check), backpack/bank, UVH 1-7, SDUs, missions, cosmetics, cash, eridium and more. Automatic backups, blocked while the game runs. Single standalone exe.

@@ -502,6 +502,7 @@ impl App {
     fn top_bar(&mut self, ui: &mut egui::Ui) {
         ui.horizontal(|ui| {
             ui.heading(RichText::new("BL4 Save Editor").color(Color32::from_rgb(255, 170, 40)));
+            ui.label(RichText::new(concat!("v", env!("CARGO_PKG_VERSION"))).weak().small());
             ui.separator();
             if ui.button("Open save…").clicked() {
                 let mut dlg = rfd::FileDialog::new().add_filter("Borderlands 4 save", &["sav"]);

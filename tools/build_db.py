@@ -294,7 +294,10 @@ def compact_aspects(v):
         for ef in effs:
             if not isinstance(ef, dict):
                 continue
-            x = {"a": ref(ef.get("attributetomodify")), "op": ef.get("modifiertype") or "ScaleMultiply"}
+            # an omitted modifiertype is the enum default: EGbxAttributeModifierType
+            # is {ScaleAdd, PreAdd, PostAdd, ScaleMultiply, OverrideBaseValue}
+            # (Borderlands4.exe), so 0 = ScaleAdd, i.e. x (1 + sum)
+            x = {"a": ref(ef.get("attributetomodify")), "op": ef.get("modifiertype") or "ScaleAdd"}
             mv = dt_ref(ef.get("modifiervalue"))
             if mv:
                 x.update(mv)
@@ -307,10 +310,13 @@ def compact_aspects(v):
                 mv = dt_ref(sm.get("modifiervalue"))
                 if mv:
                     x.update(mv)
+                if a.get("usemodebitmask"):
+                    x["mode"] = a["usemodebitmask"]
                 mods.append(x)
         b = a.get("behavior")
         if isinstance(b, dict) and parent and "fire" in parent.lower():
-            for k in ("damage", "firerate", "spread", "projectilespershot", "automaticburstcount", "accuracyimpulse"):
+            for k in ("damage", "firerate", "spread", "projectilespershot", "automaticburstcount", "accuracyimpulse",
+                      "burstfiredelay"):
                 if k in b:
                     val = b[k]
                     if isinstance(val, dict):
@@ -557,9 +563,75 @@ def build_aspect_defs(d):
     return out
 
 
+def deep_merge(dst, src):
+    for k, v in src.items():
+        if isinstance(v, dict) and isinstance(dst.get(k), dict):
+            deep_merge(dst[k], v)
+        else:
+            dst[k] = v
+    return dst
+
+
+def build_stat_defs(d):
+    """inv_stat definitions (WeaponStatsDef / GadgetStatsDef), parent chain merged.
+
+    Each part's `statmodifiers` (stattagname + points: the "Damage mod",
+    "Reload speed mod", ... parts) is turned into attribute modifiers by the
+    item type's inv_stat: for every entry whose `stat` is the tag,
+      value = points * StatToAttributeModifierScalar * BaseMultiplier
+              * Rarity_Balance[rarity].Stat_Scale   (negated if bZeroIsBetter)
+    applied with `modifiertype` (default ScaleAdd) to `definition`.
+    -> {inv_stat name: [{n, stat, a, op, sc, bm?, neg?, round?}]}"""
+    raw = {}
+    for _, _, e in entries(d, "inv_stat"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        attrs = {}
+        for a in as_list((v.get("attributes") or {}).get("attribute")):
+            if isinstance(a, dict):
+                for n, body in a.items():
+                    if isinstance(body, dict):
+                        attrs[n.lower()] = body
+        parent = ref(v.get("parent")).lower() if v.get("parent") else None
+        raw[e["key"].lower()] = (parent, attrs)
+
+    def merged(name, seen=()):
+        if name not in raw or name in seen:
+            return {}
+        parent, attrs = raw[name]
+        out = merged(parent, seen + (name,)) if parent else {}
+        out = json.loads(json.dumps(out))
+        for k, b in attrs.items():
+            deep_merge(out.setdefault(k, {}), b)
+        return out
+
+    out = {}
+    for name in raw:
+        lst = []
+        for n, b in merged(name).items():
+            if not b.get("stat") or not b.get("definition"):
+                continue
+            x = {"n": n, "stat": b["stat"].lower(), "a": ref(b["definition"]).lower(),
+                 "op": b.get("modifiertype") or "ScaleAdd"}
+            sc = dt_ref(b.get("stattoattributemodifierscalar"))
+            if not sc or "row" not in sc:
+                continue
+            x["sc"] = sc
+            bm = dt_ref(b.get("basemultiplier"))
+            if bm and "row" in bm and "col" in bm:
+                x["bm"] = bm
+            if str(b.get("bzeroisbetter", "")).lower() == "true":
+                x["neg"] = True
+            if b.get("roundingmode"):
+                x["round"] = b["roundingmode"]
+            lst.append(x)
+        out[name] = lst
+    return out
+
+
 def build_bases(d):
     """Aspects of every inv entry by key, so stats can walk the base-type chain."""
     out = {}
+    statdefs = build_stat_defs(d)
     for _, _, e in entries(d, "inv"):
         v = e["value"] if isinstance(e["value"], dict) else {}
         if not v:
@@ -568,6 +640,10 @@ def build_bases(d):
         rec = out.setdefault(e["key"].lower(), {})
         if v.get("basetype"):
             rec["base"] = ref(v["basetype"]).lower()
+        if v.get("stats"):
+            # the item type's stat definition (jak_ar -> jakobs_weapon), resolved
+            rec["stats"] = ref(v["stats"]).lower()
+            rec["statdefs"] = statdefs.get(rec["stats"], [])
         for k in ("fx", "tpl", "beh", "mods"):
             if k in a:
                 rec[k] = rec.get(k, []) + a[k] if isinstance(a[k], list) else a[k]
@@ -731,6 +807,13 @@ def main():
                 sdu.append({"name": cols[0], "cost": int(cols[1]), "requires": cols[2] if len(cols) > 2 and cols[2] != "{}" else None,
                             "effect": cols[3] if len(cols) > 3 else ""})
 
+    aspects = build_aspect_defs(INSTALLED)
+    bases = build_bases(INSTALLED)
+    for src in list(parts.values()) + list(bases.values()):
+        for t in src.get("tpl") or []:
+            a = (t.get("asp") or "").lower()
+            if a in aspects:
+                aspects[a]["template"] = True
     containers = {}
     for _, _, e in entries(INSTALLED, "inventory_container"):
         v = e["value"] if isinstance(e["value"], dict) else {}
@@ -753,8 +836,8 @@ def main():
         "sdu": sdu,
         "tables": build_tables(INSTALLED),
         "attributes": build_attributes(INSTALLED),
-        "aspects": build_aspect_defs(INSTALLED),
-        "bases": build_bases(INSTALLED),
+        "aspects": aspects,
+        "bases": bases,
         "containers": containers,
         "uiargs": UI_ARGS,
         "stations": build_stations(INSTALLED),
