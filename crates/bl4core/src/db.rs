@@ -74,8 +74,35 @@ pub struct Category {
     /// item-type text lines (manufacturer perk)
     #[serde(default)]
     pub text: Vec<String>,
+    /// weapon naming strategy (`NameStrat_JAK`), a key of `Db::naming` once lower-cased
+    #[serde(default)]
+    pub naming: Option<String>,
     #[serde(default)]
     pub r#mod: bool,
+}
+
+/// A weapon naming strategy (`inv_name_strategy`, OakWeaponNamingStrategy).
+#[derive(Debug, Deserialize, Clone, Default)]
+pub struct NamingStrategy {
+    /// (naming attribute, first threshold, second threshold); a second
+    /// threshold below the first means lower is better (reload, spread, ADS)
+    #[serde(default)]
+    pub thr: Vec<(String, f64, f64)>,
+    /// attribute -> (prefix, priority): the only attribute past its first threshold
+    #[serde(default)]
+    pub single: HashMap<String, (String, f64)>,
+    /// attribute -> (prefix, priority): the only attribute, past its second threshold
+    #[serde(default)]
+    pub double: HashMap<String, (String, f64)>,
+    /// (higher-priority attribute, lower-priority attribute, prefix, priority)
+    #[serde(default)]
+    pub combo: Vec<(String, String, String, f64)>,
+    /// licensed-part prefix table (`jak_weapon_licensedpartprefix_table`)
+    #[serde(default)]
+    pub lic: Option<String>,
+    /// Tediore payload prefix table (`ted_payloadprefix_table`)
+    #[serde(default)]
+    pub payload: Option<String>,
 }
 
 #[derive(Debug, Deserialize, Clone)]
@@ -128,6 +155,12 @@ pub struct Part {
     pub beh: Option<serde_json::Value>,
     #[serde(default)]
     pub asp: Option<serde_json::Value>,
+    /// InventoryNamingAspect.bDisablePrefixes: the item gets no name prefix
+    #[serde(default)]
+    pub noprefix: bool,
+    /// monetary value modifier (`attr_calc_pricemod_*`, compact value)
+    #[serde(default)]
+    pub mv: Option<serde_json::Value>,
     #[serde(default)]
     pub r#mod: bool,
 }
@@ -209,6 +242,10 @@ struct RawDb {
     uiargs: HashMap<String, Vec<UiArg>>,
     #[serde(default)]
     stations: Vec<Station>,
+    #[serde(default)]
+    naming: HashMap<String, NamingStrategy>,
+    #[serde(default)]
+    naming_attrs: HashMap<String, String>,
 }
 
 /// A checkpoint the save can name in `state.checkpoint_name`.
@@ -262,6 +299,10 @@ pub struct Db {
     pub uiargs: HashMap<String, Vec<UiArg>>,
     /// fast-travel and respawn stations (`Map_P.Station`)
     pub stations: Vec<Station>,
+    /// weapon naming strategies by key (`namestrat_jak`)
+    pub naming: HashMap<String, NamingStrategy>,
+    /// naming attribute -> attribute it reads (`CritDamage` -> `weapon_damage_modifier_add_critical_hit`)
+    pub naming_attrs: HashMap<String, String>,
     /// where the data came from (embedded or a file path)
     pub origin: String,
 }
@@ -310,6 +351,8 @@ impl Db {
             containers: r.containers,
             uiargs: r.uiargs,
             stations: r.stations,
+            naming: r.naming,
+            naming_attrs: r.naming_attrs,
             origin: origin.to_string(),
         })
     }

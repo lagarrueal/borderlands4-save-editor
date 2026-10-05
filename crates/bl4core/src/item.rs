@@ -384,7 +384,7 @@ pub fn analyze(db: &Db, s: &Serial) -> ItemInfo {
     }
     text.extend(red);
     issues.sort_by(|a, b| b.sev.cmp(&a.sev));
-    ItemInfo {
+    let mut info = ItemInfo {
         category: cat_id,
         kind,
         type_name,
@@ -396,7 +396,16 @@ pub fn analyze(db: &Db, s: &Serial) -> ItemInfo {
         parts,
         issues,
         text,
+    };
+    // weapon name prefix ("Watching" Gomie, "Cooking Ambushing" Maggie): it
+    // depends on the computed attributes and the licensed parts
+    if info.kind == "weapon" {
+        let c = crate::stats::compute(db, s, &info);
+        if let Some(p) = crate::stats::weapon_prefix(db, s, &info, &c) {
+            info.name = format!("{p} {}", info.name);
+        }
     }
+    info
 }
 
 fn check_composition(db: &Db, cat: &Category, comp: &Part, resolved: &[Option<&Part>], issues: &mut Vec<Issue>) {

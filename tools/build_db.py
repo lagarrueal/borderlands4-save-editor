@@ -172,6 +172,78 @@ def build_firmware(d):
     return out
 
 
+def build_naming(d):
+    """Weapon naming strategies (inv_name_strategy, OakWeaponNamingStrategy):
+    the stat-prefix thresholds and name parts, and the licensed-part prefix
+    tables. -> {strategy key: {thr: [[attr, first, second]], single/double:
+    {attr: [prefix, priority]}, combo: [[attr1, attr2, prefix, priority]],
+    lic: licensed-part prefix table, payload: Tediore payload prefix table}}"""
+    out = {}
+    for _, _, e in entries(d, "inv_name_strategy"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        ns = v.get("namingstrategy")
+        if not isinstance(ns, dict) or "OakWeaponNamingStrategy" not in str(ns.get("structtype", "")):
+            continue
+
+        def np_(x):
+            n = x.get("namepart") or {}
+            return [text(n.get("partname")), float(n.get("priority") or 0)]
+
+        rec = {
+            # a missing threshold (DamageRadius) is the struct default: not used
+            "thr": [[t["attributename"], float(t["firstthreshold"]), float(t["secondthreshold"])]
+                    for t in as_list(ns.get("namingattributethresholds"))
+                    if isinstance(t, dict) and t.get("firstthreshold") is not None and t.get("secondthreshold") is not None],
+            "single": {x["firstattributename"]: np_(x) for x in as_list(ns.get("singlenames")) if isinstance(x, dict)},
+            "double": {x["firstattributename"]: np_(x) for x in as_list(ns.get("doublenames")) if isinstance(x, dict)},
+            "combo": [[x["firstattributename"], x["secondattributename"], *np_(x)]
+                      for x in as_list(ns.get("combinationnames")) if isinstance(x, dict)],
+        }
+        if ns.get("magbarreldatatable"):
+            rec["lic"] = ref(ns["magbarreldatatable"]).lower()
+        if ns.get("payloaddeliverydatatable"):
+            rec["payload"] = ref(ns["payloaddeliverydatatable"]).lower()
+        out[e["key"].lower()] = rec
+    return out
+
+
+def build_naming_attrs(d):
+    """OakGlobalsInventory.InventoryNamingAttributes: naming attribute name ->
+    the attribute it reads (Damage -> weapon_damage, CritDamage ->
+    weapon_damage_modifier_add_critical_hit, ...)."""
+    out = {}
+    for _, _, e in entries(d, "Resident", "globals"):
+        v = e["value"] if isinstance(e["value"], dict) else {}
+        m = v.get("inventorynamingattributes")
+        if isinstance(m, dict):
+            for pair in (m.get("pairs") or {}).values():
+                if isinstance(pair, dict) and pair.get("key") and pair.get("value"):
+                    out[pair["key"]] = ref(pair["value"]).lower()
+    return out
+
+
+WEAR_FIELDS = ("wear", "rust", "dirt", "sundamage")  # draw order of WeaponWearAspect
+
+
+def wear_ranges(v):
+    """WeaponWearAspect ranges ({wear: {minvalue, maxvalue}, ...}) -> [[min, max] x 4]
+    in draw order, or None when the aspect sets none (a missing bound is 0)."""
+    if not any(isinstance(v.get(f), dict) for f in WEAR_FIELDS):
+        return None
+    out = []
+    for f in WEAR_FIELDS:
+        r = v.get(f) if isinstance(v.get(f), dict) else {}
+        b = []
+        for k in ("minvalue", "maxvalue"):
+            x = r.get(k)
+            try:
+                b.append(float(x.get("constant")) if isinstance(x, dict) and x.get("constant") is not None else 0.0)
+            except (TypeError, ValueError):
+                b.append(0.0)
+        out.append(b)
+    return out
+
+
 # ------------------------------------------------------------------ items
 
 WEAPON_TYPES = {"ps": "Pistol", "sg": "Shotgun", "ar": "Assault Rifle", "sm": "SMG", "sr": "Sniper Rifle"}
@@ -278,6 +350,7 @@ def compact_aspects(v):
     title = []
     prefix = []
     name_row = None
+    noprefix = False
     for a in as_list(v.get("aspects")):
         if not isinstance(a, dict):
             continue
@@ -337,6 +410,9 @@ def compact_aspects(v):
             prefix.append(ref(t).lower())
         if a.get("datatablerowname") and "Naming" in str(a.get("structtype", "")):
             name_row = a["datatablerowname"]
+        # InventoryNamingAspect.bDisablePrefixes (Plasma Coil, Hot Slugger, ...)
+        if str(a.get("bdisableprefixes", "")).lower() == "true":
+            noprefix = True
     out = {}
     if fx:
         out["fx"] = fx
@@ -354,6 +430,8 @@ def compact_aspects(v):
         out["prefix"] = prefix
     if name_row:
         out["name_row"] = name_row
+    if noprefix:
+        out["noprefix"] = True
     return out
 
 
@@ -500,9 +578,14 @@ def build_items(d, names, uistats, firmware, skills=None):
             lines = [uistats[u] for u in asp.get("ui", []) if u in uistats]
             if lines:
                 p["text"] = lines
-            for k in ("fx", "tpl", "mods", "beh", "name_row"):
+            for k in ("fx", "tpl", "mods", "beh", "name_row", "noprefix"):
                 if k in asp:
                     p[k] = asp[k]
+            # item value: each part multiplies it (rarity comp 1.0..5.0,
+            # accessories 1.05, licensed parts 1.1..1.3, element 1.2)
+            mvm = dt_ref(dv.get("monetaryvaluemodifier"))
+            if mvm:
+                p["mv"] = mvm
             pas = [ref(x.get("parent")).lower() for x in as_list(dv.get("aspects")) if isinstance(x, dict) and x.get("parent")]
             if pas:
                 p["asp"] = sorted(set(pas))
@@ -574,6 +657,9 @@ def build_aspect_defs(d):
         v = e["value"] if isinstance(e["value"], dict) else {}
         a = compact_aspects({"aspects": [dict(v, parent=None)]})
         rec = {k: a[k] for k in ("fx", "beh", "mods") if k in a}
+        w = wear_ranges(v)
+        if w:
+            rec["wear"] = w
         if v.get("parent"):
             rec["parent"] = ref(v["parent"]).lower()
         out[e["key"].lower()] = rec
@@ -657,6 +743,10 @@ def build_bases(d):
         rec = out.setdefault(e["key"].lower(), {})
         if v.get("basetype"):
             rec["base"] = ref(v["basetype"]).lower()
+        mv = dt_ref(v.get("monetaryvalue"))
+        if mv:
+            # base price of the item type (weapon_ps -> attr_calc_price_gun_pistol)
+            rec["mv"] = mv
         if v.get("stats"):
             # the item type's stat definition (jak_ar -> jakobs_weapon), resolved
             rec["stats"] = ref(v["stats"]).lower()
@@ -857,6 +947,8 @@ def main():
         "bases": bases,
         "containers": containers,
         "uiargs": UI_ARGS,
+        "naming": build_naming(INSTALLED),
+        "naming_attrs": build_naming_attrs(INSTALLED),
         "stations": build_stations(INSTALLED),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)

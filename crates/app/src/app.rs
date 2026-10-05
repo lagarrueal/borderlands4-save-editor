@@ -158,7 +158,7 @@ impl App {
             sess: None,
             tab: Tab::Character,
             steam_id: opts.steam_id.clone().unwrap_or_default(),
-            game_running: save::game_running(),
+            game_running: opts.screenshot.is_none() && save::game_running(),
             running_flag: {
                 let flag = std::sync::Arc::new(std::sync::atomic::AtomicBool::new(save::game_running()));
                 let f2 = flag.clone();
@@ -705,7 +705,8 @@ impl App {
 
 impl eframe::App for App {
     fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
-        self.game_running = self.running_flag.load(std::sync::atomic::Ordering::Relaxed);
+        // screenshots show the normal state; save_all() still checks the real process
+        self.game_running = self.screenshot.is_none() && self.running_flag.load(std::sync::atomic::Ordering::Relaxed);
         egui::Panel::top("top").show(ui, |ui| self.top_bar(ui));
         egui::Panel::bottom("status").show(ui, |ui| self.status_bar(ui));
         egui::Panel::left("saves").resizable(true).default_size(230.0).show(ui, |ui| self.save_list(ui));

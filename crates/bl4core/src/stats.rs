@@ -115,6 +115,10 @@ impl<'a> Eval<'a> {
                     _ => None,
                 };
             }
+            if st.ends_with("GbxConstantAttributeValueResolver") {
+                // e.g. attr_calc_pricemod_body_acc = Economy_WeaponScales.Body_Acc
+                return v.get("attributeinit").and_then(|x| self.raw(x));
+            }
             if st.ends_with("InventoryRarityDataTableValueResolver") {
                 let col = v.get("raritytablecolumn").and_then(|x| x.as_str())?;
                 return self.cell("rarity_balance", self.rarity_row, Some(col)).or(Some(1.0));
@@ -628,6 +632,13 @@ pub fn card(db: &Db, s: &Serial, info: &ItemInfo) -> Vec<(String, String)> {
         }
         _ => {}
     }
+    // sell value: within a few dollars of the card on weapons (wear rounding
+    // not fully known); not checked for other item kinds, so not shown there
+    if info.kind == "weapon" {
+        if let Some(v) = item_value(db, s, info) {
+            push(&mut out, "Value", format!("~${}", thousands(v.round())));
+        }
+    }
     out
 }
 
@@ -1061,4 +1072,225 @@ impl<'a> UiEval<'a> {
             }
         }
     }
+}
+
+
+// ------------------------------------------------------------------ naming
+
+impl Computed {
+    /// Value / BaseValue of an attribute: what all of the item's modifiers
+    /// (item type, parts, stat points) make of the property's unmodified
+    /// value. This is the number OakWeaponNamingStrategy compares with its
+    /// thresholds. BaseValue is the fire-behaviour value or the last
+    /// OverrideBaseValue; DamageModifierData multipliers (crit) default to 1.
+    /// Without a known base the ratio is still defined when only scale
+    /// modifiers apply (ADS: weapon_zoom_duration).
+    pub fn naming_ratio(&self, attr: &str) -> Option<f64> {
+        let mut base = self.base.get(attr).copied();
+        let (mut pre, mut add, mut mul, mut post, mut any) = (0.0, 0.0, 1.0, 0.0, base.is_some());
+        for e in self.effects.iter().filter(|e| e.attr.eq_ignore_ascii_case(attr)) {
+            any = true;
+            match e.op.as_str() {
+                "OverrideBaseValue" => base = Some(e.val),
+                "PreAdd" | "Add" => pre += e.val,
+                "ScaleAdd" | "ScaleSimple" => add += e.val,
+                "ScaleMultiply" => mul *= e.val,
+                "PostAdd" => post += e.val,
+                _ => {}
+            }
+        }
+        if !any {
+            return None;
+        }
+        let b = match base {
+            Some(b) => b,
+            None if attr.starts_with("weapon_damage_modifier_") => 1.0,
+            None if pre == 0.0 && post == 0.0 => 1.0,
+            None => return None,
+        };
+        if b.abs() < 1e-9 {
+            return None;
+        }
+        let mut v = (b + pre) * (1.0 + add) * mul + post;
+        if attr == "weapon_max_loaded_ammo" {
+            v = (v - 1e-6).ceil(); // an int property
+        }
+        Some(v / b)
+    }
+}
+
+/// The weapon's naming strategy (`NameStrat_JAK`).
+fn naming_strategy<'a>(db: &'a Db, info: &ItemInfo) -> Option<&'a crate::db::NamingStrategy> {
+    let key = db.category(info.category)?.naming.as_ref()?.to_lowercase();
+    db.naming.get(&key)
+}
+
+/// Naming attributes of the strategy with their Value/BaseValue ratio and
+/// whether they pass the first and the second threshold, highest single-name
+/// priority first. Only attributes with a name part take part (DamageRadius
+/// has neither thresholds nor names).
+pub fn naming_values(db: &Db, info: &ItemInfo, c: &Computed) -> Vec<(String, f64, bool, bool)> {
+    let Some(ns) = naming_strategy(db, info) else { return vec![] };
+    let mut out: Vec<(String, f64, bool, bool, f64)> = vec![];
+    for (name, first, second) in &ns.thr {
+        let Some(pri) = ns.single.get(name).map(|x| x.1) else { continue };
+        let Some(attr) = db.naming_attrs.get(name) else { continue };
+        let Some(v) = c.naming_ratio(attr) else { continue };
+        let lower_is_better = second < first;
+        let pass = |t: f64| if lower_is_better { v <= t } else { v >= t };
+        out.push((name.clone(), v, pass(*first), pass(*second), pri));
+    }
+    out.sort_by(|a, b| b.4.total_cmp(&a.4));
+    out.into_iter().map(|(n, v, p1, p2, _)| (n, v, p1, p2)).collect()
+}
+
+/// The stat prefix ("Watching", "Ambushing", "Looming", ...):
+///  - no attribute past its first threshold: none
+///  - exactly one: its double name past the second threshold, else its single name
+///  - two or more: the combination name of the two with the highest priority
+///    (combination priority = 100 x first + second: Damage+CritDamage
+///    "Looming" 807, CritDamage+ReloadSpeed "Ambushing" 705,
+///    CritDamage+Accuracy "Watching" 703)
+pub fn stat_prefix(db: &Db, info: &ItemInfo, c: &Computed) -> Option<String> {
+    let ns = naming_strategy(db, info)?;
+    let hits: Vec<(String, f64, bool, bool)> = naming_values(db, info, c).into_iter().filter(|h| h.2).collect();
+    match hits.as_slice() {
+        [] => None,
+        [(a, _, _, true)] => ns.double.get(a).map(|x| x.0.clone()),
+        [(a, _, _, false)] => ns.single.get(a).map(|x| x.0.clone()),
+        [first, second, ..] => ns
+            .combo
+            .iter()
+            .find(|x| (x.0 == first.0 && x.1 == second.0) || (x.0 == second.0 && x.1 == first.0))
+            .map(|x| x.2.clone()),
+    }
+}
+
+/// Text of a localized table cell ("NexusSerialized, <GUID>, Cooking" -> "Cooking").
+fn cell_text(v: &Value) -> Option<String> {
+    let s = v.as_str()?;
+    let t = s.rsplit(", ").next().unwrap_or(s).trim();
+    (!t.is_empty()).then(|| t.to_string())
+}
+
+/// The licensed-part prefix ("Cooking" for a CoV magazine, "Tossed" for a
+/// Tediore reload accessory) from the strategy's MagBarrelDataTable: the row
+/// is the barrel-accessory licence tag the item has (licensed_ted,
+/// hyp_shield, jak_barrel_acc) else `default`, the column its magazine
+/// licence tag (cov_mag, borg_mag, tor_mag) else `default`; an empty cell
+/// gives none. Rows flagged use_payload_prefix hold "-Tossed"-style suffixes
+/// for the Tediore payload prefix (TED_PayloadPrefix_Table: row = payload
+/// tags joined by '+', column = delivery tag). In game a Jakobs pistol with
+/// the Shooting accessory and the default delivery shows plain "Tossed", so
+/// the payload word is only added when a delivery part (ted_legs / ted_homing
+/// / ted_javelin) selects a non-default column (that case is not verified).
+pub fn licensed_prefix(db: &Db, s: &Serial, info: &ItemInfo) -> Option<String> {
+    let ns = naming_strategy(db, info)?;
+    let table = db.tables.get(ns.lic.as_deref()?)?;
+    let tags: Vec<&str> = s.parts().into_iter().filter_map(|r| db.part(r)).flat_map(|p| p.add.iter().map(|t| t.as_str())).collect();
+    let row_key = table.keys().filter(|k| *k != "default").find(|k| tags.contains(&k.as_str())).map(|k| k.as_str()).unwrap_or("default");
+    let row = table.get(row_key)?;
+    let col = row
+        .keys()
+        .filter(|k| *k != "default" && *k != "use_payload_prefix")
+        .find(|k| tags.contains(&k.as_str()))
+        .map(|k| k.as_str())
+        .unwrap_or("default");
+    let cell = cell_text(row.get(col)?)?;
+    let payload = row.get("use_payload_prefix").and_then(|v| v.as_str()).is_some_and(|v| v.eq_ignore_ascii_case("true"));
+    if !payload {
+        return Some(cell);
+    }
+    let suffix = cell.trim_start_matches('-').to_string();
+    let Some(pt) = ns.payload.as_deref().and_then(|t| db.tables.get(t)) else { return Some(suffix) };
+    // payload row: the largest '+'-joined set of payload tags the item has, else default
+    let prow = pt
+        .iter()
+        .filter(|(k, _)| *k != "default")
+        .filter(|(k, _)| k.split('+').all(|t| tags.contains(&t)))
+        .max_by_key(|(k, _)| k.split('+').count())
+        .map(|(_, r)| r)
+        .or_else(|| pt.get("default"));
+    let delivery = prow.and_then(|r| r.iter().find(|(k, _)| *k != "default" && tags.contains(&k.as_str())));
+    match delivery.and_then(|(_, v)| cell_text(v)) {
+        Some(word) => Some(format!("{word}-{suffix}")),
+        None => Some(suffix),
+    }
+}
+
+/// Full weapon name prefix: licensed-part prefix, then stat prefix
+/// ("Cooking Ambushing" Maggie, "Tossed Ambushing" Muki, "Watching" Gomie).
+/// None when a part's naming aspect sets bDisablePrefixes (Plasma Coil, ...).
+pub fn weapon_prefix(db: &Db, s: &Serial, info: &ItemInfo, c: &Computed) -> Option<String> {
+    if info.kind != "weapon" || s.parts().into_iter().any(|r| db.part(r).is_some_and(|p| p.noprefix)) {
+        return None;
+    }
+    let words: Vec<String> = [licensed_prefix(db, s, info), stat_prefix(db, info, c)].into_iter().flatten().collect();
+    (!words.is_empty()).then(|| words.join(" "))
+}
+
+// ------------------------------------------------------------------ value
+
+/// UE FRandomStream: seed = seed * 196314165 + 907633515, then a float in
+/// [0, 1) from the top 23 bits.
+struct RandomStream(u32);
+
+impl RandomStream {
+    fn fraction(&mut self) -> f32 {
+        self.0 = self.0.wrapping_mul(196_314_165).wrapping_add(907_633_515);
+        f32::from_bits(0x3F80_0000 | (self.0 >> 9)) - 1.0
+    }
+    fn range(&mut self, lo: f32, hi: f32) -> f32 {
+        lo + (hi - lo) * self.fraction()
+    }
+}
+
+/// attr_calc_pricemod_wear_and_tear = 1 - (wear + rust + dirt + sun damage) / 20.
+/// The four values are drawn in that order from FRandomStream(serial header
+/// param 2 = the 12-bit wear seed `ws` of inv_params'wear_params') within
+/// the ranges of the rarity comp's WeaponWearAspect (weapon_wear_epic:
+/// 0..0.2, 0..0.2, 0..0.2, 0..0.1).
+pub fn wear_factor(db: &Db, s: &Serial) -> f64 {
+    let ranges = s.parts().into_iter().filter_map(|r| db.part(r)).filter(|p| p.s == "inv_comp").find_map(|p| {
+        p.asp.as_ref()?.as_array()?.iter().filter_map(|a| a.as_str()).find_map(|a| db.aspects.get(&a.to_lowercase())?.get("wear").cloned())
+    });
+    let (Some(ranges), Some(seed)) = (ranges, s.seed()) else { return 1.0 };
+    let mut rs = RandomStream(seed as u32);
+    let mut sum = 0.0f32;
+    for r in ranges.as_array().into_iter().flatten() {
+        let lo = r.get(0).and_then(num).unwrap_or(0.0) as f32;
+        let hi = r.get(1).and_then(num).unwrap_or(0.0) as f32;
+        sum += rs.range(lo, hi);
+    }
+    1.0 - sum as f64 / 20.0
+}
+
+/// The item's value (the $ on the item card):
+///   item type MonetaryValue (attr_calc_price_gun_pistol = 1.12^level x 100 x gun type x wear)
+///   x every part's MonetaryValueModifier (rarity comp 1..5, accessories 1.05,
+///     licensed parts 1.1..1.3, element 1.2).
+pub fn item_value(db: &Db, s: &Serial, info: &ItemInfo) -> Option<f64> {
+    let cat = db.category(info.category)?;
+    let mut key = cat.key.clone();
+    let mut mv = None;
+    for _ in 0..8 {
+        let b = db.bases.get(&key)?;
+        if let Some(m) = b.get("mv") {
+            mv = Some(m.clone());
+            break;
+        }
+        match b.get("base").and_then(|x| x.as_str()) {
+            Some(n) if n != key => key = n.to_string(),
+            _ => break,
+        }
+    }
+    let mut ev = Eval::new(db, info.level.unwrap_or(1).max(1), info.rarity);
+    ev.cache.insert("attr_calc_pricemod_wear_and_tear".into(), Some(wear_factor(db, s)));
+    let mut v = ev.compact(&mv?)?;
+    for r in s.parts() {
+        if let Some(m) = db.part(r).and_then(|p| p.mv.as_ref()) {
+            v *= ev.compact(m).unwrap_or(1.0);
+        }
+    }
+    Some(v)
 }
