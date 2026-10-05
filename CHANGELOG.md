@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.1
+
+- Level cap 70 (game update): characters above level 60 could not be saved,
+  and the level box clamped to 60. Character, specialization and item level
+  caps now follow the game data (character 70, specialization 701).
+- Heavy weapons: cooldown, magazine, DPS, sell value and name prefixes
+  ("Junk-Drunk Sidewinder", "Eager Sprezzatura"), matching in-game cards.
+- Ripper weapons: magazine, reload and DPS including the charge-up time.
+- Shot cost line ("2/Shot") on weapons that use more than one round per shot.
+- Weapon names no longer change between runs when two licensed-part tags match.
+
 ## 1.0.0
 
 First release.

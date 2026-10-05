@@ -31,6 +31,7 @@ icons and everything else are embedded.
 | ![Character](docs/screenshots/character.png) | ![UVH and SDU](docs/screenshots/progression.png) |
 | ![Missions](docs/screenshots/missions.png) | ![Appearance](docs/screenshots/appearance.png) |
 | ![Currency](docs/screenshots/currency.png) | ![Bank](docs/screenshots/bank.png) |
+| ![Heavy weapon](docs/screenshots/heavy.png) | ![Repkit](docs/screenshots/repkit.png) |
 
 ## Using it
 
@@ -63,10 +64,9 @@ The model:
   (`weapon_accuracy_ui_compare`, `weapon_dps_estimate`, `weapon_ui_elemental_dps`).
 
 It is checked against in-game cards of a pearlescent Jakobs AR, a legendary
-Maliwan SMG and two (modded) Jakobs pistols at several levels; those numbers
-are locked in by `crates/bl4core/tests/card_ground_truth.rs`. Shotgun, sniper
-and heavy-weapon cards follow the same rules but have no in-game reference
-yet. For shields, ordnance and repkits the base values are shown, and each
+Maliwan SMG, two (modded) Jakobs pistols, two Ripper snipers, three heavy
+weapons and a Jakobs shotgun; those numbers are locked in by the tests in
+`crates/bl4core/tests/`. Known gap: shotgun pellet damage is about 2% low. For shields, ordnance and repkits the base values are shown, and each
 part's modifiers are listed when you hover its id in the parts table.
 
 ## Game updates and mods
@@ -125,5 +125,6 @@ research/        format notes measured on real saves
 * Weapon card numbers match in-game screenshots exactly (see Stats).
 
 Not verified in game yet: UVH 7 unlock, cosmetic unlocks, story completion
-without the game's own `final` objective records, card stats for shotguns,
-snipers and heavy weapons.
+without the game's own `final` objective records, shotgun damage (about 2%
+low on the one card checked), and characters above level 60 written by the
+game itself (the cap is read from the game data).
