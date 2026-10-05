@@ -50,7 +50,9 @@ Weapon cards are computed from the game's own balance data (data tables,
 attribute formulas, part aspects) and reproduce the in-game item card before
 skills, class mods and other buffs: damage (and pellets), accuracy, fire rate
 (burst-aware), magazine, reload time, DPS, elemental DPS and chance, splash
-radius and crit damage. The model:
+radius, crit damage, the full in-game name ("Watching Gomie": stat and
+licensed-part prefixes) and an approximate sell value (within a few dollars).
+The model:
 
 * base damage = 6 × 1.09^level × barrel damage scale, × weapon-type, magazine
   and element scalars;

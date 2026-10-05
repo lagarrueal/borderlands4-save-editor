@@ -22,7 +22,7 @@ Interpretation (all reproduce the table exactly; tests/card_ground_truth.rs):
 Open questions:
 - Why sway reads 0 (context-resolution hypothesis).
 - Heat/overheat weapons: card_dps differs from the game expression on 37/307 corpus weapons; no in-game reference.
-- Name prefixes ("Watching", "Ambushing") and item value: see naming investigation.
+- Name prefixes and item value: see the section below.
 
 Relevant code: crates/bl4core/src/stats.rs, tools/build_db.py.
 
