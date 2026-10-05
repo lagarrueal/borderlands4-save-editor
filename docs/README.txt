@@ -35,7 +35,8 @@ WHAT YOU CAN EDIT
   backpack and bank, delete, create new items. Scale one item or the whole
   backpack/bank to your character level.
 - Item card: name, rarity, manufacturer, element, firmware, red text, effects
-  and stats (damage, fire rate, magazine, reload, DPS, crit) computed from the
+  and stats (damage, accuracy, fire rate, magazine, reload, DPS, element,
+  splash radius, crit) computed from the
   game's own data.
 - Validity check: items the game would reject are marked with a red cross and
   you are asked before saving them. Orange marks are items that cannot drop

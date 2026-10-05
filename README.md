@@ -4,6 +4,8 @@ An offline save editor for **Borderlands 4**, in the spirit of Gibbed's
 Borderlands 2 editor. A single `BL4SaveEditor.exe`: the game database, item
 icons and everything else are embedded.
 
+![Backpack with a pearlescent weapon card](docs/screenshots/backpack.png)
+
 ## Features
 
 | Area | What you can do |
@@ -21,6 +23,15 @@ icons and everything else are embedded.
 | **Raw** | The decrypted YAML of the character or profile, searchable and editable (checked before it is applied). |
 | **Undo/Redo** | Every edit (Ctrl+Z / Ctrl+Y). |
 
+## Screenshots
+
+| | |
+|---|---|
+| ![Elemental weapon](docs/screenshots/weapon-elemental.png) | ![Class mod](docs/screenshots/classmod.png) |
+| ![Character](docs/screenshots/character.png) | ![UVH and SDU](docs/screenshots/progression.png) |
+| ![Missions](docs/screenshots/missions.png) | ![Appearance](docs/screenshots/appearance.png) |
+| ![Currency](docs/screenshots/currency.png) | ![Bank](docs/screenshots/bank.png) |
+
 ## Using it
 
 1. Quit Borderlands 4 completely (saving is disabled while it runs).
@@ -35,13 +46,26 @@ To restore a backup, copy it from `bl4editor_backups` over the original
 
 ## Stats
 
-Item stats are computed from the game's own balance data: data tables,
-attribute formulas and part aspects, e.g. weapon damage =
-6 × 1.09^level × weapon-type scale × barrel damage scale × rarity scale ×
-magazine/part modifiers. They are estimates of the item card before skills,
-class mods and other buffs. For shields, ordnance and repkits the base values
-(type and manufacturer) are shown, and each part's modifiers are listed when
-you hover its id in the parts table.
+Weapon cards are computed from the game's own balance data (data tables,
+attribute formulas, part aspects) and reproduce the in-game item card before
+skills, class mods and other buffs: damage (and pellets), accuracy, fire rate
+(burst-aware), magazine, reload time, DPS, elemental DPS and chance, splash
+radius and crit damage. The model:
+
+* base damage = 6 × 1.09^level × barrel damage scale, × weapon-type, magazine
+  and element scalars;
+* every part adds stat points; a point is worth
+  `Weapon_Stats[stat].Default × manufacturer column × Rarity_Balance[rarity].Stat_Scale`
+  (rarity changes stats only through these points);
+* accuracy, DPS and the element line use the game's own UI expressions
+  (`weapon_accuracy_ui_compare`, `weapon_dps_estimate`, `weapon_ui_elemental_dps`).
+
+It is checked against in-game cards of a pearlescent Jakobs AR, a legendary
+Maliwan SMG and two (modded) Jakobs pistols at several levels; those numbers
+are locked in by `crates/bl4core/tests/card_ground_truth.rs`. Shotgun, sniper
+and heavy-weapon cards follow the same rules but have no in-game reference
+yet. For shields, ordnance and repkits the base values are shown, and each
+part's modifiers are listed when you hover its id in the parts table.
 
 ## Game updates and mods
 
@@ -96,7 +120,8 @@ research/        format notes measured on real saves
 * The validator flags none of the 654 game-generated items, and catches 100%
   of unknown-part, wrong-pool and duplicate-barrel mutations of them.
 * Items built from scratch for every item type × rarity (683) have no errors.
+* Weapon card numbers match in-game screenshots exactly (see Stats).
 
 Not verified in game yet: UVH 7 unlock, cosmetic unlocks, story completion
-without the game's own `final` objective records, and the exact rarity damage
-scaling (see Stats).
+without the game's own `final` objective records, card stats for shotguns,
+snipers and heavy weapons.

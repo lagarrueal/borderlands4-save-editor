@@ -11,7 +11,8 @@ First release.
 - Item card with name, rarity (incl. pearlescent), manufacturer logo, element,
   firmware, effect text with real numbers and red flavour text.
 - Weapon stats computed from the game data and checked against in-game cards:
-  damage, fire rate (incl. burst weapons), magazine, reload time, DPS, crit.
+  damage, accuracy, fire rate (incl. burst weapons), magazine, reload time,
+  DPS, elemental DPS and chance, splash radius, crit.
   Base stats for shields, ordnance and repkits.
 - Validity check of every item against the game data; confirmation before
   saving items the game would reject; mod-only parts recognised.
