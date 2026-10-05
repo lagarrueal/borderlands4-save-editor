@@ -364,7 +364,9 @@ impl Computed {
         if let Some(min) = self.value("weapon_min_reload_time") {
             r = r.max(min);
         }
-        Some(r.max(0.0))
+        // a reload this short means a mechanic the engine does not model
+        // (e.g. single-shot shotguns); show nothing rather than a wrong number
+        (r >= 0.1).then_some(r)
     }
 
     /// Card DPS, the game's weapon_dps_estimate:
@@ -376,7 +378,7 @@ impl Computed {
         let fr = self.card_fire_rate()?;
         let mag = self.card_magazine()?;
         let shots = if self.reload_four() { mag } else { mag / self.value("weapon_shot_cost").unwrap_or(1.0).max(1.0).round() };
-        let reload = self.card_reload().unwrap_or(0.0);
+        let reload = if self.reload_four() { 0.0 } else { self.card_reload()? };
         if fr <= 0.0 || shots <= 0.0 {
             return None;
         }
