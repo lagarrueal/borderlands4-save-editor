@@ -36,6 +36,7 @@ fn plasma_coil_lvl23_legendary() {
     assert_eq!(get(&c, "Magazine"), "40");
     assert_eq!(get(&c, "Reload time"), "1.6s");
     assert_eq!(get(&c, "DPS"), "582");
+    assert_eq!(get(&c, "Shock"), "191 DMG/s | 8% Chance");
 }
 
 /// The Maggie only exists with the JakobsMasherMaggie mod; skip without it.

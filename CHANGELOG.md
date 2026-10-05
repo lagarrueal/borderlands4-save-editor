@@ -1,0 +1,26 @@
+# Changelog
+
+## 1.0.0
+
+First release.
+
+- Item editor for backpack, equipped gear, bank and Lost Loot (weapons, heavy
+  weapons, shields, ordnance, repkits, enhancements, class mods): every part in
+  a searchable dropdown limited to its slot, add/remove parts, level,
+  favorite/junk, serial codes, duplicate, move, delete, build new items.
+- Item card with name, rarity (incl. pearlescent), manufacturer logo, element,
+  firmware, effect text with real numbers and red flavour text.
+- Weapon stats computed from the game data and checked against in-game cards:
+  damage, fire rate (incl. burst weapons), magazine, reload time, DPS, crit.
+  Base stats for shields, ordnance and repkits.
+- Validity check of every item against the game data; confirmation before
+  saving items the game would reject; mod-only parts recognised.
+- Scale an item, the backpack or the bank to the character level.
+- Character level/XP, specialization, difficulty, True Mode, spawn checkpoint.
+- Cash, eridium, SDU tokens, Vault Card tokens, ammo.
+- UVH 1-7 unlock, SDU upgrades, equipment slots.
+- Missions: complete story (game's own skip records), sets, missions,
+  objective states.
+- Cosmetics: equip and unlock.
+- Automatic backup of the character and profile on open; saving blocked while
+  the game runs; byte-identical writes; capacity checks; undo/redo.

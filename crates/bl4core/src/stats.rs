@@ -331,23 +331,56 @@ impl Computed {
         }
     }
 
-    /// Magazine size (MaxLoadedAmmo is an int, the stat rounds up).
+    /// Heat/charge magazines (Reload part value 4, e.g. CoV): no ammo, the
+    /// gun overheats instead (weapon_reload_four).
+    pub fn reload_four(&self) -> bool {
+        self.value("weapon_part_reload_value").is_some_and(|v| (v - 4.0).abs() < 1e-6)
+    }
+
+    /// Card "Magazine": weapon_compare_shots_until_reload. Shots to overheat
+    /// for heat magazines, else MaxLoadedAmmo (an int; the stat rounds up).
     pub fn card_magazine(&self) -> Option<f64> {
+        if self.reload_four() {
+            return self.value("weapon_heat_impulse").filter(|h| *h > 0.0).map(|h| (1.0 / h).floor());
+        }
         self.based_value("weapon_max_loaded_ammo").map(|v| (v - 1e-6).ceil())
     }
 
-    /// Sustained DPS as the card shows it: one magazine at the card fire rate,
-    /// then a reload.
+    /// Card "Reload": weapon_compare_reload_time. Single-load magazines
+    /// (shell by shell) take ReloadTime x (1 + LoopPercent x (MaxAmmo - 2)) /
+    /// FeedIncrement; never below the weapon's minimum reload time.
+    pub fn card_reload(&self) -> Option<f64> {
+        if self.reload_four() {
+            return None;
+        }
+        let mut r = self.based_value("weapon_reload_time")?;
+        if self.value("weapon_is_single_load").unwrap_or(0.0) >= 0.5 {
+            let lp = self.value("weapon_single_load_reload_loop_percent").unwrap_or(0.0);
+            let m = self.based_value("weapon_max_loaded_ammo").map(|v| (v - 1e-6).ceil()).unwrap_or(1.0);
+            let two = |a: &str| self.value(a).is_some_and(|v| (v - 2.0).abs() < 1e-6);
+            let feed = if two("weapon_part_reload_value") && two("weapon_part_barrel_value") { 2.0 } else { 1.0 };
+            r = r * (1.0 + lp * (m - 2.0).max(0.0)) / feed;
+        }
+        if let Some(min) = self.value("weapon_min_reload_time") {
+            r = r.max(min);
+        }
+        Some(r.max(0.0))
+    }
+
+    /// Card DPS, the game's weapon_dps_estimate:
+    /// damage x pellets x shots / (shots / burst-aware fire rate + reload),
+    /// shots = magazine / ammo cost per shot (or shots to overheat).
     pub fn card_dps(&self) -> Option<f64> {
         let dmg = self.value("weapon_damage")?;
         let pellets = self.value("weapon_projectile_per_shot").unwrap_or(1.0).max(1.0).round();
         let fr = self.card_fire_rate()?;
         let mag = self.card_magazine()?;
-        let reload = self.based_value("weapon_reload_time").unwrap_or(0.0);
-        if fr <= 0.0 || mag <= 0.0 {
+        let shots = if self.reload_four() { mag } else { mag / self.value("weapon_shot_cost").unwrap_or(1.0).max(1.0).round() };
+        let reload = self.card_reload().unwrap_or(0.0);
+        if fr <= 0.0 || shots <= 0.0 {
             return None;
         }
-        Some(dmg * pellets * mag / (mag / fr + reload))
+        Some(dmg * pellets * shots / (shots / fr + reload))
     }
 }
 
@@ -441,6 +474,7 @@ fn add_source(ev: &mut Eval, db: &Db, out: &mut Computed, src: &Value, label: &s
             ("projectilespershot", "weapon_projectile_per_shot"),
             ("automaticburstcount", "weapon_burst_count"),
             ("burstfiredelay", "weapon_burst_fire_delay"),
+            ("shotammocost", "weapon_shot_cost"),
         ] {
             if let Some(v) = beh.get(k).and_then(|v| ev.compact(v)) {
                 out.base.insert(attr.to_string(), v);
@@ -498,11 +532,27 @@ pub fn card(db: &Db, s: &Serial, info: &ItemInfo) -> Vec<(String, String)> {
             if let Some(v) = c.card_magazine() {
                 push(&mut out, "Magazine", format!("{:.0}", v));
             }
-            if let Some(v) = c.based_value("weapon_reload_time") {
+            if let Some(v) = c.card_reload() {
                 push(&mut out, "Reload time", format!("{:.1}s", v));
             }
             if let Some(v) = c.card_dps() {
                 push(&mut out, "DPS", thousands(v));
+            }
+            // element line: weapon_ui_elemental_dps = status damage x damage x
+            // Status_Application_Defaults[element].DPS / DoT interval
+            if let (Some(el), Some(d)) = (info.element.first(), c.value("weapon_damage")) {
+                let row = match el.as_str() {
+                    "Incendiary" => "fire",
+                    other => &other.to_lowercase(),
+                };
+                let mut ev = Eval::new(db, info.level.unwrap_or(1).max(1), info.rarity);
+                let factor = ev.cell("status_application_defaults", row, Some("dps")).unwrap_or(0.0);
+                let interval = ev.attr("att_playershared_dotinterval").filter(|v| *v > 0.0);
+                let sdmg = c.value("weapon_damage_modifier_base_status_effect_damage").unwrap_or(1.0);
+                if let (true, Some(iv)) = (factor > 0.0, interval) {
+                    let chance = c.value("weapon_damage_modifier_base_status_effect_chance").unwrap_or(0.0);
+                    push(&mut out, el, format!("{} DMG/s | {:.0}% Chance", thousands(sdmg * d * factor / iv), chance * 100.0));
+                }
             }
             if let Some(v) = c.value("weapon_spread") {
                 push(&mut out, "Spread", fmt_num(v));

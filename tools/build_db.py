@@ -316,7 +316,7 @@ def compact_aspects(v):
         b = a.get("behavior")
         if isinstance(b, dict) and parent and "fire" in parent.lower():
             for k in ("damage", "firerate", "spread", "projectilespershot", "automaticburstcount", "accuracyimpulse",
-                      "burstfiredelay"):
+                      "burstfiredelay", "shotammocost"):
                 if k in b:
                     val = b[k]
                     if isinstance(val, dict):
@@ -532,6 +532,9 @@ def build_tables(d):
                 continue
             cols = {}
             for k, val in (r.get("row_value") or {}).items():
+                # nested struct cells ({"dps": {"value": "0.2"}}) -> their value
+                if isinstance(val, dict) and isinstance(val.get("value"), str):
+                    val = val["value"]
                 if isinstance(val, str):
                     try:
                         cols[norm_col(k)] = float(val)
