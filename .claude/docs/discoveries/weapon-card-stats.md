@@ -25,3 +25,19 @@ Open questions:
 - Name prefixes ("Watching", "Ambushing") and item value: see naming investigation.
 
 Relevant code: crates/bl4core/src/stats.rs, tools/build_db.py.
+
+## Name prefixes and sell value
+
+Status: CONFIRMED (prefixes, 11/11 in-game names); LIKELY (value, 7 cards within $3)
+
+- Prefix (OakWeaponNamingStrategy): per naming attribute (Resident InventoryNamingAttributes), ratio = Value / BaseValue;
+  thresholds (first, second; second < first means lower is better). One passing attribute -> single/double name;
+  two or more -> combination name of the top two by single-name priority (Jakobs: Damage 8, Crit 7, FireRate 6,
+  Reload 5, Mag 4, Accuracy 3, Elemental 2, ADS 1). Licensed-part prefix from magbarreldatatable (row = barrel-acc
+  licence, column = magazine licence). Any part with bDisablePrefixes = no prefix (Plasma Coil).
+- Value = itemtype monetaryvalue x prod(part monetaryvaluemodifier); base = 1.12^level x 100 x gun-type multiplier x
+  wear factor, wear = 1 - (wear+rust+dirt+sun)/20 drawn from UE FRandomStream(serial seed) within the rarity comp's
+  WeaponWearAspect ranges. Off by $0-3 on 6 of 7 cards: residual per-item wear noise, cause UNKNOWN
+  (hypothesis: inv_params wear_params 'wb'). Shown as "~$" and for weapons only; other kinds unverified.
+
+Relevant code: stats.rs weapon_prefix / item_value, tests/naming_value.rs.

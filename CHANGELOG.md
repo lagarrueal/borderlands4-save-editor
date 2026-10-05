@@ -8,11 +8,11 @@ First release.
   weapons, shields, ordnance, repkits, enhancements, class mods): every part in
   a searchable dropdown limited to its slot, add/remove parts, level,
   favorite/junk, serial codes, duplicate, move, delete, build new items.
-- Item card with name, rarity (incl. pearlescent), manufacturer logo, element,
+- Item card with full in-game name (stat and licensed-part prefixes), rarity (incl. pearlescent), manufacturer logo, element,
   firmware, effect text with real numbers and red flavour text.
 - Weapon stats computed from the game data and checked against in-game cards:
   damage, accuracy, fire rate (incl. burst weapons), magazine, reload time,
-  DPS, elemental DPS and chance, splash radius, crit.
+  DPS, elemental DPS and chance, splash radius, crit, approximate sell value.
   Base stats for shields, ordnance and repkits.
 - Validity check of every item against the game data; confirmation before
   saving items the game would reject; mod-only parts recognised.
